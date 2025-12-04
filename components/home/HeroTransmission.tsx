@@ -1,99 +1,90 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronDown, PhoneCall } from "lucide-react";
-import GradientButton from "../button";
 
 export default function HeroTransmissionClean() {
-  return (
-    <section className="relative w-full h-screen overflow-hidden flex flex-col justify-start">
+    return (
+        <section className="relative w-full h-[900px] bg-[#091B33] overflow-hidden">
 
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/images/hero.jpg"
-          alt="Transmission Hero"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
+            {/* ---------------- BACKGROUND IMAGE + OVERLAY ---------------- */}
+            <div className="absolute inset-0 h-[900px]">
+                <Image
+                    src="/iStock-184828850.jpg"
+                    alt="Transmission Hero"
+                    fill
+                    priority
+                    className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[#091B33]/80" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#049FFF]/60 to-[#091B33]" />
+            </div>
 
-      {/* ------------------- HERO TEXT ------------------- */}
-      <div className="mt-[100px] sm:mt-[120px] lg:mt-[140px] text-center text-[#E8F3FF] px-4 space-y-5">
+            {/* ------------------- HEADINGS ------------------- */}
+            <div className="absolute left-1/2 top-[180px] -translate-x-1/2 text-center text-[#E8F3FF] px-6">
 
-        <h1 className="font-[Orbitron] font-bold text-[26px] sm:text-[32px] lg:text-[38px] leading-tight">
-          Used Transmissions for Sale
-        </h1>
+                <h1 className="font-[Orbitron] font-bold text-[38px] leading-[48px]">
+                    Used Transmissions for Sale
+                </h1>
 
-        <p className="font-[Orbitron] text-[16px] sm:text-[18px] lg:text-[20px] max-w-[600px] mx-auto leading-snug">
-          Unlock smooth shifting & savings with high-quality used transmissions
-        </p>
+                <p className="mt-3 font-[Orbitron] text-[20px] leading-[28px] font-medium max-w-[600px] mx-auto">
+                    Unlock smooth shifting & savings with high-quality used transmissions
+                </p>
 
-        <GradientButton
-          width={320}
-          height={60}
-          text="(877) 982-7774"
-          textSize="text-[22px] sm:text-[26px] lg:text-[28px]"
-          icon={<PhoneCall size={24} strokeWidth={3} color="#E8F3FF" />}
-        />
-      </div>
+                {/* CALL NOW BUTTON */}
+                <div className="relative w-[280px] h-[50px] mx-auto mt-6">
+                    <div className="absolute inset-0 rounded-[30px] bg-gradient-to-r from-[#049FFF] to-[#0077C8] shadow-lg opacity-90" />
 
-      {/* ------------------- FORM ------------------- */}
-      <div className="mt-10 w-full flex justify-center px-4 pb-6">
-        <FormGrid />
-      </div>
-    </section>
-  );
+                    <div className="absolute inset-0 flex items-center justify-center gap-3">
+                        <div className="w-[20px] h-[20px] rounded-full border-2 border-[#E8F3FF]" />
+                        <span className="font-[Orbitron] text-[18px] font-semibold">
+                            (877) 982-7774
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* ------------------- FORM ------------------- */}
+            <FormGrid />
+        </section>
+    );
 }
 
 /* -------------------------------------------------------------------------- */
-/*                               FORM GRID                                     */
+/*                                 FORM GRID                                   */
 /* -------------------------------------------------------------------------- */
 
 function FormGrid() {
-  return (
-    <div className="w-full max-w-[900px]">
-      <div
-        className="
-          grid 
-          grid-cols-2 
-          md:grid-cols-3
-          gap-4 sm:gap-5
-        "
-      >
-        {/* Inputs */}
-        {[
-          { label: "Year", type: "select", options: ["2024", "2023", "2022"] },
-          { label: "Make", type: "select", options: ["Toyota", "Honda", "Ford"] },
-          { label: "Model", type: "select", options: ["A", "B", "C"] },
-          { label: "Part", type: "select", options: ["Transmission", "Engine"] },
-          { label: "Engine Size", type: "select", options: ["2.0L", "2.4L", "3.0L"] },
-          { label: "Transmission", type: "select", options: ["Automatic", "Manual"] },
-          { label: "Name", type: "text" },
-          { label: "Email id", type: "text" },
-          { label: "Zip Code", type: "text" },
-          { label: "Phone", type: "text" },
-        ].map((item, i) => (
-          <SmallInput key={i} label={item.label} type={item.type} options={item.options} />
-        ))}
+    return (
+        <div className="absolute left-1/2 top-[420px] -translate-x-1/2 w-[900px] max-w-[90%]">
 
-        {/* Submit Button — centered and safe inside the hero */}
-        <div className="col-span-2 md:col-span-3 flex justify-center mt-2">
-          <GradientButton
-            width={260}
-            height={48}
-            text="Submit Request"
-            textSize="text-[16px] sm:text-[18px]"
-          />
+            <div className="grid grid-cols-3 gap-5">
+                {[
+                    { label: "Year", type: "select", options: ["2024", "2023", "2022"] },
+                    { label: "Make", type: "select", options: ["Toyota", "Honda", "Ford"] },
+                    { label: "Model", type: "select", options: ["A", "B", "C"] },
+                    { label: "Part", type: "select", options: ["Transmission", "Engine"] },
+                    { label: "Engine Size", type: "select", options: ["2.0L", "2.4L", "3.0L"] },
+                    { label: "Transmission", type: "select", options: ["Automatic", "Manual"] },
+                    { label: "Zip Code", type: "text" },
+                    { label: "Phone", type: "text" },
+                ].map((item, i) => (
+                    <SmallInput
+                        key={i}
+                        label={item.label}
+                        type={item.type}
+                        options={item.options}
+                    />
+                ))}
+                <div className="col-span-3 flex justify-center mt-2">
+                    <SmallSubmit />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 /* -------------------------------------------------------------------------- */
-/*                              SMALL INPUT                                     */
+/*                               SMALL INPUT                                   */
 /* -------------------------------------------------------------------------- */
 
 function SmallInput({
@@ -106,12 +97,12 @@ function SmallInput({
   options?: string[];
 }) {
   return (
-    <div>
+    <div className="w-full">
       <div
         className="
           bg-[#E8F3FF]
           rounded-full
-          h-[44px] sm:h-[48px]
+          h-[48px]
           flex items-center
           text-[#091B33]
           border border-[#c7d5e8]
@@ -123,36 +114,80 @@ function SmallInput({
           <>
             <select
               className="
-                bg-transparent w-full outline-none 
-                text-[14px] sm:text-[15px]
-                text-center
-                appearance-none cursor-pointer
+                bg-transparent 
+                w-full 
+                outline-none 
+                text-sm 
+                text-center 
+                appearance-none
+                cursor-pointer
+                placeholder:text-[#4A5568]   /* darker placeholder */
+                text-[#091B33]
               "
             >
               <option value="">{label}</option>
               {options.map((opt, i) => (
-                <option key={i}>{opt}</option>
+                <option key={i} value={opt}>{opt}</option>
               ))}
             </select>
 
-            <ChevronDown
-              className="absolute right-4 top-1/2 -translate-y-1/2"
-              strokeWidth={3}
-              color="#091B33"
-              size={18}
-            />
+            {/* ▼ Arrow Icon */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-[#091B33]"
+              >
+                <path
+                  d="M5 7L10 12L15 7"
+                  stroke="#091B33"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </>
         ) : (
           <input
             placeholder={label}
             className="
-              bg-transparent w-full outline-none 
-              text-[14px] sm:text-[15px]
-              text-center text-[#091B33]
+              bg-transparent 
+              w-full 
+              outline-none 
+              text-sm 
+              text-center
+              placeholder:text-[#4A5568]   /* darker placeholder */
+              text-[#091B33]
             "
           />
         )}
       </div>
     </div>
   );
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                             SMALL SUBMIT BUTTON                             */
+/* -------------------------------------------------------------------------- */
+
+function SmallSubmit() {
+    return (
+        <button
+            className="
+        bg-gradient-to-r from-[#049FFF] to-[#0077C8]
+        text-white font-semibold
+        rounded-2xl
+        px-10 py-3
+        text-[16px]
+        shadow-lg hover:opacity-90 transition
+      "
+        >
+            Submit Request
+        </button>
+    );
 }
