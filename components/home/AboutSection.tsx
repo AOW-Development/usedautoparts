@@ -5,10 +5,10 @@ import Image from "next/image";
 export default function AboutSection() {
   return (
     <section className="w-full py-16 px-6 bg-transparent text-[#E8F3FF] flex justify-center">
-      <div className="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-[70%_30%] gap-10 items-center">
 
         {/* LEFT TEXT */}
-        <div className="space-y-6">
+        <div className="space-y-6 z-20 pr-6 lg:pr-12">
 
           <h2 className="font-[Orbitron] font-bold text-[26px] sm:text-[32px] lg:text-[36px] leading-tight">
             Welcome to Used Auto Parts Pro — Your Premier Source for Quality Vehicle Components!
@@ -33,13 +33,21 @@ export default function AboutSection() {
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="flex justify-center lg:justify-end">
-          <div className="relative w-[300px] sm:w-[380px] lg:w-[480px] h-[240px] sm:h-[300px] lg:h-[380px]">
+        <div className="relative z-10 flex justify-center lg:justify-end">
+          <div
+            className="
+              relative 
+              w-[260px] sm:w-[320px] lg:w-[360px] 
+              h-[200px] sm:h-[260px] lg:h-[330px]
+              -mt-6 lg:-mt-12     /* 👈 slight overlap upward */
+              -ml-6 lg:-ml-16     /* 👈 slight overlap left into text */
+            "
+          >
             <Image
-              src="/images/about-engine.png"  // Update your path
+              src="/images/about-engine.png"
               alt="Engine"
               fill
-              className="object-contain"
+              className="object-contain drop-shadow-2xl"
             />
           </div>
         </div>
