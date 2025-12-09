@@ -121,11 +121,12 @@ export default function ChatBot() {
   if (!isOpen) {
     return (
       <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-[#00A3FF] to-[#003D80] text-white rounded-full shadow-[0_0_25px_rgba(0,163,255,0.8)] transition-all duration-300 flex items-center justify-center hover:scale-110 animate-pulse"
-      >
-        <MessageCircle size={24} className="sm:size-[28px]" />
-      </button>
+  onClick={() => setIsOpen(true)}
+  className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-[#00A3FF] to-[#003D80] text-white rounded-full shadow-[0_0_25px_rgba(0,163,255,0.8)] transition-all duration-300 flex items-center justify-center hover:scale-110 animate-pulse cursor-pointer"
+>
+  <MessageCircle size={24} className="sm:size-[28px]" />
+</button>
+
     );
   }
 

@@ -28,8 +28,7 @@ export default function SectionHeader({
       `}
     >
       <h1
-        className={`
-          font-[Orbitron] font-semibold tracking-wide 
+        className={` 
           ${sizeClasses[size]}
         `}
       >

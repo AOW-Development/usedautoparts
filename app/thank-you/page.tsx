@@ -26,7 +26,7 @@ export default function ThankYouPage() {
             {/* Tick Icon */}
             <CheckCircle2 size={60} strokeWidth={2} className="text-white" />
 
-            <h2 className="font-[Orbitron] text-[30px] sm:text-[36px] font-bold text-center">
+            <h2 className="text-[30px] sm:text-[36px] font-bold text-center">
               Request Submitted Successfully!
             </h2>
           </div>
@@ -34,11 +34,11 @@ export default function ThankYouPage() {
           {/* CONTENT */}
           <div className="px-8 py-10 space-y-10">
 
-            <p className="text-center font-[Jaldi] text-[20px] leading-[32px] opacity-95 max-w-[700px] mx-auto">
+            <p className="text-center text-[20px] leading-[32px] opacity-95 max-w-[700px] mx-auto">
               Thank you for submitting your auto part request. Our team will review your information and get back to you shortly.
             </p>
 
-            <p className="text-center font-[Jaldi] text-[20px] leading-[32px] opacity-95 max-w-[700px] mx-auto">
+            <p className="text-center text-[20px] leading-[32px] opacity-95 max-w-[700px] mx-auto">
               A confirmation email has been sent to your email address.
             </p>
 
@@ -47,11 +47,11 @@ export default function ThankYouPage() {
 
             {/* WHAT HAPPENS NEXT */}
             <div className="space-y-4 text-center">
-              <h3 className="font-[Orbitron] text-[26px] font-bold">
+              <h3 className="text-[26px] font-bold">
                 What happens next?
               </h3>
 
-              <p className="font-[Jaldi] text-[20px] leading-[32px] max-w-[700px] mx-auto">
+              <p className="text-[20px] leading-[32px] max-w-[700px] mx-auto">
                 • Our parts specialists will check inventory for your requested part. <br />
                 • We’ll contact you via phone or email with availability and pricing. <br />
                 • Once confirmed, we’ll arrange shipping or pickup of your part.
@@ -70,15 +70,14 @@ export default function ThankYouPage() {
                 </div>
 
                 <div>
-                  <p className="font-[Jaldi] text-[22px] opacity-95">
+                  <p className="text-[22px] opacity-95">
                     Need immediate assistance?
                   </p>
-                  <p className="font-[Jaldi] text-[24px] text-[#049FFF] font-semibold">
+                  <p className="text-[24px] text-[#049FFF] font-semibold">
                     (877) 982 7774
                   </p>
                 </div>
               </div>
-
               <GradientButton
                 width={260}
                 height={60}

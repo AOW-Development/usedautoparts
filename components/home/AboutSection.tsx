@@ -12,7 +12,6 @@ export default function AboutSection() {
 
           <h2
             className="
-              font-[Orbitron]
               font-bold
               text-[20px] sm:text-[24px] md:text-[28px] lg:text-[36px]
               leading-snug
@@ -25,7 +24,6 @@ export default function AboutSection() {
 
           <p
             className="
-              font-[Jaldi]
               text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
               leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
               text-[#B3D9FF]
@@ -40,7 +38,6 @@ export default function AboutSection() {
 
           <p
             className="
-              font-[Jaldi]
               text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
               leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
               text-[#B3D9FF]
@@ -55,7 +52,6 @@ export default function AboutSection() {
 
           <p
             className="
-              font-[Jaldi]
               text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
               leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
               text-[#B3D9FF]

@@ -28,16 +28,16 @@ export default function Footer() {
           
           {/* COLUMN 1 */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-wide uppercase">
+            <h2>
               LOGO
             </h2>
 
-            <p className="text-sm text-[#B3D9FF] leading-relaxed max-w-xs">
+            <p className="text-[#B3D9FF] leading-relaxed max-w-xs">
               Information about the company information about the company
               information about the company
             </p>
 
-            <div className="space-y-2 text-sm text-[#B3D9FF]">
+            <div className="space-y-2 text-[#B3D9FF]">
               <p>US Toll Free: (877) 982-7774</p>
               <p>Fax: 3124859711</p>
               <p>Email: sales@usedautoparts.pro</p>
@@ -73,10 +73,10 @@ export default function Footer() {
 
           {/* COLUMN 2 */}
           <div>
-            <h3 className="text-lg font-semibold uppercase tracking-wider mb-4">
+            <h3 className="mb-4">
               Quick Links
             </h3>
-            <ul className="space-y-2 text-sm text-[#B3D9FF]">
+            <ul className="space-y-2 text-[#B3D9FF]">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -93,10 +93,10 @@ export default function Footer() {
           {/* COLUMN 3 */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold uppercase tracking-wider mb-4">
+              <h3 className="mb-4">
                 Resources
               </h3>
-              <ul className="space-y-2 text-sm text-[#B3D9FF]">
+              <ul className="space-y-2 text-[#B3D9FF]">
                 {resourcesLinks.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -112,7 +112,7 @@ export default function Footer() {
 
             {/* PAY SECURELY */}
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider mb-3">
+              <p className="mb-3">
                 Pay Securely With
               </p>
               <div className="flex items-center gap-3">
@@ -137,7 +137,7 @@ export default function Footer() {
 
       {/* BOTTOM BAR */}
       <div className="border-t border-white/10 mt-10 pt-4">
-        <p className="text-center text-xs sm:text-sm text-[#8CBFFF]">
+        <p className="text-center text-[#8CBFFF]">
           © {currentYear} All Rights Reserved
         </p>
       </div>
