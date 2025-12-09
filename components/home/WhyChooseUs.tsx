@@ -14,7 +14,7 @@ export default function WhyChooseUs() {
 
       {/* Title */}
       <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center">
-        <h2 className="font-[Orbitron] text-[22px] sm:text-[26px] md:text-[32px] lg:text-[40px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#B3D9FF]">
+        <h2 className="text-[22px] sm:text-[26px] md:text-[32px] lg:text-[40px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#B3D9FF]">
           Why Choose Us?
         </h2>
         <div className="w-12 sm:w-16 md:w-20 h-1 bg-gradient-to-r from-[#00A3FF] to-[#0080D0] mx-auto mt-3 sm:mt-4 md:mt-5 rounded-full"></div>
@@ -133,11 +133,11 @@ function FeatureCard({
         </div>
       </div>
 
-      <h3 className="font-[Jaldi] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-bold leading-tight mt-1 text-white">
+      <h3 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-bold leading-tight mt-1 text-white">
         {title}
       </h3>
 
-      <p className="font-[Jaldi] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[20px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] max-w-xs md:max-w-sm opacity-90 text-[#B3D9FF]">
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[20px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] max-w-xs md:max-w-sm opacity-90 text-[#B3D9FF]">
         {desc}
       </p>
     </div>

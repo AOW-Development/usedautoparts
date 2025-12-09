@@ -43,7 +43,7 @@ export default function TestimonialSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
 
         {/* Heading */}
-        <h2 className="text-center font-[Orbitron] text-[28px] sm:text-[36px] md:text-[48px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#daedff] mb-10 sm:mb-12 tracking-wide">
+        <h2 className="text-center text-[28px] sm:text-[36px] md:text-[48px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#daedff] mb-10 sm:mb-12 tracking-wide">
           Testimonials
         </h2>
 

@@ -16,15 +16,16 @@ const config = {
         },
       },
       fontFamily: {
-        orbitron: ["var(--font-orbitron)", "sans-serif"], // Headings
-        jaldi: ["var(--font-jaldi)", "sans-serif"],       // Body
+        sans: ["var(--font-geist-sans)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
       },
       backgroundImage: {
-        'hero-pattern': "url('/images/hero-bg.jpg')", // You'll need to add your background image
-        'card-gradient': "linear-gradient(180deg, #049FFF 0%, #091B33 100%)",
-      }
+        "hero-pattern": "url('/images/hero-bg.jpg')",
+        "card-gradient": "linear-gradient(180deg, #049FFF 0%, #091B33 100%)",
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -18,7 +18,7 @@ export default function LeadGenNavbar() {
         
         <a
           href="tel:+18779827774"
-          className="flex items-center gap-2 font-semibold hover:text-[#8CCAFF] transition"
+          className="flex items-center gap-2 font-semibold text-[#d7ecff] hover:text-white transition"
         >
           <FaPhoneAlt />
           (877) 982-7774
@@ -35,21 +35,21 @@ export default function LeadGenNavbar() {
           </Link>
 
           {/* DESKTOP MENU */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-10 text-sm font-medium text-white/90">
+          <div className="hidden md:flex items-center gap-6 lg:gap-10 text-sm font-medium">
 
-            <Link href="/used-auto-parts" className="hover:text-[#8CCAFF]">
+            <Link href="/used-auto-parts" className="text-[#d7ecff] hover:text-white transition">
               Used Auto Parts
             </Link>
 
-            <Link href="/engines" className="hover:text-[#8CCAFF]">
+            <Link href="/engines" className="text-[#d7ecff] hover:text-white transition">
               Used Engines
             </Link>
 
-            <Link href="/transmissions" className="hover:text-[#8CCAFF]">
+            <Link href="/transmissions" className="text-[#d7ecff] hover:text-white transition">
               Used Transmissions
             </Link>
 
-            <Link href="/about" className="hover:text-[#8CCAFF]">
+            <Link href="/about" className="text-[#d7ecff] hover:text-white transition">
               About Us
             </Link>
 
@@ -75,19 +75,35 @@ export default function LeadGenNavbar() {
         {open && (
           <div className="md:hidden bg-[#0E3A75] text-white px-6 py-5 flex flex-col gap-4 text-sm font-medium">
 
-            <Link href="/used-auto-parts" onClick={() => setOpen(false)} className="hover:text-[#8CCAFF]">
+            <Link
+              href="/used-auto-parts"
+              onClick={() => setOpen(false)}
+              className="text-[#8CCAFF] hover:text-white transition"
+            >
               Used Auto Parts
             </Link>
 
-            <Link href="/engines" onClick={() => setOpen(false)} className="hover:text-[#8CCAFF]">
+            <Link
+              href="/engines"
+              onClick={() => setOpen(false)}
+              className="text-[#8CCAFF] hover:text-white transition"
+            >
               Used Engines
             </Link>
 
-            <Link href="/transmissions" onClick={() => setOpen(false)} className="hover:text-[#8CCAFF]">
+            <Link
+              href="/transmissions"
+              onClick={() => setOpen(false)}
+              className="text-[#8CCAFF] hover:text-white transition"
+            >
               Used Transmissions
             </Link>
 
-            <Link href="/about" onClick={() => setOpen(false)} className="hover:text-[#8CCAFF]">
+            <Link
+              href="/about"
+              onClick={() => setOpen(false)}
+              className="text-[#8CCAFF] hover:text-white transition"
+            >
               About Us
             </Link>
 
@@ -103,7 +119,7 @@ export default function LeadGenNavbar() {
             {/* PHONE CTA MOBILE */}
             <a
               href="tel:+18779827774"
-              className="flex items-center gap-2 text-white font-semibold mt-2 hover:text-[#8CCAFF]"
+              className="flex items-center gap-2 text-[#d7ecff] font-semibold mt-2 hover:text-white transition"
             >
               <FaPhoneAlt /> Call Now
             </a>

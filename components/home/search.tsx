@@ -48,7 +48,6 @@ export default function SearchCar() {
           className="text-center font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#dcedff]"
           style={{
             fontSize: "42px",
-            fontFamily: "Copyman Bold",
           }}
         >
           Available Brands
@@ -99,7 +98,6 @@ export default function SearchCar() {
                 className="text-center w-full mt-[6px]"
                 style={{
                   color: "#E8F3FF",
-                  fontFamily: "Jaldi, sans-serif",
                   fontSize: "20px",
                   fontWeight: 700,
                   lineHeight: "100%",
