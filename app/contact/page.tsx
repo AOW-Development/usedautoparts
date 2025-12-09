@@ -5,11 +5,15 @@ import SectionWrapper from "@/components/about/SectionWrapper";
 import ImageCard from "@/components/about/ImageCard";
 import ContactIconCard from "@/components/contact/ContactIconCard";
 import ContactForm from "@/components/contact/ContactForm";
+import ChatBot from "@/components/home/ChatBot";
+import CallFloatingButton from "@/components/home/CallFloatingButton";
 
 export default function ContactPage() {
   return (
-    <main className="w-full text-[#E8F3FF] px-3 sm:px-4 md:px-6 lg:px-10 xl:px-20">
-
+    <main className="w-full text-[#E8F3FF] px-3 sm:px-4 md:px-6 lg:px-10 xl:px-20 bg-[#07142B]">
+      
+      <ChatBot />
+      <CallFloatingButton />
       {/* HERO TITLE */}
       <SectionHeader title="CONTACT US" />
 

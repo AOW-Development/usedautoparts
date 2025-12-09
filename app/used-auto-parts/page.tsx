@@ -1,4 +1,7 @@
-import HeroTransmission from "@/components/home/HeroTransmission";
+
+import CallFloatingButton from "@/components/home/CallFloatingButton";
+import ChatBot from "@/components/home/ChatBot";
+import SearchCar from "@/components/home/search";
 import { uapSections } from "@/data/uap";
 
 /* ✅ Fix TypeScript 'never' error with proper typing */
@@ -13,11 +16,56 @@ type UAPSection = {
   imageSide?: "left" | "right";
 };
 
+const features = [
+  {
+    title: 'Always Best Quality',
+    description: "Quality for us is not just a word; it's a commitment. Every single used part we supply has been comprehensively checked to perform as you would expect. Whether it is an engine or any other component, big or small, rest assured we do the job right with quality used auto parts."
+  },
+  {
+    title: 'Unparalleled Convenience',
+    description: "We know minutes count when your car is down. That's why we design our used auto parts stores with convenience in mind. Conveniently browse our catalog from the comfort of your home and find exactly what you need without the aggravation of visiting multiple stores. Once you make your selection, we will ship your parts directly to you free of charge!"
+  },
+  {
+    title: 'A Haven for Car Enthusiasts',
+    description: "Whether you restore classic cars or tune up your daily driver, this is your one-stop shop: Used Auto Parts Pro. Our website is not exactly a marketplace but, foremost, a community for car enthusiasts. Get immersed in our world of replacement auto parts and find the hidden gems and super-rare finds here."
+  },
+  {
+    title: '365 Days of Service',
+    description: "Your car doesn't take a day off, and neither do we. Our dedicated sales team is happy to assist in finding those parts any time of the year. From emergencies to long projects, remember you need us; we'll be there."
+  }
+];
+
 export default function UsedAutoPartsPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
-      <HeroTransmission />
+       
 
+      <ChatBot />
+      <CallFloatingButton />
+
+      {/* Why Buy Section */}
+      <section className="py-16 bg-[#0A2F5C]/30">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <h2 className="font-bold text-3xl md:text-4xl text-white text-center mb-12">
+            Why Buy from Used Auto Parts Pro?
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {features.map((feature, index) => (
+              <div 
+                key={feature.title}
+                className="bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] rounded-2xl p-8 border border-[#00A3FF]/40 hover:border-[#00A3FF] transition-all duration-300"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <h3 className="font-bold text-xl text-[#00A3FF] mb-4">{index + 1}. {feature.title}</h3>
+                <p className="text-white/80 leading-relaxed text-sm sm:text-base">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Content Sections from uapSections */}
       <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 space-y-20">
         {(uapSections as UAPSection[]).map((section, idx) => (
           <div key={idx} className="space-y-6">
@@ -100,6 +148,8 @@ export default function UsedAutoPartsPage() {
           </div>
         ))}
       </section>
+
+      <SearchCar />
     </main>
   );
 }

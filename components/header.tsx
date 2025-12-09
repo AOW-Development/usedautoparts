@@ -1,131 +1,148 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { FaPhoneAlt, FaBars, FaTimes } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { Menu, X, Phone } from "lucide-react";
 
-export default function LeadGenNavbar() {
-  const [open, setOpen] = useState(false);
+const COMPANY_INFO = {
+  phone: "(877) 982-7774",
+};
+
+const navLinks = [
+  { name: "Used Auto Parts", href: "/used-auto-parts" },
+  { name: "Used Engines", href: "/engines" },
+  { name: "Used Transmissions", href: "/transmissions" },
+  { name: "About Us", href: "/about" },
+];
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="w-full sticky top-0 z-50 shadow-lg">
-
-      {/* TOP STRIP WITH PHONE CTA */}
-      <div className="bg-[#0B1C33] text-white text-xs sm:text-sm py-2 px-4 sm:px-6 flex justify-center md:justify-between items-center">
-        <p className="hidden md:block">
-          Premium Used Auto Parts | Fast Quotes | Nationwide Shipping
-        </p>
-        
-        <a
-          href="tel:+18779827774"
-          className="flex items-center gap-2 font-semibold text-[#d7ecff] hover:text-white transition"
-        >
-          <FaPhoneAlt />
-          (877) 982-7774
-        </a>
+    <>
+      {/* ✅ TOP INFO BAR */}
+      <div className="bg-[#0B1C33] text-white py-2 text-sm">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+          <span className="hidden md:block">
+            Premium Used Auto Parts | Fast Quotes | Nationwide Shipping
+          </span>
+          <a
+            href={`tel:+18779827774`}
+            className="flex items-center gap-2 font-semibold hover:text-white/80 transition"
+          >
+            <Phone className="h-4 w-4" />
+            {COMPANY_INFO.phone}
+          </a>
+        </div>
       </div>
 
-      {/* MAIN NAVBAR */}
-      <nav className="bg-[#0E3A75] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-
-          {/* LOGO */}
-          <Link href="/" className="text-xl sm:text-2xl font-extrabold tracking-wide text-white">
-            LOGO
-          </Link>
-
-          {/* DESKTOP MENU */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-10 text-sm font-medium">
-
-            <Link href="/used-auto-parts" className="text-[#d7ecff] hover:text-white transition">
-              Used Auto Parts
+      {/* ✅ MAIN HEADER */}
+      <header
+        className={`sticky top-0 z-50 transition-all duration-300 bg-[#0E3A75] border-b border-white/10 ${
+          isScrolled ? "shadow-lg" : ""
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <nav className="flex items-center justify-between h-16">
+            {/* ✅ LOGO */}
+            <Link href="/" className="flex items-center gap-2">
+              <span className="text-2xl font-extrabold tracking-wide text-white">
+               LOGO
+              </span>
             </Link>
 
-            <Link href="/engines" className="text-[#d7ecff] hover:text-white transition">
-              Used Engines
-            </Link>
+            {/* ✅ DESKTOP NAV */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
 
-            <Link href="/transmissions" className="text-[#d7ecff] hover:text-white transition">
-              Used Transmissions
-            </Link>
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md ${
+                      isActive
+                        ? "text-white bg-white/10"
+                        : "text-[#d7ecff] hover:text-white hover:bg-white/10"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </div>
 
-            <Link href="/about" className="text-[#d7ecff] hover:text-white transition">
-              About Us
-            </Link>
+            {/* ✅ CTA + MOBILE TOGGLE */}
+            <div className="flex items-center gap-4">
+              <Link href="/#lead-form" className="hidden md:inline-flex">
+                <button className="bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-5 py-2 rounded-md font-semibold shadow hover:opacity-90 transition">
+                  Get a Quote
+                </button>
+              </Link>
 
-            {/* MAIN CTA */}
-            <Link
-              href="/get-a-quote"
-              className="bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-5 lg:px-6 py-2 rounded-md font-semibold shadow hover:opacity-90 transition"
-            >
-              Get a Quote
-            </Link>
-          </div>
+              <button
+                className="lg:hidden p-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6 text-white" />
+                ) : (
+                  <Menu className="h-6 w-6 text-white" />
+                )}
+              </button>
+            </div>
+          </nav>
 
-          {/* MOBILE HAMBURGER */}
-          <button
-            className="md:hidden text-2xl text-white"
-            onClick={() => setOpen(!open)}
+          {/* ✅ MOBILE MENU */}
+          <div
+            className={`lg:hidden overflow-hidden transition-all duration-300 ${
+              isMobileMenuOpen ? "max-h-96 pb-4" : "max-h-0"
+            }`}
           >
-            {open ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
+            <div className="bg-[#0B1C33] rounded-xl p-4 space-y-2 mt-3">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
 
-        {/* MOBILE MENU */}
-        {open && (
-          <div className="md:hidden bg-[#0E3A75] text-white px-6 py-5 flex flex-col gap-4 text-sm font-medium">
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`block px-4 py-3 rounded-lg font-medium transition text-sm ${
+                      isActive
+                        ? "bg-[#1DA1F2] text-white"
+                        : "text-[#d7ecff] hover:bg-white/10"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
 
-            <Link
-              href="/used-auto-parts"
-              onClick={() => setOpen(false)}
-              className="text-[#8CCAFF] hover:text-white transition"
-            >
-              Used Auto Parts
-            </Link>
-
-            <Link
-              href="/engines"
-              onClick={() => setOpen(false)}
-              className="text-[#8CCAFF] hover:text-white transition"
-            >
-              Used Engines
-            </Link>
-
-            <Link
-              href="/transmissions"
-              onClick={() => setOpen(false)}
-              className="text-[#8CCAFF] hover:text-white transition"
-            >
-              Used Transmissions
-            </Link>
-
-            <Link
-              href="/about"
-              onClick={() => setOpen(false)}
-              className="text-[#8CCAFF] hover:text-white transition"
-            >
-              About Us
-            </Link>
-
-            {/* MOBILE CTA */}
-            <Link
-              href="/get-a-quote"
-              onClick={() => setOpen(false)}
-              className="bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white text-center px-5 py-2 rounded-md font-semibold shadow hover:opacity-90 transition"
-            >
-              Get a Quote
-            </Link>
-
-            {/* PHONE CTA MOBILE */}
-            <a
-              href="tel:+18779827774"
-              className="flex items-center gap-2 text-[#d7ecff] font-semibold mt-2 hover:text-white transition"
-            >
-              <FaPhoneAlt /> Call Now
-            </a>
+              <Link href="/#lead-form" className="block">
+                <button className="w-full mt-2 bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white py-2 rounded-md font-semibold shadow hover:opacity-90 transition">
+                  Get a Quote
+                </button>
+              </Link>
+            </div>
           </div>
-        )}
-      </nav>
-    </header>
+        </div>
+      </header>
+    </>
   );
 }

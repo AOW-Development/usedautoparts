@@ -16,28 +16,7 @@ export const uapSections = [
     imageSide: "right" as const,
   },
 
-  {
-    title: "Why Buy from Used Auto Parts Pro?",
-    highlights: [
-      {
-        title: "1. Always Best Quality",
-        text: "Quality for us is not just a word; it's a commitment. Every single used part we supply has been comprehensively checked to perform as you would expect. Whether it is an engine or any other component, big or small, rest assured we do the job right with quality used auto parts.",
-      },
-      {
-        title: "2. Unparalleled Convenience",
-        text: "We know minutes count when your car is down. That's why we design our used auto parts stores with convenience in mind. Conveniently browse our catalog from the comfort of your home and find exactly what you need without the aggravation of visiting multiple stores. Once you make your selection, we will ship your parts directly to you free of charge!",
-      },
-      {
-        title: "3. A Haven for Car Enthusiasts",
-        text: "Whether you restore classic cars or tune up your daily driver, this is your one-stop shop: Used Auto Parts Pro. Our website is not exactly a marketplace but, foremost, a community for car enthusiasts. Get immersed in our world of replacement auto parts and find the hidden gems and super-rare finds here. We shall be happy to serve your passion with the best used car parts for sale on the market.",
-      },
-      {
-        title: "4. 365 Days of Service",
-        text: "Your car doesn't take a day off, and neither do we. Our dedicated sales team is happy to assist in finding those parts any time of the year. From emergencies to long projects, remember you need us; we’ll be there.",
-      },
-    ],
-  },
-
+   
   {
     title: "Buy with Confidence, Drive with Confidence",
     paragraphs: [

@@ -4,7 +4,7 @@ import SectionHeader from "@/components/SectionHeader";
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="w-full text-[#E8F3FF] overflow-x-hidden">
+    <main className="w-full text-[#E8F3FF] overflow-x-hidden bg-[#07142B]">
 
       {/* HERO TITLE */}
       <SectionHeader title="PRIVACY POLICY" />

@@ -63,25 +63,38 @@ export default function AboutSection() {
 
           {/* ✅ RESPONSIVE BUTTON */}
           <div className="w-full flex justify-center pt-4 sm:pt-5 md:pt-6">
-            <button
-              className="
-                px-6 sm:px-7 md:px-8 lg:px-10
-                py-2.5 sm:py-3
-                bg-gradient-to-r from-[#00A3FF] to-[#0080D0]
-                text-white
-                font-bold
-                rounded-lg
-                transition-all duration-300
-                text-sm sm:text-base
-                font-[Orbitron]
-                cursor-pointer
-                hover:shadow-[0_0_18px_rgba(0,163,255,0.6)]
-                hover:-translate-y-[1px]
-              "
-            >
-              Get Free Quote
-            </button>
-          </div>
+  <button
+    onClick={(e) => {
+      e.preventDefault();
+      
+      if (typeof window !== "undefined" && window.location.pathname === "/") {
+        const element = document.getElementById("lead-form");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        window.location.href = "/#lead-form";
+      }
+    }}
+    className="
+      px-6 sm:px-7 md:px-8 lg:px-10
+      py-2.5 sm:py-3
+      bg-gradient-to-r from-[#00A3FF] to-[#0080D0]
+      text-white
+      font-bold
+      rounded-lg
+      transition-all duration-300
+      text-sm sm:text-base
+      cursor-pointer
+      hover:shadow-[0_0_18px_rgba(0,163,255,0.6)]
+      hover:-translate-y-[1px]
+      active:translate-y-0
+    "
+  >
+    Get Free Quote
+  </button>
+</div>
+
 
         </div>
 
