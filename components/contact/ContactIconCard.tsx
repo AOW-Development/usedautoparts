@@ -19,7 +19,7 @@ export default function ContactIconCard({
         <Icon size={50} color="#E8F3FF" strokeWidth={2.5} />
       </div>
 
-      <p className="font-[Orbitron] text-[28px]">{label}</p>
+      <p className="text-[28px]">{label}</p>
     </div>
   );
 }
