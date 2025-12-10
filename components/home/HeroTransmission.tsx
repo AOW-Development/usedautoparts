@@ -60,7 +60,7 @@ export default function HeroTransmission() {
             </a>
 
             {/* Email Us */}
-            <div className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform">
+            <a href="mailto:support@usedautoparts.com" className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00A3FF]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,163,255,0.5)]">
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
@@ -70,10 +70,10 @@ export default function HeroTransmission() {
                 <p className="text-base sm:text-lg md:text-xl font-bold">support@usedautoparts.com</p>
               </div>
 
-              <div className="hidden md:block absolute right-[-100px] lg:right-[-140px] top-[20%] translate-y-0 w-24 h-24 lg:w-32 lg:h-32 opacity-50 text-[#00A3FF] animate-spin-slow drop-shadow-[0_-10px_20px_rgba(0,163,255,0.6)] pointer-events-none">
+            </a>
+              <div className="!hover:scale-100 hidden md:block absolute right-[-100px] lg:right-[20px] top-[30%] translate-y-0 w-24 h-24 lg:w-32 lg:h-32 opacity-50 text-[#00A3FF] animate-spin-slow drop-shadow-[0_-10px_20px_rgba(0,163,255,0.6)] pointer-events-none">
                 <FaCog className="w-full h-full" />
               </div>
-            </div>
 
           </div>
         </div>
