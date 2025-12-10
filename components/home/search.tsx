@@ -20,7 +20,7 @@ const brands = [
   { img: "16.svg", name: "Jaguar" },
   { img: "17.svg", name: "Jeep" },
   { img: "18.svg", name: "KIA" },
-  { img: "19.svg", name: "LandRover" },
+  { img: "19.svg", name: "Land-Rover" },
   { img: "20.svg", name: "Lexus" },
   { img: "21.svg", name: "Lincoln" },
   { img: "22.svg", name: "Mazda" },
