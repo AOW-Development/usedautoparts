@@ -11,7 +11,7 @@ export default function ContactForm() {
         px-4 sm:px-6 md:px-8 lg:px-10 py-8 sm:py-10 md:py-12 space-y-6 sm:space-y-7 md:space-y-8
       "
     >
-      <h2 className="text-center font-[Orbitron] text-[22px] sm:text-[26px] md:text-[30px] lg:text-[32px] font-bold">
+      <h2 className="text-center text-[22px] sm:text-[26px] md:text-[30px] lg:text-[32px] font-bold">
         Let's Get In Touch
       </h2>
 
@@ -45,7 +45,7 @@ function FormInput({
         <textarea
           className="
             w-full h-[120px] rounded-[20px] bg-white/60 
-            px-4 sm:px-5 py-3 text-[#091B33] font-[Jaldi] text-[16px] sm:text-[18px] md:text-[20px]
+            px-4 sm:px-5 py-3 text-[#091B33] text-[16px] sm:text-[18px] md:text-[20px]
             outline-none
           "
           placeholder={label}
@@ -54,7 +54,7 @@ function FormInput({
         <input
           className="
             w-full h-[50px] sm:h-[54px] md:h-[58px] rounded-[30px] bg-white/60 
-            px-4 sm:px-5 text-[#091B33] font-[Jaldi] text-[16px] sm:text-[18px] md:text-[20px]
+            px-4 sm:px-5 text-[#091B33] text-[16px] sm:text-[18px] md:text-[20px]
             outline-none
           "
           placeholder={label}

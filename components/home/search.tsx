@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const brands = [
   { img: "1.svg", name: "Acura" },
@@ -65,48 +66,49 @@ export default function SearchCar() {
           "
         >
           {brands.map((brand, idx) => (
-            <div
-              key={idx}
-              className="
-                w-[128px] h-[128px]
-                rounded-2xl
-                border border-[#049FFF]
-                bg-[#091B33]
-                flex flex-col items-center justify-center
-                cursor-pointer
-                shadow-[0_0_15px_rgba(29,78,216,0.2)]
-                px-[7px] py-[10px]
-              "
-            >
-              <div className="w-full h-[70px] flex items-center justify-center">
-                <Image
-                  src={`/brands/${brand.img}`}
-                  alt={brand.name}
-                  width={72}
-                  height={72}
-                  className="
-                    object-contain 
-                    max-h-full 
-                    transition-transform 
-                    duration-300 
-                    hover:scale-125
-                  "
-                />
-              </div>
-
-              <p
-                className="text-center w-full mt-[6px]"
-                style={{
-                  color: "#E8F3FF",
-                  fontSize: "20px",
-                  fontWeight: 700,
-                  lineHeight: "100%",
-                  whiteSpace: "nowrap",
-                }}
+            <Link key={idx} href={`/cars/${brand.name.toLowerCase()}`}>
+              <div
+                className="
+                  w-[128px] h-[128px]
+                  rounded-2xl
+                  border border-[#049FFF]
+                  bg-[#091B33]
+                  flex flex-col items-center justify-center
+                  cursor-pointer
+                  shadow-[0_0_15px_rgba(29,78,216,0.2)]
+                  px-[7px] py-[10px]
+                "
               >
-                {brand.name}
-              </p>
-            </div>
+                <div className="w-full h-[70px] flex items-center justify-center">
+                  <Image
+                    src={`/brands/${brand.img}`}
+                    alt={brand.name}
+                    width={72}
+                    height={72}
+                    className="
+                      object-contain 
+                      max-h-full 
+                      transition-transform 
+                      duration-300 
+                      hover:scale-125
+                    "
+                  />
+                </div>
+
+                <p
+                  className="text-center w-full mt-[6px]"
+                  style={{
+                    color: "#E8F3FF",
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    lineHeight: "100%",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {brand.name}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

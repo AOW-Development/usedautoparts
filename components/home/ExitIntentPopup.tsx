@@ -19,6 +19,13 @@ export default function ExitIntentPopup() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    // Check if popup was already dismissed in this session
+    const isDismissed = localStorage.getItem("exitPopupDismissed");
+    if (isDismissed) {
+      setHasTriggered(true);
+      return;
+    }
+
     if (hasTriggered) return;
 
     const handleScroll = () => {
@@ -38,7 +45,11 @@ export default function ExitIntentPopup() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasTriggered]);
 
-  const closePopup = () => setShow(false);
+  const closePopup = () => {
+    setShow(false);
+    // Mark popup as dismissed in localStorage
+    localStorage.setItem("exitPopupDismissed", "true");
+  };
 
   const validateEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -77,6 +88,9 @@ export default function ExitIntentPopup() {
     storedLeads.push(lead);
     localStorage.setItem("exit_popup_leads", JSON.stringify(storedLeads));
 
+    // Mark popup as dismissed after successful submission
+    localStorage.setItem("exitPopupDismissed", "true");
+
     setError("");
     setSubmitted(true);
   };
@@ -84,13 +98,14 @@ export default function ExitIntentPopup() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4">
-      <div className="relative w-full max-w-[440px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] border border-[#00A3FF]/40 shadow-[0_0_40px_rgba(0,163,255,0.6)]">
+    <div className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4 py-4">
+      <div className="relative w-full max-w-[440px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] border border-[#00A3FF]/40 shadow-[0_0_40px_rgba(0,163,255,0.6)] max-h-[90vh] overflow-y-auto">
 
         {/* CLOSE */}
         <button
           onClick={closePopup}
-          className="absolute top-3 right-3 text-white hover:text-[#00A3FF] transition"
+          className="absolute top-3 right-3 z-10 text-white hover:text-[#00A3FF] transition"
+          aria-label="Close popup"
         >
           <FaTimes size={18} />
         </button>
@@ -106,8 +121,11 @@ export default function ExitIntentPopup() {
         {/* SUCCESS MESSAGE */}
         {submitted ? (
           <div className="p-6 text-center space-y-3">
+            <div className="w-12 h-12 mx-auto bg-[#00A3FF]/30 rounded-full flex items-center justify-center">
+              <FaTools className="text-[#00FFB2]" size={20} />
+            </div>
             <h4 className="text-lg font-bold text-[#00FFB2]">
-              Submission Successful
+              Submission Successful!
             </h4>
             <p className="text-sm text-[#B3D9FF]">
               Your request has been received. One of our auto parts specialists
@@ -125,11 +143,11 @@ export default function ExitIntentPopup() {
 
             {/* MAKE */}
             <div>
-              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1">
+              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1.5">
                 Vehicle Company (Make)
               </label>
-              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2">
-                <FaCar className="text-[#00A3FF]" />
+              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2.5 focus-within:border-[#00A3FF] transition">
+                <FaCar className="text-[#00A3FF] text-sm flex-shrink-0" />
                 <input
                   type="text"
                   required
@@ -138,18 +156,18 @@ export default function ExitIntentPopup() {
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, make: e.target.value }))
                   }
-                  className="w-full bg-transparent text-white text-sm focus:outline-none"
+                  className="w-full bg-transparent text-white text-sm placeholder-[#8CBFFF]/50 focus:outline-none"
                 />
               </div>
             </div>
 
             {/* MODEL */}
             <div>
-              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1">
+              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1.5">
                 Vehicle Model
               </label>
-              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2">
-                <FaCar className="text-[#00A3FF]" />
+              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2.5 focus-within:border-[#00A3FF] transition">
+                <FaCar className="text-[#00A3FF] text-sm flex-shrink-0" />
                 <input
                   type="text"
                   required
@@ -158,18 +176,18 @@ export default function ExitIntentPopup() {
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, model: e.target.value }))
                   }
-                  className="w-full bg-transparent text-white text-sm focus:outline-none"
+                  className="w-full bg-transparent text-white text-sm placeholder-[#8CBFFF]/50 focus:outline-none"
                 />
               </div>
             </div>
 
             {/* PART */}
             <div>
-              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1">
+              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1.5">
                 Part Required
               </label>
-              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2">
-                <FaTools className="text-[#00A3FF]" />
+              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2.5 focus-within:border-[#00A3FF] transition">
+                <FaTools className="text-[#00A3FF] text-sm flex-shrink-0" />
                 <input
                   type="text"
                   required
@@ -178,18 +196,18 @@ export default function ExitIntentPopup() {
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, part: e.target.value }))
                   }
-                  className="w-full bg-transparent text-white text-sm focus:outline-none"
+                  className="w-full bg-transparent text-white text-sm placeholder-[#8CBFFF]/50 focus:outline-none"
                 />
               </div>
             </div>
 
             {/* EMAIL */}
             <div>
-              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1">
+              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1.5">
                 Email Address
               </label>
-              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2">
-                <FaEnvelope className="text-[#00A3FF]" />
+              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2.5 focus-within:border-[#00A3FF] transition">
+                <FaEnvelope className="text-[#00A3FF] text-sm flex-shrink-0" />
                 <input
                   type="email"
                   required
@@ -198,18 +216,18 @@ export default function ExitIntentPopup() {
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, email: e.target.value }))
                   }
-                  className="w-full bg-transparent text-white text-sm focus:outline-none"
+                  className="w-full bg-transparent text-white text-sm placeholder-[#8CBFFF]/50 focus:outline-none"
                 />
               </div>
             </div>
 
             {/* PHONE */}
             <div>
-              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1">
+              <label className="block text-xs font-semibold text-[#E8F3FF] mb-1.5">
                 Phone Number
               </label>
-              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2">
-                <FaPhoneAlt className="text-[#00A3FF]" />
+              <div className="flex items-center gap-2 bg-[#07142B] border border-[#00A3FF]/40 rounded-lg px-3 py-2.5 focus-within:border-[#00A3FF] transition">
+                <FaPhoneAlt className="text-[#00A3FF] text-sm flex-shrink-0" />
                 <input
                   type="tel"
                   required
@@ -218,29 +236,29 @@ export default function ExitIntentPopup() {
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, phone: e.target.value }))
                   }
-                  className="w-full bg-transparent text-white text-sm focus:outline-none"
+                  className="w-full bg-transparent text-white text-sm placeholder-[#8CBFFF]/50 focus:outline-none"
                 />
               </div>
             </div>
 
             {/* ERROR */}
             {error && (
-              <p className="text-red-400 text-xs font-medium text-center">
-                {error}
+              <p className="text-red-400 text-xs font-medium text-center bg-red-500/10 py-2 rounded-lg">
+                ⚠️ {error}
               </p>
             )}
 
             {/* SUBMIT */}
             <button
               type="submit"
-              className="w-full mt-2 bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white py-2.5 rounded-lg font-semibold hover:opacity-90 transition shadow-[0_0_20px_rgba(0,163,255,0.6)]"
+              className="w-full mt-3 bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 transition shadow-[0_0_20px_rgba(0,163,255,0.6)]"
             >
               Get My Free Quote
             </button>
 
             {/* TRUST */}
             <p className="text-[11px] text-center text-[#B3D9FF] pt-2">
-              We respect your privacy. Your information is secure and protected.
+              ✓ We respect your privacy. Your information is secure and protected.
             </p>
           </form>
         )}

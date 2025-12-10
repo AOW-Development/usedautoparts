@@ -24,7 +24,7 @@ export default function FAQCard({ question, answer, expanded }: FAQCardProps) {
     >
       {/* HEADER */}
       <div className="flex items-center justify-between gap-4">
-        <p className="font-[Jaldi] text-[16px] sm:text-[20px] lg:text-[22px] font-semibold leading-[24px] sm:leading-[30px]">
+        <p className="text-[16px] sm:text-[20px] lg:text-[22px] font-semibold leading-[24px] sm:leading-[30px]">
           {question}
         </p>
 
@@ -42,7 +42,7 @@ export default function FAQCard({ question, answer, expanded }: FAQCardProps) {
       >
         <div className="overflow-hidden">
           {answer && (
-            <p className="font-[Jaldi] text-[15px] sm:text-[18px] lg:text-[20px] leading-[24px] sm:leading-[32px] opacity-90">
+            <p className="text-[15px] sm:text-[18px] lg:text-[20px] leading-[24px] sm:leading-[32px] opacity-90">
               {answer}
             </p>
           )}

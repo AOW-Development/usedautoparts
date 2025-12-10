@@ -1,4 +1,6 @@
-// import HeroTransmission from "@/components/home/HeroTransmission";
+import CallFloatingButton from "@/components/home/CallFloatingButton";
+import ChatBot from "@/components/home/ChatBot";
+import SearchCar from "@/components/home/search";
 import { engineSections } from "@/data/engine";
 
 /* ✅ Proper Type to Fix 'never' Error */
@@ -12,77 +14,56 @@ type EngineSection = {
 export default function UsedEnginesPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
-      {/* <HeroTransmission /> */}
+      
 
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 space-y-20">
-        {(engineSections as EngineSection[]).map((section, idx) => (
-          <div key={idx} className="space-y-6">
+      <ChatBot />
+      <CallFloatingButton />
 
-            {/* ✅ TITLE */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide">
-              {section.title}
-            </h2>
-
-            {/* ✅ IMAGE + PARAGRAPHS */}
-            {section.paragraphs && section.image && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
-                {/* TEXT FIRST (IF IMAGE ON RIGHT) */}
-                {section.imageSide === "right" && (
-                  <div className="space-y-5">
-                    {section.paragraphs.map((text, i) => (
-                      <p
-                        key={i}
-                        className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
-                      >
-                        {text}
-                      </p>
-                    ))}
-                  </div>
-                )}
-
-                {/* IMAGE */}
-                <div className="flex justify-center">
-                  <img
-                    src={section.image}
-                    alt="Used Engines"
-                    className="w-[260px] sm:w-[320px] md:w-[380px] drop-shadow-[0_0_25px_rgba(0,163,255,0.5)]"
-                  />
+      {/* Main Content */}
+      <section className="py-16 bg-[#07142B]">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <div className="max-w-4xl mx-auto space-y-12">
+            
+            {/* Hero Section - First item from engineSections */}
+            {(engineSections as EngineSection[]).length > 0 && (
+              <div className="space-y-4 text-center">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                  {(engineSections as EngineSection[])[0].title}
+                </h1>
+                <div className="space-y-4">
+                  {(engineSections as EngineSection[])[0].paragraphs?.map((text, i) => (
+                    <p key={i} className="text-lg text-white/80 leading-relaxed">
+                      {text}
+                    </p>
+                  ))}
                 </div>
+              </div>
+            )}
 
-                {/* TEXT AFTER IMAGE (IF IMAGE ON LEFT) */}
-                {section.imageSide !== "right" && (
-                  <div className="space-y-5">
-                    {section.paragraphs.map((text, i) => (
-                      <p
-                        key={i}
-                        className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
-                      >
-                        {text}
+            {/* Content Sections - Rest of the items */}
+            <div className="space-y-8">
+              {(engineSections as EngineSection[]).slice(1).map((section, index) => (
+                <div 
+                  key={section.title}
+                  className="bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] rounded-2xl p-8 border border-[#00A3FF]/40 hover:border-[#00A3FF] transition-all duration-300"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">{section.title}</h2>
+                  <div className="space-y-4">
+                    {section.paragraphs?.map((paragraph, pIndex) => (
+                      <p key={pIndex} className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg">
+                        {paragraph}
                       </p>
                     ))}
                   </div>
-                )}
-              </div>
-            )}
-
-            {/* ✅ NORMAL PARAGRAPHS (NO IMAGE) */}
-            {!section.image && section.paragraphs && (
-              <div className="space-y-5 max-w-5xl">
-                {section.paragraphs.map((text, i) => (
-                  <p
-                    key={i}
-                    className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
-                  >
-                    {text}
-                  </p>
-                ))}
-              </div>
-            )}
-
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
       </section>
+
+      <SearchCar />
     </main>
   );
 }

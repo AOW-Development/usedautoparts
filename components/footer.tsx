@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
@@ -9,28 +11,46 @@ export default function Footer() {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
-    { label: "Search by Make/Model", href: "/search" },
-    { label: "Shop Online", href: "/shop" },
+    { label: "Search by Make/Model", href: "/#lead-form" },
+    { label: "Shop Online", href: "/#lead-form" },
     { label: "FAQ", href: "/faq" },
   ];
 
   const resourcesLinks = [
     { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Make a Payment", href: "/make-payment" },
-    { label: "Submit a Ticket", href: "/support" },
+    { label: "Make a Payment", href: "/#lead-form" },
+    { label: "Submit a Ticket", href: "/#lead-form" },
   ];
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.includes("#lead-form")) {
+      e.preventDefault();
+      
+      // If already on home page, scroll to element
+      if (typeof window !== "undefined" && window.location.pathname === "/") {
+        const element = document.getElementById("lead-form");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        // Otherwise navigate to home page with hash
+        window.location.href = href;
+      }
+    }
+  };
+
   return (
-    <footer className="bg-[#07142B] text-white pt-16 pb-10">
+    <footer className="bg-[#07142B] text-white pt-0 pb-10">
+      {/* TOP LINE */}
+      <div className="border-t border-[#00A3FF] mb-12"></div>
+
       {/* TOP SECTION */}
       <div className="max-w-6xl mx-auto px-6 lg:px-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
           {/* COLUMN 1 */}
           <div className="space-y-4">
-            <h2>
-              LOGO
-            </h2>
+            <h2>LOGO</h2>
 
             <p className="text-[#B3D9FF] leading-relaxed max-w-xs">
               Information about the company information about the company
@@ -73,14 +93,13 @@ export default function Footer() {
 
           {/* COLUMN 2 */}
           <div>
-            <h3 className="mb-4">
-              Quick Links
-            </h3>
+            <h3 className="mb-4 font-bold">Quick Links</h3>
             <ul className="space-y-2 text-[#B3D9FF]">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
                     className="hover:text-white transition-colors duration-200"
                   >
                     {link.label}
@@ -93,14 +112,13 @@ export default function Footer() {
           {/* COLUMN 3 */}
           <div className="space-y-6">
             <div>
-              <h3 className="mb-4">
-                Resources
-              </h3>
+              <h3 className="mb-4 font-bold">Resources</h3>
               <ul className="space-y-2 text-[#B3D9FF]">
                 {resourcesLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
                       className="hover:text-white transition-colors duration-200"
                     >
                       {link.label}
@@ -112,9 +130,7 @@ export default function Footer() {
 
             {/* PAY SECURELY */}
             <div>
-              <p className="mb-3">
-                Pay Securely With
-              </p>
+              <p className="mb-3 font-bold">Pay Securely With</p>
               <div className="flex items-center gap-3">
                 <div className="relative h-6 w-10">
                   <Image src="/footer/discover.svg" alt="Discover" fill className="object-contain" />
@@ -130,7 +146,6 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

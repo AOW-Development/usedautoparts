@@ -28,7 +28,7 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
             {heroSection.headline}
           </h3>
 
-          <p className="font-jaldi text-[20px] leading-[34px]">
+          <p className="text-[20px] leading-[34px]">
             {heroSection.description}
           </p>
         </div>
@@ -56,14 +56,14 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
 
             {/* HEADLINE */}
             {sec.headline && (
-              <h3 className="text-[#049FFF] font-semibold text-2xl mb-2">
+              <h3 className="text-[#049FFF] text-2xl mb-2">
                 {sec.headline}
               </h3>
             )}
 
             {/* DESCRIPTION */}
             {sec.description && (
-              <p className="font-jaldi text-[20px] leading-[34px] mb-3">
+              <p className="text-[20px] leading-[34px] mb-3">
                 {sec.description}
               </p>
             )}
