@@ -6,8 +6,6 @@ export const transmissionSections = [
       "If you're on a quest to find the perfect transmission for your vehicle without breaking the bank, you’ve come to the right place.",
       "Our selection of junkyard transmissions for sale offers a unique blend of quality, performance, and value, making it easier than ever to keep your vehicle running smoothly.",
     ],
-    image: "/images/about-engine.png",
-    imageSide: "right" as const,
   },
 
   {
@@ -29,7 +27,8 @@ export const transmissionSections = [
       "Our transmissions are sourced from trusted automotive supply partners and undergo rigorous testing to guarantee they meet our high standards.",
       "By choosing a used transmission, you're not only saving money but also contributing to a more sustainable future.",
       "These online recycled auto parts are a testament to our commitment to quality and environmental responsibility.",
-    ],
+    ],image: "/hero/hero18.jpg",
+    imageSide: "right" as const,
   },
 
   {
@@ -38,7 +37,8 @@ export const transmissionSections = [
       "At Used Auto Parts Pro, we believe that everyone deserves access to reliable vehicle components, regardless of their budget.",
       "That’s why we offer competitive junkyard transmission prices that won’t compromise on quality.",
       "Whether you’re searching for a transmission for a specific make and model or exploring options across various vehicle types, our inventory is designed to cater to your needs without stretching your wallet.",
-    ],
+    ],image: "/hero/hero19.jpg",
+    imageSide: "right" as const,
   },
 
   {
@@ -47,7 +47,8 @@ export const transmissionSections = [
       "Navigating the world of automotive supply can be daunting, but we're here to make it easier.",
       "Our team of experts is always on hand to guide you through the process of selecting the right transmission for your vehicle.",
       "With a deep understanding of the intricacies of transmissions, we can help you find the perfect match for your car, ensuring a smooth and hassle-free experience from start to finish.",
-    ],
+    ],image: "/hero/hero20.jpg",
+    imageSide: "right" as const,
   },
 
   {
@@ -56,7 +57,8 @@ export const transmissionSections = [
       "Shopping for online recycled auto parts has never been simpler.",
       "Our user-friendly platform allows you to browse our selection of transmissions with ease, filter by specific criteria, and make informed decisions based on detailed product descriptions and customer reviews.",
       "Once you've found the right transmission, our streamlined checkout process ensures a quick and secure transaction, with fast shipping to get your vehicle back on the road as soon as possible.",
-    ],
+    ],image: "/hero/hero21.jpg",
+    imageSide: "right" as const,
   },
 
   {
@@ -67,6 +69,7 @@ export const transmissionSections = [
       "With our commitment to excellence and customer satisfaction, you can trust us to be your go-to source for all your auto parts transmission needs.",
       "Ready to shift into gear? Start your search today and experience the difference that quality, affordability, and expertise can make in your vehicle's performance.",
       "At Used Auto Parts Pro, we're not just selling parts — we’re providing peace of mind, one transmission at a time.",
-    ],
+    ],image: "/hero/hero18.jpg",
+    imageSide: "right" as const,
   },
 ];
