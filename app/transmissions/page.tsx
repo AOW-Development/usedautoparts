@@ -66,7 +66,7 @@ export default function TransmissionsPage() {
             onClick={handleQuoteClick}
             className="inline-block bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white px-6 sm:px-8 py-3 rounded-lg font-semibold shadow-[0_0_20px_rgba(0,163,255,0.4)] hover:shadow-[0_0_30px_rgba(0,163,255,0.6)] transition-all duration-300 hover:opacity-90"
           >
-            Get a Free Quote
+             Find My Transmission
           </a>
         </section>
       )}
@@ -85,7 +85,7 @@ export default function TransmissionsPage() {
               <div
                 className={`flex flex-col gap-4 order-1 lg:order-${section.imageSide === "right" ? "1" : "2"}`}
               >
-                <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                <h2 className="text-2xl sm:text-3xl text-white">
                   {section.title}
                 </h2>
 
@@ -134,7 +134,7 @@ export default function TransmissionsPage() {
           onClick={handleQuoteClick}
           className="inline-block bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold shadow-[0_0_20px_rgba(0,163,255,0.4)] hover:shadow-[0_0_30px_rgba(0,163,255,0.6)] transition-all duration-300 hover:opacity-90"
         >
-          Get a Quote Now
+          Find My Transmission
         </a>
       </section>
 

@@ -2,8 +2,7 @@ export const transmissionSections = [
   {
     title: "Shift into Gear with Confidence: Discover Reliable Used Transmissions",
     paragraphs: [
-      "Used Auto Parts Pro is the ultimate destination where reliability meets affordability in the world of used transmissions.",
-      "If you're on a quest to find the perfect transmission for your vehicle without breaking the bank, you’ve come to the right place.",
+     
       "Our selection of junkyard transmissions for sale offers a unique blend of quality, performance, and value, making it easier than ever to keep your vehicle running smoothly.",
     ],
   },
