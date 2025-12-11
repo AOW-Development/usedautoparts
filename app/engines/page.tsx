@@ -1,5 +1,7 @@
+import Header from "@/components/header";
 import CallFloatingButton from "@/components/home/CallFloatingButton";
 import ChatBot from "@/components/home/ChatBot";
+import HeroTransmission from "@/components/home/HeroTransmission";
 import SearchCar from "@/components/home/search";
 import { engineSections } from "@/data/engine";
 
@@ -15,7 +17,7 @@ export default function UsedEnginesPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
       
-
+       <HeroTransmission />
       <ChatBot />
       <CallFloatingButton />
 

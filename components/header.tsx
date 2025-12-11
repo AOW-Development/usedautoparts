@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
+import { useHero } from "@/app/context/HeroContext";
 
 const COMPANY_INFO = {
   phone: "(877) 982-7774",
@@ -20,6 +21,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const { setHeroConfig } = useHero();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +35,50 @@ export default function Header() {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
+
+  const handleUsedTransmissionsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setHeroConfig({
+      backgroundImage: "url('/hero/hero7.png')",
+      title: "Premium Used Transmissions",
+      subtitle: "Unlock Savings, Quality & Performance",
+      description: "Reliable transmissions with expert support",
+    });
+    router.push("/transmissions");
+  };
+
+  const handleUsedEnginesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setHeroConfig({
+      backgroundImage: "url('/hero/hero2.png')",
+      title: "Premium Used Engines",
+      subtitle: "Quality Rebuilt & Used Engines",
+      description: "Tested and guaranteed performance",
+    });
+    router.push("/engines");
+  };
+
+  const handleUsedAutoPartsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setHeroConfig({
+      backgroundImage: "url('/hero/hero9.png')",
+      title: "Quality Used Auto Parts",
+      subtitle: "Complete Parts Selection",
+      description: "OEM quality at affordable prices",
+    });
+    router.push("/used-auto-parts");
+  };
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setHeroConfig({
+      backgroundImage: "url('/hero/hero1.jpg')",
+      title: "Premium Used Auto Parts",
+      subtitle: "Quality Parts for Every Vehicle",
+      description: "Affordable, trusted replacements for every make and model",
+    });
+    router.push("/");
+  };
 
   return (
     <>
@@ -60,9 +107,9 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex items-center justify-between h-16">
             {/* ✅ LOGO */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" onClick={handleHomeClick} className="flex items-center gap-2">
               <span className="text-2xl font-extrabold tracking-wide text-white">
-               LOGO
+                LOGO
               </span>
             </Link>
 
@@ -71,10 +118,20 @@ export default function Header() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
 
+                let handleClick = undefined;
+                if (link.name === "Used Transmissions") {
+                  handleClick = handleUsedTransmissionsClick;
+                } else if (link.name === "Used Engines") {
+                  handleClick = handleUsedEnginesClick;
+                } else if (link.name === "Used Auto Parts") {
+                  handleClick = handleUsedAutoPartsClick;
+                }
+
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
+                    onClick={handleClick}
                     className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md ${
                       isActive
                         ? "text-white bg-white/10"
@@ -91,7 +148,7 @@ export default function Header() {
             <div className="flex items-center gap-4">
               <Link href="/#lead-form" className="hidden md:inline-flex">
                 <button className="bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-5 py-2 rounded-md font-semibold shadow hover:opacity-90 transition">
-                  Get a Quote
+                  Find My Part
                 </button>
               </Link>
 
@@ -119,10 +176,20 @@ export default function Header() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
 
+                let handleClick = undefined;
+                if (link.name === "Used Transmissions") {
+                  handleClick = handleUsedTransmissionsClick;
+                } else if (link.name === "Used Engines") {
+                  handleClick = handleUsedEnginesClick;
+                } else if (link.name === "Used Auto Parts") {
+                  handleClick = handleUsedAutoPartsClick;
+                }
+
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
+                    onClick={handleClick}
                     className={`block px-4 py-3 rounded-lg font-medium transition text-sm ${
                       isActive
                         ? "bg-[#1DA1F2] text-white"
@@ -136,7 +203,7 @@ export default function Header() {
 
               <Link href="/#lead-form" className="block">
                 <button className="w-full mt-2 bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white py-2 rounded-md font-semibold shadow hover:opacity-90 transition">
-                  Get a Quote
+                            Find My Part
                 </button>
               </Link>
             </div>

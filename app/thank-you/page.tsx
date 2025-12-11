@@ -11,7 +11,7 @@ export default function ThankYouPage() {
       <SectionHeader title="THANK YOU" />
 
       {/* CONFIRMATION BOX */}
-      <section className="w-full flex justify-center py-10 sm:py-12 md:py-16">
+      <section className="w-full flex justify-center py-10 sm:py-12 md:py-16 bg-[#07142B]">
         <div className="max-w-[900px] w-full border-2 border-[#049FFF] rounded-xl overflow-hidden bg-transparent">
           
           {/* TOP GRADIENT STRIP */}

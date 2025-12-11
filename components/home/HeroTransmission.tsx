@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PhoneCall, Mail, Check, Loader2, Shield } from "lucide-react";
+import { PhoneCall, Mail, Loader2, Shield } from "lucide-react";
 import { FaCog } from "react-icons/fa";
+import { useHero } from "@/app/context/HeroContext";
 
 export default function HeroTransmission() {
+  const { heroConfig } = useHero();
+
   return (
     <section
       id="lead-form"
-      className="relative w-full min-h-[calc(100vh-80px)] mt-[0px] flex flex-col lg:flex-row bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] overflow-hidden shadow-[0_-40px_120px_rgba(0,163,255,0.6)]"
+      className="relative w-full min-h-[calc(100vh-80px)] mt-[0px] flex flex-col lg:flex-row bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] overflow-hidden shadow-[0_-40px_120px_rgba(0,163,255,0.6)] bg-cover bg-center bg-fixed transition-all duration-500"
+      style={{ backgroundImage: heroConfig.backgroundImage }}
     >
-      
       {/* Background Animated Cogs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-4 sm:top-14 sm:left-6 md:top-20 md:left-12 w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-56 lg:h-56 opacity-10 text-[#00A3FF] animate-spin-slow">
@@ -24,27 +27,26 @@ export default function HeroTransmission() {
 
       {/* Layout Grid */}
       <div className="relative z-10 w-full h-full flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 justify-between items-stretch lg:items-center px-4 sm:px-6 lg:px-8 py-0 sm:py-0 lg:py-0">
-
         {/* LEFT CONTENT */}
         <div className="text-white space-y-2 flex flex-col justify-center lg:justify-start relative flex-1 min-h-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)]">
-            High-Quality Used{" "}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)] transition-all duration-500">
+            {heroConfig.title.split(" ").slice(0, -1).join(" ")}{" "}
             <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
-              Transmissions
+              {heroConfig.title.split(" ").slice(-1)[0]}
             </span>
           </h1>
+            
 
-          <p className="text-base sm:text-lg md:text-xl text-[#B3D9FF] font-light">
-            Unlock Savings, Quality & Performance
+          <p className="text-base sm:text-lg md:text-xl text-[#B3D9FF] font-light transition-all duration-500">
+            {heroConfig.subtitle}
           </p>
 
-          <p className="text-sm sm:text-base md:text-lg text-[#8CBFFF] font-light">
-            Reliable transmissions with expert support
+          <p className="text-sm sm:text-base md:text-lg text-[#8CBFFF] font-light transition-all duration-500">
+            {heroConfig.description}
           </p>
 
           {/* Contact Buttons */}
           <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-4 relative">
-
             {/* Call Now */}
             <a
               href="tel:+18779827774"
@@ -69,12 +71,7 @@ export default function HeroTransmission() {
                 <span className="text-xs sm:text-sm text-[#8CBFFF]">Email Us</span>
                 <p className="text-base sm:text-lg md:text-xl font-bold">support@usedautoparts.com</p>
               </div>
-
-              <div className="hidden md:block absolute right-[-100px] lg:right-[-140px] top-[20%] translate-y-0 w-24 h-24 lg:w-32 lg:h-32 opacity-50 text-[#00A3FF] animate-spin-slow drop-shadow-[0_-10px_20px_rgba(0,163,255,0.6)] pointer-events-none">
-                <FaCog className="w-full h-full" />
-              </div>
             </div>
-
           </div>
         </div>
 
@@ -82,7 +79,6 @@ export default function HeroTransmission() {
         <div className="flex-1 mt-10 sm:mt-14 lg:mt-16 lg:self-start rounded-2xl overflow-hidden shadow-[0_-40px_110px_rgba(0,163,255,0.7)] border border-[#00A3FF]/40 flex flex-col">
           <LeadForm />
         </div>
-
       </div>
     </section>
   );
@@ -112,333 +108,10 @@ function LeadForm() {
   });
 
   const yearOptions = Array.from({ length: 65 }, (_, i) => (2025 - i).toString());
-  const makes = ["AMC",
-  "Acura",
-  "Alfa",
-  "Aston Martin",
-  "Audi",
-  "Bentley",
-  "BMW",
-  "Buick",
-  "Cadillac",
-  "Checker",
-  "Chevy",
-  "Chrysler",
-  "Citroen",
-  "Daewoo",
-  "Daihatsu",
-  "Dodge",
-  "Eagle",
-  "Ferrari",
-  "Fiat",
-  "Fisker",
-  "Ford",
-  "Freightliner",
-  "GMC",
-  "Genesis",
-  "Geo",
-  "Honda",
-  "Hummer",
-  "Hyundai",
-  "IH",
-  "Infiniti",
-  "Isuzu",
-  "Jaguar",
-  "Jeep",
-  "Kaiser",
-  "Kenworth",
-  "Kia",
-  "Lamborghini",
-  "Landrover",
-  "Lexus",
-  "Lincoln",
-  "Maserati",
-  "Maybach",
-  "Mazda",
-  "McLaren",
-  "Mercedes",
-  "Mercury",
-  "Mini",
-  "Mitsubishi",
-  "Nissan",
-  "Oldsmobile",
-  "Peugeot",
-  "Plymouth",
-  "Polestar",
-  "Pontiac",
-  "Porsche",
-  "RAM",
-  "Renault",
-  "RollsRoyce",
-  "Rover",
-  "Saab",
-  "Saturn",
-  "Scion",
-  "Seat",
-  "Subaru",
-  "Suzuki",
-  "Tesla",
-  "Toyota",
-  "Triumph",
-  "Volkswagen",
-  "Volvo",
-  "Yugo"];
-  const parts = [ "Engine Assembly",
-  "Transmission",
-  "ABS Control Module",
-  "ABS System (Anti-Lock)",
-  "AC Compressor",
-  "AC Compressor Clutch",
-  "AC Condenser",
-  "AC Evaporator",
-  "Air Bag Control Module",
-  "Air Cleaner Box",
-  "Air Flow Meter",
-  "Air Injection Pump",
-  "Alternator",
-  "Axle Assembly - Front",
-  "Axle Assembly - Rear",
-  "Axle Housing",
-  "Axle Shaft",
-  "Back Glass",
-  "Backup Lamp",
-  "Beam Axle",
-  "Bell Housing",
-  "Blower Motor",
-  "Body Control Module",
-  "Brain Box (Engine)",
-  "Brain Box (Not Engine)",
-  "Brake Master Cylinder",
-  "Bumper Assembly - Front",
-  "Bumper Assembly - Rear",
-  "Bumper Reinforcement - Front",
-  "Bumper Reinforcement - Rear",
-  "Camera/Projector",
-  "Camshaft",
-  "Car Window Lifter",
-  "Car Window Regulator",
-  "Carburetor",
-  "Carrier Assembly",
-  "Carrier Case",
-  "Clutch Disc",
-  "Clutch Master Cylinder",
-  "Clutch Slave Cylinder",
-  "Coil Spring",
-  "Column Switch",
-  "Communication Module",
-  "Computer (Engine)",
-  "Computer (Not Engine)",
-  "Condenser Fan",
-  "Control Arm - Lower (Front)",
-  "Control Arm - Lower (Rear)",
-  "Control Arm - Upper (Front)",
-  "Control Arm - Upper (Rear)",
-  "Convertible Top Lift",
-  "Convertible Top Motor",
-  "Cooling Fan",
-  "Crankshaft",
-  "Cruise Switch",
-  "Cylinder Block",
-  "Cylinder Head",
-  "Dash Panel",
-  "DC Converter (Inverter)",
-  "Decklid",
-  "Differential",
-  "Differential Assembly",
-  "Differential Case",
-  "Differential Flange",
-  "Distributor Coil",
-  "DistributorCoil - Engine",
-  "Door Assembly - Front",
-  "Door Assembly - Rear",
-  "Door Electrical Switch",
-  "Door Glass - Front (Side)",
-  "Door Glass - Rear (Side)",
-  "Door Lock Control Module",
-  "Door Vent Glass - Front (Side)",
-  "Door Vent Glass - Rear (Side)",
-  "Door Window Motor",
-  "Door Window Regulator - Front",
-  "Door Window Regulator - Rear",
-  "Drive Shaft - Front",
-  "Drive Shaft - Rear",
-  "ECM/ECU (Engine)",
-  "ECM/ECU (Not Engine)",
-  "ECU (Not Engine)",
-  "Electric Door Motor",
-  "Electrical Switch (Door)",
-  "Electronic Control Module (Engine)",
-  "Electronic Control Module (Not Engine)",
-  "Engine Coil",
-  "Engine Computer",
-  "Engine Control Module",
-  "Engine Oil Cooler",
-  "Exhaust Manifold",
-  "Fan Blade",
-  "Fan Clutch",
-  "Fender",
-  "Flywheel",
-  "Fog Light Stalk",
-  "Front Axle",
-  "Front Axle I-Beam (2WD)",
-  "Front Body Panel",
-  "Front Bumper",
-  "Front Bumper Reinforcement",
-  "Front Clip",
-  "Front Door Assembly",
-  "Front Door Glass (Side)",
-  "Front Door Hinge",
-  "Front Door Vent Glass (Side)",
-  "Front End Assembly",
-  "Front Fender",
-  "Front Side Lamp",
-  "Front Spoiler",
-  "Front Window Lifter",
-  "Front Wiper Motor",
-  "Fuel Injection Parts",
-  "Fuel Pump",
-  "Fuel Pump Control Module",
-  "Generator",
-  "GPS ScreenTV Info Screen",
-  "Grille",
-  "Harmonic Balancer",
-  "Head Light Assembly",
-  "Head Light Door",
-  "Head Light Motor",
-  "Head Light Switch",
-  "Header Panel",
-  "Heater Assembly",
-  "Heater Core",
-  "Heater or Air Conditioner Parts - Misc.",
-  "High Mounted Stop Light",
-  "Hood",
-  "Hood Hinge",
-  "Hub Brakes",
-  "Ignition Switch",
-  "Intake Manifold",
-  "Intercooler",
-  "Interior Light Control Module",
-  "K-Frame",
-  "Knee",
-  "Leaf Spring - Front",
-  "Leaf Spring - Rear",
-  "Loaded Beam Axle",
-  "Lower Control Arm - Front",
-  "Lower Control Arm - Rear",
-  "Navigation Control Module",
-  "Oil Pan",
-  "Overdrive Unit Transmission",
-  "Power Brake Boosters",
-  "Power Steering Pump",
-  "Power Supply Control Module",
-  "Power Window Motor",
-  "Pressure Plate",
-  "Quarter Glass",
-  "Quarter Panel",
-  "Quarter Window Regulator - Rear",
-  "Radiator",
-  "Radiator Cooling Fan",
-  "Radiator Core Support",
-  "Radiator Fan",
-  "Radio/Audio Cowl",
-  "Rear Axle",
-  "Rear Body Panel",
-  "Rear Bumper",
-  "Rear Bumper Reinforcement",
-  "Rear Clip Assembly",
-  "Rear Door Assembly",
-  "Rear Door Glass (Side)",
-  "Rear Door Vent Glass (Side)",
-  "Rear Fender",
-  "Rear Independent Suspension Assembly",
-  "Rear Lower Control Arm",
-  "Rear Quarter Panel",
-  "Rear Side Lamp",
-  "Rear Spoiler",
-  "Rear View Mirror",
-  "Rear Window Washer Motor",
-  "Rear Wiper Motor",
-  "Ring Gear and Pinion Assembly",
-  "Rocker Arm",
-  "Roof Control Module",
-  "Roof Glass",
-  "SAM Control Module",
-  "Seat Control Module",
-  "Seat Track - Front",
-  "Security System Control Module",
-  "Shock Absorber",
-  "Side Lamp (Front)",
-  "Side Lamp (Rear)",
-  "Side View Mirror",
-  "Speedometer Cluster",
-  "Spindle Knuckle - Front",
-  "Spoiler - Front",
-  "Spoiler - Rear",
-  "Stabilizer Bar",
-  "Starter Motor",
-  "Starter Solenoid",
-  "Steering Column",
-  "Steering Gear - Rack & Pinion",
-  "Strut",
-  "Stub Axle - Rear",
-  "Sun RoofMoon Roof",
-  "Supercharger",
-  "Suspension Compressor/Pump",
-  "Suspension Control Module",
-  "Suspension Crossmember",
-  "Tail Finish Panel",
-  "Tail Gate Hinge",
-  "Tail Gate Molding",
-  "Tail Gate Windor Regulator",
-  "Tail Light",
-  "Tail Panel",
-  "Tailgate",
-  "Temperature Control Module",
-  "Throttle Body Assembly",
-  "Timing Cover",
-  "Torque Converter",
-  "Torsion Bar",
-  "Transfer Case",
-  "Transfer Case Assembly",
-  "Transmission Control Module",
-  "Trunk Lid",
-  "Turbocharger",
-  "Turn Signal Lever",
-  "Upper Control Arm - Front",
-  "Upper Control Arm - Rear",
-  "Vacuum Pump",
-  "Valance - Front",
-  "Voltage Regulator",
-  "Water Pump",
-  "Wheel",
-  "Window Lifter",
-  "Window Motor",
-  "Window Regulator",
-  "Window Regulator - Front",
-  "Window Regulator - Rear",
-  "Window Regulator (Quarter) - Rear",
-  "Window Regulator (Tail Gate)",
-  "Windshield Washer Motor",
-  "Windshield Washer Reservoir",
-  "Windshield Wiper Switch",
-  "Wiper Motor - Front",
-  "Wiper Motor - Rear",
-  "Wiper Motor (Windshield)",
-  "Wiper Transmission"];
-  const sizes = [ "1.5L","1.6L","1.7L","1.8L","1.9L",
-  "2.0L","2.1L","2.2L","2.3L","2.4L","2.5L","2.6L","2.7L","2.8L","2.9L",
-  "3.0L","3.1L","3.2L","3.3L","3.4L","3.5L","3.6L","3.7L","3.8L","3.9L",
-  "4.0L","4.1L","4.2L","4.3L","4.4L","4.5L","4.6L","4.7L","4.8L","4.9L",
-  "5.0L","5.1L","5.2L","5.3L","5.4L","5.5L","5.6L","5.7L","5.8L","5.9L",
-  "6.0L","6.1L","6.2L","6.3L","6.4L","6.5L","6.6L","6.7L","6.8L","6.9L",
-  "7.0L","7.1L","7.2L","7.3L","7.4L","7.5L","7.6L","7.7L","7.8L","7.9L",
-  "8.0L","8.1L","8.2L","8.3L","8.4L","8.5L","8.6L","8.7L","8.8L","8.9L",
-  "9.0L","9.1L","9.2L","9.3L","9.4L","9.5L","9.6L","9.7L","9.8L","9.9L",
-  "10.0L"];
-  const transOptions = ["2WD / Automatic Transmission",
-  "4x4 / Automatic Transmission",
-  "2WD / Manual Transmission",
-  "4x4 / Manual Transmission"];
+  const makes = ["AMC", "Acura", "Alfa", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Checker", "Chevy", "Chrysler", "Citroen", "Daewoo", "Daihatsu", "Dodge", "Eagle", "Ferrari", "Fiat", "Fisker", "Ford", "Freightliner", "GMC", "Genesis", "Geo", "Honda", "Hummer", "Hyundai", "IH", "Infiniti", "Isuzu", "Jaguar", "Jeep", "Kaiser", "Kenworth", "Kia", "Lamborghini", "Landrover", "Lexus", "Lincoln", "Maserati", "Maybach", "Mazda", "McLaren", "Mercedes", "Mercury", "Mini", "Mitsubishi", "Nissan", "Oldsmobile", "Peugeot", "Plymouth", "Polestar", "Pontiac", "Porsche", "RAM", "Renault", "RollsRoyce", "Rover", "Saab", "Saturn", "Scion", "Seat", "Subaru", "Suzuki", "Tesla", "Toyota", "Triumph", "Volkswagen", "Volvo", "Yugo"];
+  const parts = ["Engine Assembly", "Transmission", "ABS Control Module", "ABS System (Anti-Lock)", "AC Compressor", "AC Compressor Clutch", "AC Condenser", "AC Evaporator", "Air Bag Control Module", "Air Cleaner Box", "Air Flow Meter", "Air Injection Pump", "Alternator", "Axle Assembly - Front", "Axle Assembly - Rear", "Axle Housing", "Axle Shaft", "Back Glass", "Backup Lamp", "Beam Axle", "Bell Housing", "Blower Motor", "Body Control Module", "Brain Box (Engine)", "Brain Box (Not Engine)", "Brake Master Cylinder", "Bumper Assembly - Front", "Bumper Assembly - Rear", "Bumper Reinforcement - Front", "Bumper Reinforcement - Rear", "Camera/Projector", "Camshaft", "Car Window Lifter", "Car Window Regulator", "Carburetor", "Carrier Assembly", "Carrier Case", "Clutch Disc", "Clutch Master Cylinder", "Clutch Slave Cylinder", "Coil Spring", "Column Switch", "Communication Module", "Computer (Engine)", "Computer (Not Engine)", "Condenser Fan", "Control Arm - Lower (Front)", "Control Arm - Lower (Rear)", "Control Arm - Upper (Front)", "Control Arm - Upper (Rear)", "Convertible Top Lift", "Convertible Top Motor", "Cooling Fan", "Crankshaft", "Cruise Switch", "Cylinder Block", "Cylinder Head", "Dash Panel", "DC Converter (Inverter)", "Decklid", "Differential", "Differential Assembly", "Differential Case", "Differential Flange", "Distributor Coil", "DistributorCoil - Engine", "Door Assembly - Front", "Door Assembly - Rear", "Door Electrical Switch", "Door Glass - Front (Side)", "Door Glass - Rear (Side)", "Door Lock Control Module", "Door Vent Glass - Front (Side)", "Door Vent Glass - Rear (Side)", "Door Window Motor", "Door Window Regulator - Front", "Door Window Regulator - Rear", "Drive Shaft - Front", "Drive Shaft - Rear", "ECM/ECU (Engine)", "ECM/ECU (Not Engine)", "ECU (Not Engine)", "Electric Door Motor", "Electrical Switch (Door)", "Electronic Control Module (Engine)", "Electronic Control Module (Not Engine)", "Engine Coil", "Engine Computer", "Engine Control Module", "Engine Oil Cooler", "Exhaust Manifold", "Fan Blade", "Fan Clutch", "Fender", "Flywheel", "Fog Light Stalk", "Front Axle", "Front Axle I-Beam (2WD)", "Front Body Panel", "Front Bumper", "Front Bumper Reinforcement", "Front Clip", "Front Door Assembly", "Front Door Glass (Side)", "Front Door Hinge", "Front Door Vent Glass (Side)", "Front End Assembly", "Front Fender", "Front Side Lamp", "Front Spoiler", "Front Window Lifter", "Front Wiper Motor", "Fuel Injection Parts", "Fuel Pump", "Fuel Pump Control Module", "Generator", "GPS ScreenTV Info Screen", "Grille", "Harmonic Balancer", "Head Light Assembly", "Head Light Door", "Head Light Motor", "Head Light Switch", "Header Panel", "Heater Assembly", "Heater Core", "Heater or Air Conditioner Parts - Misc.", "High Mounted Stop Light", "Hood", "Hood Hinge", "Hub Brakes", "Ignition Switch", "Intake Manifold", "Intercooler", "Interior Light Control Module", "K-Frame", "Knee", "Leaf Spring - Front", "Leaf Spring - Rear", "Loaded Beam Axle", "Lower Control Arm - Front", "Lower Control Arm - Rear", "Navigation Control Module", "Oil Pan", "Overdrive Unit Transmission", "Power Brake Boosters", "Power Steering Pump", "Power Supply Control Module", "Power Window Motor", "Pressure Plate", "Quarter Glass", "Quarter Panel", "Quarter Window Regulator - Rear", "Radiator", "Radiator Cooling Fan", "Radiator Core Support", "Radiator Fan", "Radio/Audio Cowl", "Rear Axle", "Rear Body Panel", "Rear Bumper", "Rear Bumper Reinforcement", "Rear Clip Assembly", "Rear Door Assembly", "Rear Door Glass (Side)", "Rear Door Vent Glass (Side)", "Rear Fender", "Rear Independent Suspension Assembly", "Rear Lower Control Arm", "Rear Quarter Panel", "Rear Side Lamp", "Rear Spoiler", "Rear View Mirror", "Rear Window Washer Motor", "Rear Wiper Motor", "Ring Gear and Pinion Assembly", "Rocker Arm", "Roof Control Module", "Roof Glass", "SAM Control Module", "Seat Control Module", "Seat Track - Front", "Security System Control Module", "Shock Absorber", "Side Lamp (Front)", "Side Lamp (Rear)", "Side View Mirror", "Speedometer Cluster", "Spindle Knuckle - Front", "Spoiler - Front", "Spoiler - Rear", "Stabilizer Bar", "Starter Motor", "Starter Solenoid", "Steering Column", "Steering Gear - Rack & Pinion", "Strut", "Stub Axle - Rear", "Sun RoofMoon Roof", "Supercharger", "Suspension Compressor/Pump", "Suspension Control Module", "Suspension Crossmember", "Tail Finish Panel", "Tail Gate Hinge", "Tail Gate Molding", "Tail Gate Windor Regulator", "Tail Light", "Tail Panel", "Tailgate", "Temperature Control Module", "Throttle Body Assembly", "Timing Cover", "Torque Converter", "Torsion Bar", "Transfer Case", "Transfer Case Assembly", "Transmission Control Module", "Trunk Lid", "Turbocharger", "Turn Signal Lever", "Upper Control Arm - Front", "Upper Control Arm - Rear", "Vacuum Pump", "Valance - Front", "Voltage Regulator", "Water Pump", "Wheel", "Window Lifter", "Window Motor", "Window Regulator", "Window Regulator - Front", "Window Regulator - Rear", "Window Regulator (Quarter) - Rear", "Window Regulator (Tail Gate)", "Windshield Washer Motor", "Windshield Washer Reservoir", "Windshield Wiper Switch", "Wiper Motor - Front", "Wiper Motor - Rear", "Wiper Motor (Windshield)", "Wiper Transmission"];
+  const sizes = ["1.5L", "1.6L", "1.7L", "1.8L", "1.9L", "2.0L", "2.1L", "2.2L", "2.3L", "2.4L", "2.5L", "2.6L", "2.7L", "2.8L", "2.9L", "3.0L", "3.1L", "3.2L", "3.3L", "3.4L", "3.5L", "3.6L", "3.7L", "3.8L", "3.9L", "4.0L", "4.1L", "4.2L", "4.3L", "4.4L", "4.5L", "4.6L", "4.7L", "4.8L", "4.9L", "5.0L", "5.1L", "5.2L", "5.3L", "5.4L", "5.5L", "5.6L", "5.7L", "5.8L", "5.9L", "6.0L", "6.1L", "6.2L", "6.3L", "6.4L", "6.5L", "6.6L", "6.7L", "6.8L", "6.9L", "7.0L", "7.1L", "7.2L", "7.3L", "7.4L", "7.5L", "7.6L", "7.7L", "7.8L", "7.9L", "8.0L", "8.1L", "8.2L", "8.3L", "8.4L", "8.5L", "8.6L", "8.7L", "8.8L", "8.9L", "9.0L", "9.1L", "9.2L", "9.3L", "9.4L", "9.5L", "9.6L", "9.7L", "9.8L", "9.9L", "10.0L"];
+  const transOptions = ["2WD / Automatic Transmission", "4x4 / Automatic Transmission", "2WD / Manual Transmission", "4x4 / Manual Transmission"];
 
   const formatPhone = (v: string) => {
     const n = v.replace(/\D/g, "");
@@ -453,7 +126,6 @@ function LeadForm() {
 
     await new Promise((r) => setTimeout(r, 1500));
 
-    // Navigate to thank you page directly (no popup)
     router.push("/thank-you");
 
     setIsSubmitting(false);
@@ -513,7 +185,7 @@ function LeadForm() {
               Submitting…
             </>
           ) : (
-            "Get Free Quote"
+            "Find My Part"
           )}
         </button>
       </form>

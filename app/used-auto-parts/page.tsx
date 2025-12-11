@@ -1,6 +1,7 @@
 
 import CallFloatingButton from "@/components/home/CallFloatingButton";
 import ChatBot from "@/components/home/ChatBot";
+import HeroTransmission from "@/components/home/HeroTransmission";
 import SearchCar from "@/components/home/search";
 import { uapSections } from "@/data/uap";
 
@@ -38,8 +39,7 @@ const features = [
 export default function UsedAutoPartsPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
-       
-
+       <HeroTransmission />
       <ChatBot />
       <CallFloatingButton />
 

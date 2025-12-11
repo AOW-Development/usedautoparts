@@ -58,11 +58,27 @@ export default function Footer() {
             </p>
 
             <div className="space-y-2 text-[#B3D9FF]">
-              <p>US Toll Free: (877) 982-7774</p>
-              <p>Fax: 3124859711</p>
-              <p>Email: sales@usedautoparts.pro</p>
-            </div>
+  <p>
+    US Toll Free:{" "}
+    <a href="tel:+18779827774" className="hover:underline">
+      (877) 982-7774
+    </a>
+  </p>
 
+  <p>
+    Fax:{" "}
+    <a href="tel:+13124859711" className="hover:underline">
+      3124859711
+    </a>
+  </p>
+
+  <p>
+    Email:{" "}
+    <a href="mailto:sales@usedautoparts.pro" className="hover:underline">
+      sales@usedautoparts.pro
+    </a>
+  </p>
+</div>
             {/* SOCIAL ICONS */}
             <div className="flex gap-3 pt-3">
               <Link
