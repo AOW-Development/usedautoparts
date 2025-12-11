@@ -54,11 +54,11 @@ export default function UsedEnginesPage() {
 
                     {/* Larger image without cropping */}
                     {section.image && (
-                      <div className="w-full md:w-[50%] flex items-center justify-center rounded-md overflow-hidden">
+                      <div className="w-full md:w-[30%]  flex items-center justify-center h-[300px] rounded-lg overflow-hidden">
                         <img
                           src={section.image}
                           alt={section.title}
-                          className="w-full h-auto max-h-[320px] object-contain rounded-lg"
+                          className="h-full w-auto object-contain rounded-lg"
                         />
                       </div>
                     )}

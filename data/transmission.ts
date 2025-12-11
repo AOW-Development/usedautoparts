@@ -16,8 +16,6 @@ export const transmissionSections = [
       "Our big inventory is filled with used car parts for sale that are cautiously inspected and re-inspected to meet our standards.",
       "From power plants and transmissions to even the tiniest of parts, we have it all in stock, so you may need to get your vehicle right.",
     ],
-    image: "/images/about-engine.png",
-    imageSide: "right" as const,
   },
 
   {
