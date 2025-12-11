@@ -72,8 +72,8 @@ export default function Header() {
   const handleHomeClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setHeroConfig({
-      backgroundImage: "url('/hero/hero1.jpg')",
-      title: "Premium Used Auto Parts",
+      backgroundImage: "url('/hero/hero8.png')",
+      title: "Trusted Used Parts Dealers",
       subtitle: "Quality Parts for Every Vehicle",
       description: "Affordable, trusted replacements for every make and model",
     });

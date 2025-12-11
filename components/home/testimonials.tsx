@@ -19,7 +19,7 @@ const testimonials = [
   },
   {
     name: "Heidi Gardner from TX",
-    text: `I can't express how thrilled I am with the motor I got. It runs like a dream, and my mechanic was impressed with how clean and low-mileage it was under the valve covers. Used Auto Parts Pro came through for me, and I wouldn't think twice about choosing them again if I ever need another engine. Top-notch service and quality parts!`,
+    text: `I can't express how thrilled I am with the motor I got. It runs like a dream, and my mechanic was inspired with how clean and low-mileage it was under the valve covers. Used Auto Parts Pro came through for me, and I wouldn't think twice about choosing them again if I ever need another engine. Top-notch service and quality parts!`,
   },
   {
     name: "Heidi Gardner from TX",
@@ -39,8 +39,14 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section className="bg-[#07142B] py-16 sm:py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+    <section 
+      className="bg-[#07142B] py-16 sm:py-20 relative overflow-hidden bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: "url('/hero/hero24.png')" }}
+    >
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#07142B]/5 via-[#0A2F5C]/5 to-[#001D3D]/5"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Heading */}
         <h2 className="text-center text-[28px] sm:text-[36px] md:text-[48px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#daedff] mb-10 sm:mb-12 tracking-wide">
@@ -48,21 +54,20 @@ export default function TestimonialSection() {
         </h2>
 
         {/* LEFT BUTTON */}
-<button
-  onClick={scrollLeft}
-  className="absolute left-2 sm:-left-8 top-[60%] -translate-y-1/2 z-10 bg-[#00A3FF]/30 hover:bg-[#00A3FF]/50 p-2 sm:p-3 rounded-full text-white"
->
-  <ChevronLeft size={24} className="sm:size-[28px]" />
-</button>
+        <button
+          onClick={scrollLeft}
+          className="absolute left-2 sm:-left-8 top-[60%] -translate-y-1/2 z-20 bg-[#00A3FF]/30 hover:bg-[#00A3FF]/50 p-2 sm:p-3 rounded-full text-white transition-all"
+        >
+          <ChevronLeft size={24} className="sm:size-[28px]" />
+        </button>
 
-{/* RIGHT BUTTON */}
-<button
-  onClick={scrollRight}
-  className="absolute right-2 sm:-right-8 top-[60%] -translate-y-1/2 z-10 bg-[#00A3FF]/30 hover:bg-[#00A3FF]/50 p-2 sm:p-3 rounded-full text-white"
->
-  <ChevronRight size={24} className="sm:size-[28px]" />
-</button>
-
+        {/* RIGHT BUTTON */}
+        <button
+          onClick={scrollRight}
+          className="absolute right-2 sm:-right-8 top-[60%] -translate-y-1/2 z-20 bg-[#00A3FF]/30 hover:bg-[#00A3FF]/50 p-2 sm:p-3 rounded-full text-white transition-all"
+        >
+          <ChevronRight size={24} className="sm:size-[28px]" />
+        </button>
 
         {/* SCROLLER */}
         <div

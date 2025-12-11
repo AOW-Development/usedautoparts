@@ -10,10 +10,14 @@ import {
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] text-[#E8F3FF] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-10 flex flex-col items-center">
+    <section className="w-full bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] text-[#E8F3FF] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-10 flex flex-col items-center relative overflow-hidden">
+
+      {/* Animated Background Orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-[#00A3FF]/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-[#0099FF]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
 
       {/* Title */}
-      <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center">
+      <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center relative z-10">
         <h2 className="text-[22px] sm:text-[26px] md:text-[32px] lg:text-[40px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#B3D9FF]">
           Why Choose Us?
         </h2>
@@ -33,6 +37,8 @@ export default function WhyChooseUs() {
           lg:gap-8
           max-w-[1200px]
           w-full
+          relative
+          z-10
         "
       >
         <FeatureCard
@@ -95,7 +101,7 @@ function FeatureCard({
         border
         border-[#00A3FF]/40
         shadow-[0_-15px_50px_rgba(0,163,255,0.3)]
-        hover:shadow-[0_-15px_50px_rgba(0,163,255,0.4)]
+        hover:shadow-[0_-15px_50px_rgba(0,163,255,0.6)]
         rounded-xl
         sm:rounded-2xl
         lg:rounded-3xl
@@ -121,23 +127,31 @@ function FeatureCard({
         lg:min-h-[380px]
         transition-all
         duration-300
-        hover:scale-102
+        hover:scale-105
+        hover:-translate-y-2
         border-opacity-30
-        hover:border-opacity-40
+        hover:border-opacity-60
+        group
+        cursor-pointer
+        relative
+        overflow-hidden
       "
     >
+      {/* Animated gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00A3FF]/0 via-transparent to-[#0099FF]/0 group-hover:from-[#00A3FF]/15 group-hover:to-[#0099FF]/8 transition-all duration-300 pointer-events-none"></div>
+
       {/* Circular Icon Container */}
-      <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-[70px] md:h-[70px] lg:w-20 lg:h-20 rounded-full border-2 border-[#00A3FF]/40 flex items-center justify-center bg-transparent transition-all duration-300">
-        <div className="text-[#00A3FF] drop-shadow-lg">
+      <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-[70px] md:h-[70px] lg:w-20 lg:h-20 rounded-full border-2 border-[#00A3FF]/40 flex items-center justify-center bg-gradient-to-br from-[#00A3FF]/5 to-transparent transition-all duration-300 group-hover:border-[#00A3FF]/70 group-hover:bg-gradient-to-br group-hover:from-[#00A3FF]/20 group-hover:to-transparent group-hover:scale-110 relative z-10">
+        <div className="text-[#00A3FF] drop-shadow-lg group-hover:drop-shadow-[0_0_12px_rgba(0,163,255,0.8)]">
           {icon}
         </div>
       </div>
 
-      <h3 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-bold leading-tight mt-1 text-white">
+      <h3 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-bold leading-tight mt-1 text-white transition-all duration-300 group-hover:text-[#0099FF] relative z-10">
         {title}
       </h3>
 
-      <p className="text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[20px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] max-w-xs md:max-w-sm opacity-90 text-[#B3D9FF]">
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[20px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] max-w-xs md:max-w-sm opacity-90 text-[#B3D9FF] transition-all duration-300 group-hover:opacity-100 relative z-10">
         {desc}
       </p>
     </div>
