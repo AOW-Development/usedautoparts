@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Footer from "../components/footer";
 import Header from "@/components/header";
+import { HeroProvider } from "../app/context/HeroContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,13 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased bg-[#081628] text-[#E8F3FF]">
-        <Header />
-    
-        <main>
-          {children}
-        </main>
-
-        <Footer />
+        <HeroProvider>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </HeroProvider>
       </body>
     </html>
   );

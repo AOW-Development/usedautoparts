@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 export default function SectionHeader({
   title,
   gradient = true,
-  padding = "py-2",
+  padding = "py-4 sm:py-6 md:py-8",
   size = "md",
 }: SectionHeaderProps) {
   const sizeClasses = {
