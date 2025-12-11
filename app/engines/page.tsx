@@ -16,16 +16,16 @@ type EngineSection = {
 export default function UsedEnginesPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
-      
-       <HeroTransmission />
+
+      <HeroTransmission />
       <ChatBot />
       <CallFloatingButton />
 
       {/* Main Content */}
       <section className="py-16 bg-[#07142B]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
-          <div className="max-w-4xl mx-auto space-y-12">
-            
+          <div className=" mx-auto space-y-12">
+
             {/* Hero Section - First item from engineSections */}
             {(engineSections as EngineSection[]).length > 0 && (
               <div className="space-y-4 text-center">
@@ -45,18 +45,42 @@ export default function UsedEnginesPage() {
             {/* Content Sections - Rest of the items */}
             <div className="space-y-8">
               {(engineSections as EngineSection[]).slice(1).map((section, index) => (
-                <div 
+                <div
                   key={section.title}
-                  className="bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] rounded-2xl p-8 border border-[#00A3FF]/40 hover:border-[#00A3FF] transition-all duration-300"
+                  className="bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] rounded-2xl px-10 py-12 border border-[#00A3FF]/40 hover:border-[#00A3FF] transition-all duration-300 max-w-[1200px] mx-auto"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">{section.title}</h2>
-                  <div className="space-y-4">
-                    {section.paragraphs?.map((paragraph, pIndex) => (
-                      <p key={pIndex} className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg">
-                        {paragraph}
-                      </p>
-                    ))}
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-6 lg:gap-4">
+
+                    {/* Larger image without cropping */}
+                    {section.image && (
+                      <div className="w-full md:w-[50%] flex items-center justify-center rounded-md overflow-hidden">
+                        <img
+                          src={section.image}
+                          alt={section.title}
+                          className="w-full h-auto max-h-[320px] object-contain rounded-lg"
+                        />
+                      </div>
+                    )}
+
+                    {/* Text */}
+                    <div className="flex-1 flex flex-col justify-center">
+                      <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">
+                        {section.title}
+                      </h2>
+
+                      <div className="space-y-4">
+                        {section.paragraphs?.map((paragraph, pIndex) => (
+                          <p
+                            key={pIndex}
+                            className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               ))}
