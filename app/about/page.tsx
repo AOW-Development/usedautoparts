@@ -34,7 +34,7 @@ export default function AboutPage() {
           <div className="relative h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl shadow-[#00A3FF]/30">
             <div className="absolute inset-0 bg-gradient-to-br from-[#00A3FF]/20 to-[#003D80]/20" />
             <img
-              src="/images/About-image-1.jpg"
+              src="/hero/hero32.png"
               alt="Warehouse Operations"
               className="w-full h-full object-cover"
             />
@@ -48,7 +48,7 @@ export default function AboutPage() {
           <div className="relative h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl shadow-[#00A3FF]/30 order-2 lg:order-1">
             <div className="absolute inset-0 bg-gradient-to-br from-[#00A3FF]/20 to-[#003D80]/20" />
             <img
-              src="/images/About-image-2.jpg"
+              src="/hero/hero31.jpg"
               alt="Expert Team"
               className="w-full h-full object-cover"
             />
