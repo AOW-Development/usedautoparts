@@ -96,7 +96,7 @@ export default function UsedAutoPartsPage() {
                   <img
                     src={section.image}
                     alt="Used Auto Parts"
-                    className="w-[260px] sm:w-[320px] md:w-[380px] drop-shadow-[0_0_25px_rgba(0,163,255,0.5)]"
+                    className="w-[260px] sm:w-[320px] md:w-[380px] "
                   />
                 </div>
 
