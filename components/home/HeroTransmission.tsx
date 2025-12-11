@@ -35,7 +35,6 @@ export default function HeroTransmission() {
               {heroConfig.title.split(" ").slice(-1)[0]}
             </span>
           </h1>
-            
 
           <p className="text-base sm:text-lg md:text-xl text-[#B3D9FF] font-light transition-all duration-500">
             {heroConfig.subtitle}
@@ -62,7 +61,7 @@ export default function HeroTransmission() {
             </a>
 
             {/* Email Us */}
-            <a href="mailto:support@usedautoparts.com" className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform">
+            <div className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00A3FF]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,163,255,0.5)]">
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
@@ -185,7 +184,7 @@ function LeadForm() {
               Submitting…
             </>
           ) : (
-            "Find My Part"
+            "Get Free Quote"
           )}
         </button>
       </form>
@@ -216,64 +215,26 @@ function InputField({ label, name, value, placeholder, onChange, required }: any
   );
 }
 
-
-function SelectFieldCustom({
-  label,
-  name,
-  value,
-  options,
-  onChange,
-  onOpen,
-  isOpen,
-  required,
-}: any) {
-  const [search, setSearch] = useState("");
-
-  const filteredOptions = options.filter((opt: string) =>
-    opt.toLowerCase().includes(search.toLowerCase())
-  );
-
+function SelectFieldCustom({ label, name, value, options, onChange, onOpen, isOpen, required }: any) {
   return (
     <div className="relative">
-      <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
-        {label}
-      </label>
-
-      {/* Dropdown Button */}
+      <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">{label}</label>
       <button
         type="button"
         onClick={() => onOpen(isOpen ? null : name)}
         className="w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 border-[#0A5FA6] rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between"
       >
         <span>{value || "Select"}</span>
-        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
-          ▼
-        </span>
+        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>▼</span>
       </button>
-
-      {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-[#0A5FA6] rounded-lg shadow-lg z-50 max-h-60 sm:max-h-72 overflow-y-auto">
-
-          {/* 🔍 Search Bar */}
-          <div className="p-2 border-b border-gray-200 sticky top-0 bg-white text-gray-700">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-2 py-2 text-xs sm:text-sm border border-gray-300 rounded focus:outline-none focus:border-[#00A3FF]"
-            />
-          </div>
-
-          {/* Options */}
-          {filteredOptions.map((opt: string) => (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-[#0A5FA6] rounded-lg shadow-lg z-50 max-h-40 sm:max-h-48 overflow-y-auto">
+          {options.map((opt: string) => (
             <button
               key={opt}
               type="button"
               onClick={() => {
                 onChange((p: any) => ({ ...p, [name]: opt }));
-                setSearch("");
                 onOpen(null);
               }}
               className="w-full text-left px-3 sm:px-4 py-2 sm:py-3 hover:bg-[#00A3FF] hover:text-white text-gray-900 text-xs sm:text-sm border-b border-gray-200 last:border-b-0"
@@ -281,16 +242,8 @@ function SelectFieldCustom({
               {opt}
             </button>
           ))}
-
-          {/* If no match */}
-          {filteredOptions.length === 0 && (
-            <div className="px-4 py-3 text-xs sm:text-sm text-gray-500 text-center">
-              No results found
-            </div>
-          )}
         </div>
       )}
     </div>
   );
 }
-
