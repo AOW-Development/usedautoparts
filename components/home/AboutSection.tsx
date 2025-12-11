@@ -36,19 +36,35 @@ export default function AboutSection() {
             the ease of browsing online inventory as we redefine accessibility.
           </p>
 
-          <p
-            className="
-              text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
-              leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
-              text-[#B3D9FF]
-              font-light
-            "
-          >
-            Trust meets affordability here. We blend competitive pricing with uncompromised value, 
-            ensuring you receive the best. Ready to step into excellence? Dial{" "}
-            <span className="font-semibold text-[#00A3FF]">(877) 982-7774</span>{" "}
-            and join the ranks of satisfied Used Auto Parts Pro customers.
-          </p>
+         <p
+  className="
+    text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
+    leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
+    text-[#B3D9FF]
+    font-light
+  "
+>
+  Trust meets affordability here. We blend competitive pricing with uncompromised value, 
+  ensuring you receive the best. Ready to step into excellence? Dial{" "}
+  <a
+    href="tel:+18779827774"
+    className="
+      font-semibold 
+      text-[#00A3FF]
+      hover:text-[#00D4FF]
+      cursor-pointer
+      transition-all
+      duration-300
+      hover:underline
+      hover:drop-shadow-[0_0_8px_rgba(0,163,255,0.6)]
+    "
+  >
+    (877) 982-7774
+  </a>
+  {" "}
+  and join the ranks of satisfied Used Auto Parts Pro customers.
+</p>
+
 
           <p
             className="
@@ -91,7 +107,7 @@ export default function AboutSection() {
       active:translate-y-0
     "
   >
-    Get Free Quote
+    Find My Part
   </button>
 </div>
 

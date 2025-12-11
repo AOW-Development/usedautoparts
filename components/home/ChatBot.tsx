@@ -290,7 +290,7 @@ export default function ChatBot() {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes slideIn {
           from {
             opacity: 0;

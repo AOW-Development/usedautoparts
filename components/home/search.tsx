@@ -42,8 +42,14 @@ const brands = [
 
 export default function SearchCar() {
   return (
-    <section className="w-full bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D]">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+    <section 
+      className="w-full bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] bg-cover bg-center bg-fixed relative"
+      style={{ backgroundImage: "url('/hero/hero26.png')" }}
+    >
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#07142B]/90 via-[#0A2F5C]/90 to-[#001D3D]/90"></div>
+
+      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
 
         <h2
           className="text-center font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#dcedff]"
@@ -77,6 +83,10 @@ export default function SearchCar() {
                   cursor-pointer
                   shadow-[0_0_15px_rgba(29,78,216,0.2)]
                   px-[7px] py-[10px]
+                  transition-all
+                  duration-300
+                  hover:shadow-[0_0_25px_rgba(0,163,255,0.5)]
+                  hover:scale-105
                 "
               >
                 <div className="w-full h-[70px] flex items-center justify-center">

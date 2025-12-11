@@ -19,9 +19,9 @@ const HeroContext = createContext<HeroContextType | undefined>(undefined);
 export function HeroProvider({ children }: { children: ReactNode }) {
   const [heroConfig, setHeroConfig] = useState<HeroConfig>({
     backgroundImage: "url('/hero/hero8.png')",
-    title: "High-Quality Used Transmissions",
-    subtitle: "Unlock Savings, Quality & Performance",
-    description: "Reliable transmissions with expert support",
+    title: "Trusted Used Parts Dealers",
+    subtitle: "Quality Parts for Every Vehicle",
+    description: "Affordable, trusted replacements for every make and model",
   });
 
   return (
