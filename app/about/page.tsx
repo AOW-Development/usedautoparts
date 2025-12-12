@@ -18,12 +18,12 @@ export default function AboutPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-6 lg:space-y-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-[#B3D9FF] bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#00A3FF] to-[#00A3FF] bg-clip-text text-transparent">
               Your Trusted Source for Quality Vehicle Parts
             </h2>
             <div className="space-y-5">
               <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-lg">
-                At <span className="font-semibold text-[#00A3FF]">Used Auto Parts Pro</span>, we stand as a pillar of trust in the automotive industry. 
+                At <span className="font-semibold text-[#00A3FF]">Used Auto Parts Pro</span>, we stand as a pillar of trust in the automotive industry.
                 With an extensive inventory of rigorously tested OEM parts, we're your dependable partner for keeping vehicles running at peak performance.
               </p>
               <p className="text-lg lg:text-xl text-white/80 leading-relaxed max-w-lg">
@@ -54,12 +54,12 @@ export default function AboutPage() {
             />
           </div>
           <div className="space-y-6 lg:space-y-8 order-1 lg:order-2">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#00A3FF] to-[#B3D9FF] bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#00A3FF] to-[#00A3FF] bg-clip-text text-transparent">
               About Used Auto Parts Pro
             </h2>
             <div className="space-y-4">
               <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                We specialize in providing <span className="font-semibold">high-quality used OEM automotive parts</span> with comprehensive warranties. 
+                We specialize in providing <span className="font-semibold">high-quality used OEM automotive parts</span> with comprehensive warranties.
                 Our expert team offers real-time guidance to ensure you get the perfect part for your vehicle.
               </p>
               <p className="text-base lg:text-lg text-white/80 leading-relaxed">
@@ -76,7 +76,7 @@ export default function AboutPage() {
                 <PhoneCall className="w-6 h-6 lg:w-7 lg:h-7" />
               </div>
               <span className="text-lg lg:text-xl tracking-wide">
-                Call Now: (877) 982-7774
+                Call Now: (888) 338-2540
               </span>
             </a>
           </div>

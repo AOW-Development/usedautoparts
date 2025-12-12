@@ -50,12 +50,12 @@ export default function TransmissionsPage() {
       {/* HERO - First Section */}
       {(transmissionSections as TransmissionSection[]).length > 0 && (
         <section className="w-full py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
             {(transmissionSections as TransmissionSection[])[0].title}
           </h1>
           <div className="max-w-3xl mx-auto space-y-4 mb-8">
             {(transmissionSections as TransmissionSection[])[0].paragraphs.slice(0, 2).map((text, i) => (
-              <p key={i} className="text-white/80 text-sm sm:text-base lg:text-lg">
+              <p key={i} className="text-lg text-white/80 leading-relaxed">
                 {text}
               </p>
             ))}
@@ -64,9 +64,9 @@ export default function TransmissionsPage() {
           <a
             href="/#lead-form"
             onClick={handleQuoteClick}
-            className="inline-block bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white px-6 sm:px-8 py-3 rounded-lg font-semibold shadow-[0_0_20px_rgba(0,163,255,0.4)] hover:shadow-[0_0_30px_rgba(0,163,255,0.6)] transition-all duration-300 hover:opacity-90"
+            className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-6 sm:px-8 py-3 rounded-lg font-semibold transition-all duration-300 cursor-pointer"
           >
-             Find My Transmission
+            Find My Transmission
           </a>
         </section>
       )}
@@ -85,7 +85,7 @@ export default function TransmissionsPage() {
               <div
                 className={`flex flex-col gap-4 order-1 lg:order-${section.imageSide === "right" ? "1" : "2"}`}
               >
-                <h2 className="text-2xl sm:text-3xl text-white">
+                <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">
                   {section.title}
                 </h2>
 
@@ -93,7 +93,7 @@ export default function TransmissionsPage() {
                   {section.paragraphs.map((text, i) => (
                     <p
                       key={i}
-                      className="text-white/80 text-sm sm:text-base leading-relaxed"
+                      className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
                     >
                       {text}
                     </p>
@@ -132,7 +132,7 @@ export default function TransmissionsPage() {
         <a
           href="/#lead-form"
           onClick={handleQuoteClick}
-          className="inline-block bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold shadow-[0_0_20px_rgba(0,163,255,0.4)] hover:shadow-[0_0_30px_rgba(0,163,255,0.6)] transition-all duration-300 hover:opacity-90"
+          className="inline-block bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold transition-all duration-300"
         >
           Find My Transmission
         </a>

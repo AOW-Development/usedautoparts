@@ -19,7 +19,7 @@ export default function AboutSection() {
               bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#B3D9FF]
             "
           >
-            Welcome to Used Auto Parts Pro — Your Premier Source for Quality Vehicle Components!
+            Welcome to Used Auto Parts Pro Your Premier Source for Quality Vehicle Components!
           </h2>
 
           <p
@@ -47,7 +47,7 @@ export default function AboutSection() {
   Trust meets affordability here. We blend competitive pricing with uncompromised value, 
   ensuring you receive the best. Ready to step into excellence? Dial{" "}
   <a
-    href="tel:+18779827774"
+    href="tel:+18883382540"
     className="
       font-semibold 
       text-[#00A3FF]
@@ -59,7 +59,7 @@ export default function AboutSection() {
       hover:drop-shadow-[0_0_8px_rgba(0,163,255,0.6)]
     "
   >
-    (877) 982-7774
+    (888) 338-2540
   </a>
   {" "}
   and join the ranks of satisfied Used Auto Parts Pro customers.

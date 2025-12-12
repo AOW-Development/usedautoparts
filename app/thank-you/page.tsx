@@ -5,7 +5,7 @@ import SectionHeader from "@/components/SectionHeader";
 
 export default function ThankYouPage() {
   return (
-    <main className="w-full text-[#E8F3FF] px-4 sm:px-6 md:px-8">
+    <main className="w-full min-h-screen text-[#E8F3FF] px-4 sm:px-6 md:px-8 bg-[#07142B]">
 
       {/* HERO TITLE */}
       <SectionHeader title="THANK YOU" />
@@ -76,7 +76,7 @@ export default function ThankYouPage() {
 
               {/* Call Now Button */}
               <a
-                href="tel:+18779827774"
+                href="tel:+18883382540"
                 className="inline-flex items-center gap-2 sm:gap-3 rounded-lg px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 text-white hover:scale-105 active:scale-95 transition-all duration-300 bg-gradient-to-r from-[#00A3FF] to-[#003D80] shadow-[0_0_20px_rgba(0,163,255,0.4)] hover:shadow-[0_0_30px_rgba(0,163,255,0.6)] font-bold text-sm sm:text-base md:text-lg w-fit"
               >
                 <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
