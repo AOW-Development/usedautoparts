@@ -49,9 +49,10 @@ export default function Footer() {
           {/* COLUMN 1 - LOGO & CONTACT */}
           <div className="space-y-4">
          <Link href="/" className="flex items-center gap-2">
-  <h1 className="text-lg md:text-xl lg:text-2xl font-black tracking-tight leading-tight text-[#00A3FF]">
-    PARTSCENTERAL
-  </h1>
+  <h1 className="text-base md:text-lg lg:text-xl font-black tracking-tight leading-tight text-[#00A3FF]">
+  PARTSCENTERAL LLC
+</h1>
+
 </Link>
             <p className="text-[#B3D9FF] leading-relaxed max-w-xs">
               Your trusted source for high-quality used OEM auto parts with a warranty and nationwide shipping
@@ -207,7 +208,7 @@ export default function Footer() {
       {/* BOTTOM BAR */}
       <div className="border-t border-white/10 mt-10 pt-4">
         <p className="text-center text-[#8CBFFF] text-sm">
-          © {currentYear} Used Auto Parts Pro. All Rights Reserved
+          © {currentYear} Parts Central All Rights Reserved
         </p>
       </div>
     </footer>

@@ -5,6 +5,7 @@ interface SectionHeaderProps {
   gradient?: boolean; 
   padding?: string;   
   size?: "sm" | "md" | "lg"; 
+  bold?: boolean;
 }
 
 export default function SectionHeader({
@@ -12,6 +13,7 @@ export default function SectionHeader({
   gradient = true,
   padding = "py-4 sm:py-6 md:py-8",
   size = "md",
+  bold = true,
 }: SectionHeaderProps) {
   const sizeClasses = {
     sm: "text-[16px] sm:text-[20px] lg:text-[24px]",
@@ -28,8 +30,9 @@ export default function SectionHeader({
       `}
     >
       <h1
-        className={` 
+        className={`
           ${sizeClasses[size]}
+          ${bold ? "font-black font-bold" : ""}
         `}
       >
         {title}
