@@ -34,7 +34,7 @@ export default function HeroTransmission() {
       <div className="relative z-10 w-full h-full flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 justify-between items-stretch lg:items-center px-4 sm:px-6 lg:px-8 py-0 sm:py-0 lg:py-0">
         {/* LEFT CONTENT */}
         <div className="text-white space-y-2 flex flex-col justify-center lg:justify-start relative flex-1 min-h-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)] transition-all duration-500">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)] transition-all duration-500">
             {heroConfig.title.split(" ").slice(0, -1).join(" ")}{" "}
             <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
               {heroConfig.title.split(" ").slice(-1)[0]}
@@ -53,7 +53,7 @@ export default function HeroTransmission() {
           <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-4 relative">
             {/* Call Now */}
             <a
-              href="tel:+18779827774"
+              href="tel:+18883382540"
               className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white hover:scale-105 transition-transform"
             >
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00A3FF]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,163,255,0.5)]">
@@ -61,21 +61,21 @@ export default function HeroTransmission() {
               </div>
               <div>
                 <span className="text-xs sm:text-sm text-[#8CBFFF]">Call Now</span>
-                <p className="text-base sm:text-lg md:text-xl font-bold">(877) 982-7774</p>
+                <p className="text-base sm:text-lg md:text-xl font-bold">(888)-338-2540</p>
               </div>
             </a>
 
             {/* Email Us */}
-            <div className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform">
+            <a href="mailto:partscentralus@gmail.com" className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00A3FF]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,163,255,0.5)]">
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
 
               <div>
                 <span className="text-xs sm:text-sm text-[#8CBFFF]">Email Us</span>
-                <p className="text-base sm:text-lg md:text-xl font-bold">support@usedautoparts.com</p>
+                <p className="text-base sm:text-lg md:text-xl font-bold">partscentralus@gmail.com</p>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
