@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
 import { useHero } from "@/app/context/HeroContext";
 
 const COMPANY_INFO = {
-  phone: "(877) 982-7774",
+  phone: "(888) 338-2540",
 };
 
 const navLinks = [
+  { name: "Home", href: "/" },
   { name: "Used Auto Parts", href: "/used-auto-parts" },
   { name: "Used Engines", href: "/engines" },
   { name: "Used Transmissions", href: "/transmissions" },
@@ -107,24 +109,31 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex items-center justify-between h-16">
             {/* ✅ LOGO */}
-            <Link href="/" onClick={handleHomeClick} className="flex items-center gap-2">
-              <span className="text-2xl font-extrabold tracking-wide text-white">
-                LOGO
-              </span>
-            </Link>
+         <Link href="/" onClick={handleHomeClick} className="flex items-center gap-2">
+         <Image
+          src="/hero/navlogo.avif"
+          alt="Used Auto Parts Pro Logo"
+          width={1800}
+          height={680}
+          className="h-60 w-auto"
+          priority
+          />
+         </Link>
 
             {/* ✅ DESKTOP NAV */}
             <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
 
-                let handleClick = undefined;
+                let handleClick: React.MouseEventHandler<HTMLAnchorElement> | undefined = undefined;
                 if (link.name === "Used Transmissions") {
                   handleClick = handleUsedTransmissionsClick;
                 } else if (link.name === "Used Engines") {
                   handleClick = handleUsedEnginesClick;
                 } else if (link.name === "Used Auto Parts") {
                   handleClick = handleUsedAutoPartsClick;
+                } else if (link.name === "Home") {
+                  handleClick = handleHomeClick;
                 }
 
                 return (
@@ -147,7 +156,7 @@ export default function Header() {
             {/* ✅ CTA + MOBILE TOGGLE */}
             <div className="flex items-center gap-4">
               <Link href="/#lead-form" className="hidden md:inline-flex">
-                <button className="bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-5 py-2 rounded-md font-semibold shadow hover:opacity-90 transition">
+                <button className="bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-5 py-2 rounded-md font-semibold shadow hover:opacity-90 transition cursor-pointer">
                   Find My Part
                 </button>
               </Link>
@@ -176,13 +185,15 @@ export default function Header() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
 
-                let handleClick = undefined;
+                let handleClick: React.MouseEventHandler<HTMLAnchorElement> | undefined = undefined;
                 if (link.name === "Used Transmissions") {
                   handleClick = handleUsedTransmissionsClick;
                 } else if (link.name === "Used Engines") {
                   handleClick = handleUsedEnginesClick;
                 } else if (link.name === "Used Auto Parts") {
                   handleClick = handleUsedAutoPartsClick;
+                } else if (link.name === "Home") {
+                  handleClick = handleHomeClick;
                 }
 
                 return (
@@ -202,8 +213,8 @@ export default function Header() {
               })}
 
               <Link href="/#lead-form" className="block">
-                <button className="w-full mt-2 bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white py-2 rounded-md font-semibold shadow hover:opacity-90 transition">
-                            Find My Part
+                <button className="w-full mt-2 bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white py-2 rounded-md font-semibold shadow hover:opacity-90 transition cursor-pointer">
+                  Find My Part
                 </button>
               </Link>
             </div>

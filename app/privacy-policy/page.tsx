@@ -49,17 +49,17 @@ export default function PrivacyPolicyPage() {
           Users of the Site can always update their personally identifying information
           that they have provided to Used Auto Parts Pro by e-mailing us at{" "}
           <a
-            href="mailto:sales@usedautoparts.pro"
+            href="mailto:partscentralus@gmail.com"
             className="font-semibold bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] bg-clip-text text-transparent hover:underline"
           >
-            sales@usedautoparts.pro
+            partscentralus@gmail.com
           </a>{" "}
           or by calling{" "}
           <a
-            href="tel:+18779827774"
+            href="tel:+18883382540"
             className="font-semibold bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] bg-clip-text text-transparent hover:underline"
           >
-            (877) 982-7774
+           (888) 338-2540
           </a>.
         </p>
       </section>

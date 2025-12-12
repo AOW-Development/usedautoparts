@@ -70,7 +70,7 @@ export default function UsedAutoPartsPage() {
           <div key={idx} className="space-y-6">
 
             {/* ✅ TITLE */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide">
+            <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">
               {section.title}
             </h2>
 
@@ -159,7 +159,7 @@ export default function UsedAutoPartsPage() {
 
         <a
           href="/#lead-form"
-          className="inline-block bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold shadow-[0_0_20px_rgba(0,163,255,0.4)] hover:shadow-[0_0_30px_rgba(0,163,255,0.6)] transition-all duration-300 hover:opacity-90 cursor-pointer"
+          className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold transition-all duration-300 cursor-pointer"
         >
           Find My Parts
         </a>

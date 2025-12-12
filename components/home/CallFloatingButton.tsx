@@ -5,7 +5,7 @@ import { PhoneCall } from "lucide-react";
 export default function CallFloatingButton() {
   return (
     <a
-      href="tel:+18779827774"
+      href="tel:(888) 338-2540"
       className="
         fixed
         left-4 sm:left-6

@@ -112,7 +112,7 @@ export default function ExitIntentPopup() {
 
         {/* HEADER */}
         <div className="bg-gradient-to-r from-[#00A3FF] to-[#003D80] p-5 text-center text-white">
-          <h3 className="text-lg font-bold">Request Your Free Quote</h3>
+          <h3 className="text-lg font-bold">Request Your Free Call</h3>
           <p className="text-xs text-[#E8F3FF] mt-1">
             Enter your details and our experts will contact you shortly.
           </p>
@@ -253,7 +253,7 @@ export default function ExitIntentPopup() {
               type="submit"
               className="w-full mt-3 bg-gradient-to-r from-[#00A3FF] to-[#003D80] text-white py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 transition shadow-[0_0_20px_rgba(0,163,255,0.6)]"
             >
-              Get My Free Quote
+              Get My Free Call
             </button>
 
             {/* TRUST */}
