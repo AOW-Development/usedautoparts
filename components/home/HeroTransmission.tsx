@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PhoneCall, Mail, Loader2, Shield } from "lucide-react";
 import { FaCog } from "react-icons/fa";
 import { useHero } from "@/app/context/HeroContext";
+import { YEAR, MAKE, PART, ENGINE_SIZES, TRANSMISSION } from "@/app/config";
+
+type OnOpenFn = (name: string | null) => void;
+type OnSelectFn = (name: string, value: string) => void;
+type OnChangeFn = (name: string, value: string) => void;
 
 export default function HeroTransmission() {
   const { heroConfig } = useHero();
@@ -106,12 +111,20 @@ function LeadForm() {
     zipCode: "",
   });
 
-  const yearOptions = Array.from({ length: 65 }, (_, i) => (2025 - i).toString());
-  const makes = ["AMC", "Acura", "Alfa", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Checker", "Chevy", "Chrysler", "Citroen", "Daewoo", "Daihatsu", "Dodge", "Eagle", "Ferrari", "Fiat", "Fisker", "Ford", "Freightliner", "GMC", "Genesis", "Geo", "Honda", "Hummer", "Hyundai", "IH", "Infiniti", "Isuzu", "Jaguar", "Jeep", "Kaiser", "Kenworth", "Kia", "Lamborghini", "Landrover", "Lexus", "Lincoln", "Maserati", "Maybach", "Mazda", "McLaren", "Mercedes", "Mercury", "Mini", "Mitsubishi", "Nissan", "Oldsmobile", "Peugeot", "Plymouth", "Polestar", "Pontiac", "Porsche", "RAM", "Renault", "RollsRoyce", "Rover", "Saab", "Saturn", "Scion", "Seat", "Subaru", "Suzuki", "Tesla", "Toyota", "Triumph", "Volkswagen", "Volvo", "Yugo"];
-  const parts = ["Engine Assembly", "Transmission", "ABS Control Module", "ABS System (Anti-Lock)", "AC Compressor", "AC Compressor Clutch", "AC Condenser", "AC Evaporator", "Air Bag Control Module", "Air Cleaner Box", "Air Flow Meter", "Air Injection Pump", "Alternator", "Axle Assembly - Front", "Axle Assembly - Rear", "Axle Housing", "Axle Shaft", "Back Glass", "Backup Lamp", "Beam Axle", "Bell Housing", "Blower Motor", "Body Control Module", "Brain Box (Engine)", "Brain Box (Not Engine)", "Brake Master Cylinder", "Bumper Assembly - Front", "Bumper Assembly - Rear", "Bumper Reinforcement - Front", "Bumper Reinforcement - Rear", "Camera/Projector", "Camshaft", "Car Window Lifter", "Car Window Regulator", "Carburetor", "Carrier Assembly", "Carrier Case", "Clutch Disc", "Clutch Master Cylinder", "Clutch Slave Cylinder", "Coil Spring", "Column Switch", "Communication Module", "Computer (Engine)", "Computer (Not Engine)", "Condenser Fan", "Control Arm - Lower (Front)", "Control Arm - Lower (Rear)", "Control Arm - Upper (Front)", "Control Arm - Upper (Rear)", "Convertible Top Lift", "Convertible Top Motor", "Cooling Fan", "Crankshaft", "Cruise Switch", "Cylinder Block", "Cylinder Head", "Dash Panel", "DC Converter (Inverter)", "Decklid", "Differential", "Differential Assembly", "Differential Case", "Differential Flange", "Distributor Coil", "DistributorCoil - Engine", "Door Assembly - Front", "Door Assembly - Rear", "Door Electrical Switch", "Door Glass - Front (Side)", "Door Glass - Rear (Side)", "Door Lock Control Module", "Door Vent Glass - Front (Side)", "Door Vent Glass - Rear (Side)", "Door Window Motor", "Door Window Regulator - Front", "Door Window Regulator - Rear", "Drive Shaft - Front", "Drive Shaft - Rear", "ECM/ECU (Engine)", "ECM/ECU (Not Engine)", "ECU (Not Engine)", "Electric Door Motor", "Electrical Switch (Door)", "Electronic Control Module (Engine)", "Electronic Control Module (Not Engine)", "Engine Coil", "Engine Computer", "Engine Control Module", "Engine Oil Cooler", "Exhaust Manifold", "Fan Blade", "Fan Clutch", "Fender", "Flywheel", "Fog Light Stalk", "Front Axle", "Front Axle I-Beam (2WD)", "Front Body Panel", "Front Bumper", "Front Bumper Reinforcement", "Front Clip", "Front Door Assembly", "Front Door Glass (Side)", "Front Door Hinge", "Front Door Vent Glass (Side)", "Front End Assembly", "Front Fender", "Front Side Lamp", "Front Spoiler", "Front Window Lifter", "Front Wiper Motor", "Fuel Injection Parts", "Fuel Pump", "Fuel Pump Control Module", "Generator", "GPS ScreenTV Info Screen", "Grille", "Harmonic Balancer", "Head Light Assembly", "Head Light Door", "Head Light Motor", "Head Light Switch", "Header Panel", "Heater Assembly", "Heater Core", "Heater or Air Conditioner Parts - Misc.", "High Mounted Stop Light", "Hood", "Hood Hinge", "Hub Brakes", "Ignition Switch", "Intake Manifold", "Intercooler", "Interior Light Control Module", "K-Frame", "Knee", "Leaf Spring - Front", "Leaf Spring - Rear", "Loaded Beam Axle", "Lower Control Arm - Front", "Lower Control Arm - Rear", "Navigation Control Module", "Oil Pan", "Overdrive Unit Transmission", "Power Brake Boosters", "Power Steering Pump", "Power Supply Control Module", "Power Window Motor", "Pressure Plate", "Quarter Glass", "Quarter Panel", "Quarter Window Regulator - Rear", "Radiator", "Radiator Cooling Fan", "Radiator Core Support", "Radiator Fan", "Radio/Audio Cowl", "Rear Axle", "Rear Body Panel", "Rear Bumper", "Rear Bumper Reinforcement", "Rear Clip Assembly", "Rear Door Assembly", "Rear Door Glass (Side)", "Rear Door Vent Glass (Side)", "Rear Fender", "Rear Independent Suspension Assembly", "Rear Lower Control Arm", "Rear Quarter Panel", "Rear Side Lamp", "Rear Spoiler", "Rear View Mirror", "Rear Window Washer Motor", "Rear Wiper Motor", "Ring Gear and Pinion Assembly", "Rocker Arm", "Roof Control Module", "Roof Glass", "SAM Control Module", "Seat Control Module", "Seat Track - Front", "Security System Control Module", "Shock Absorber", "Side Lamp (Front)", "Side Lamp (Rear)", "Side View Mirror", "Speedometer Cluster", "Spindle Knuckle - Front", "Spoiler - Front", "Spoiler - Rear", "Stabilizer Bar", "Starter Motor", "Starter Solenoid", "Steering Column", "Steering Gear - Rack & Pinion", "Strut", "Stub Axle - Rear", "Sun RoofMoon Roof", "Supercharger", "Suspension Compressor/Pump", "Suspension Control Module", "Suspension Crossmember", "Tail Finish Panel", "Tail Gate Hinge", "Tail Gate Molding", "Tail Gate Windor Regulator", "Tail Light", "Tail Panel", "Tailgate", "Temperature Control Module", "Throttle Body Assembly", "Timing Cover", "Torque Converter", "Torsion Bar", "Transfer Case", "Transfer Case Assembly", "Transmission Control Module", "Trunk Lid", "Turbocharger", "Turn Signal Lever", "Upper Control Arm - Front", "Upper Control Arm - Rear", "Vacuum Pump", "Valance - Front", "Voltage Regulator", "Water Pump", "Wheel", "Window Lifter", "Window Motor", "Window Regulator", "Window Regulator - Front", "Window Regulator - Rear", "Window Regulator (Quarter) - Rear", "Window Regulator (Tail Gate)", "Windshield Washer Motor", "Windshield Washer Reservoir", "Windshield Wiper Switch", "Wiper Motor - Front", "Wiper Motor - Rear", "Wiper Motor (Windshield)", "Wiper Transmission"];
-  const sizes = ["1.5L", "1.6L", "1.7L", "1.8L", "1.9L", "2.0L", "2.1L", "2.2L", "2.3L", "2.4L", "2.5L", "2.6L", "2.7L", "2.8L", "2.9L", "3.0L", "3.1L", "3.2L", "3.3L", "3.4L", "3.5L", "3.6L", "3.7L", "3.8L", "3.9L", "4.0L", "4.1L", "4.2L", "4.3L", "4.4L", "4.5L", "4.6L", "4.7L", "4.8L", "4.9L", "5.0L", "5.1L", "5.2L", "5.3L", "5.4L", "5.5L", "5.6L", "5.7L", "5.8L", "5.9L", "6.0L", "6.1L", "6.2L", "6.3L", "6.4L", "6.5L", "6.6L", "6.7L", "6.8L", "6.9L", "7.0L", "7.1L", "7.2L", "7.3L", "7.4L", "7.5L", "7.6L", "7.7L", "7.8L", "7.9L", "8.0L", "8.1L", "8.2L", "8.3L", "8.4L", "8.5L", "8.6L", "8.7L", "8.8L", "8.9L", "9.0L", "9.1L", "9.2L", "9.3L", "9.4L", "9.5L", "9.6L", "9.7L", "9.8L", "9.9L", "10.0L"];
-  const transOptions = ["2WD / Automatic Transmission", "4x4 / Automatic Transmission", "2WD / Manual Transmission", "4x4 / Manual Transmission"];
+  // errors object
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
+  // use config constants (imported)
+  const yearOptions = YEAR;
+  const makes = Object.keys(MAKE);
+  const parts = PART;
+  const sizes = ENGINE_SIZES;
+  const transOptions = TRANSMISSION;
+
+  // models dependent on selected make
+  const modelOptions = formData.make && MAKE[formData.make] ? MAKE[formData.make] : [];
+
+  // phone formatting
   const formatPhone = (v: string) => {
     const n = v.replace(/\D/g, "");
     if (n.length <= 3) return n;
@@ -119,15 +132,52 @@ function LeadForm() {
     return `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6, 10)}`;
   };
 
+  // validation
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!formData.year || formData.year === "Year") e.year = "Choose Year.";
+    if (!formData.make || formData.make === "Choose Your Car") e.make = "Choose your car make.";
+    if (!formData.model || formData.model.trim() === "") e.model = "Choose or enter model.";
+    if (!formData.part || formData.part === "Choose Part") e.part = "Choose Part.";
+    if (!formData.engineSize || formData.engineSize === "Engine Size") e.engineSize = "Choose engine size.";
+    if (!formData.transmission || formData.transmission === "Choose Transmission") e.transmission = "Choose transmission.";
+    if (!formData.name) e.name = "Please enter your name.";
+    if (!formData.email) e.email = "Please enter your e-mail.";
+    else {
+      const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+      if (!emailRegex.test(formData.email)) e.email = "Invalid e-mail.";
+    }
+    if (!formData.phone) e.phone = "Please enter your phone no.";
+    if (!formData.zipCode) e.zipCode = "ZIP code required.";
+    return e;
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((r) => setTimeout(r, 1500));
+    const eObj = validate();
+    setErrors(eObj);
 
-    router.push("/thank-you");
+    if (Object.keys(eObj).length > 0) {
+      setIsSubmitting(false);
+      const firstField = Object.keys(eObj)[0];
+      if (["year", "make", "part", "engineSize", "transmission", "model"].includes(firstField)) {
+        setOpenDropdown(firstField);
+      }
+      return;
+    }
 
-    setIsSubmitting(false);
+    // Mock submit - replace with actual API calls
+    try {
+      await new Promise((r) => setTimeout(r, 1200));
+      router.push("/thank-you");
+    } catch (err) {
+      console.error(err);
+      setErrors((p) => ({ ...p, submit: "Submission failed. Try again." }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -138,40 +188,108 @@ function LeadForm() {
 
       <form className="space-y-2 sm:space-y-3 flex-1 overflow-hidden" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-          <SelectFieldCustom label="Year" name="year" value={formData.year} options={yearOptions} onChange={setFormData} onOpen={setOpenDropdown} isOpen={openDropdown === "year"} required />
-          <SelectFieldCustom label="Make" name="make" value={formData.make} options={makes} onChange={setFormData} onOpen={setOpenDropdown} isOpen={openDropdown === "make"} required />
+          <SelectFieldCustom
+            label="Year"
+            name="year"
+            value={formData.year}
+            options={yearOptions}
+            onSelect={(n, v) => setFormData((p) => ({ ...p, [n]: v }))}
+            onOpen={setOpenDropdown}
+            isOpen={openDropdown === "year"}
+            required
+            error={errors.year}
+          />
+
+          <SelectFieldCustom
+            label="Make"
+            name="make"
+            value={formData.make}
+            options={makes}
+            onSelect={(n, v) => setFormData((p) => ({ ...p, [n]: v, model: "" }))} // clear model when make changes
+            onOpen={setOpenDropdown}
+            isOpen={openDropdown === "make"}
+            required
+            error={errors.make}
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-          <InputField label="Model" name="model" value={formData.model} placeholder="Camry, F-150" onChange={setFormData} required />
-          <SelectFieldCustom label="Part" name="part" value={formData.part} options={parts} onChange={setFormData} onOpen={setOpenDropdown} isOpen={openDropdown === "part"} required />
+          {/* Model is now a dependent dropdown populated from MAKE[formData.make] */}
+          <SelectFieldCustom
+            label="Model"
+            name="model"
+            value={formData.model}
+            options={modelOptions.length ? modelOptions : []}
+            onSelect={(n, v) => setFormData((p) => ({ ...p, [n]: v }))}
+            onOpen={setOpenDropdown}
+            isOpen={openDropdown === "model"}
+            required
+            error={errors.model}
+            placeholder={formData.make ? "Select model" : "Select make first"}
+            disabled={!formData.make}
+            emptyMessage={!formData.make ? "Select make to see models" : "No models found"}
+          />
+
+          <SelectFieldCustom
+            label="Part"
+            name="part"
+            value={formData.part}
+            options={parts}
+            onSelect={(n, v) => setFormData((p) => ({ ...p, [n]: v }))}
+            onOpen={setOpenDropdown}
+            isOpen={openDropdown === "part"}
+            required
+            error={errors.part}
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-          <SelectFieldCustom label="Engine Size" name="engineSize" value={formData.engineSize} options={sizes} onChange={setFormData} onOpen={setOpenDropdown} isOpen={openDropdown === "engineSize"} />
-          <SelectFieldCustom label="Transmission" name="transmission" value={formData.transmission} options={transOptions} onChange={setFormData} onOpen={setOpenDropdown} isOpen={openDropdown === "transmission"} />
+          <SelectFieldCustom
+            label="Engine Size"
+            name="engineSize"
+            value={formData.engineSize}
+            options={sizes}
+            onSelect={(n, v) => setFormData((p) => ({ ...p, [n]: v }))}
+            onOpen={setOpenDropdown}
+            isOpen={openDropdown === "engineSize"}
+            error={errors.engineSize}
+          />
+
+          <SelectFieldCustom
+            label="Transmission"
+            name="transmission"
+            value={formData.transmission}
+            options={transOptions}
+            onSelect={(n, v) => setFormData((p) => ({ ...p, [n]: v }))}
+            onOpen={setOpenDropdown}
+            isOpen={openDropdown === "transmission"}
+            error={errors.transmission}
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-          <InputField label="Name" name="name" value={formData.name} placeholder="John Smith" onChange={setFormData} required />
-          <InputField label="Email" name="email" value={formData.email} placeholder="john@example.com" onChange={setFormData} required />
+          <InputField label="Name" name="name" value={formData.name} placeholder="John Smith" onChange={(n, v) => setFormData((p) => ({ ...p, [n]: v }))} required error={errors.name} />
+          <InputField label="Email" name="email" value={formData.email} placeholder="john@example.com" onChange={(n, v) => setFormData((p) => ({ ...p, [n]: v }))} required error={errors.email} />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-          <InputField label="ZIP Code" name="zipCode" value={formData.zipCode} placeholder="12345" onChange={setFormData} required />
+          <InputField label="ZIP Code" name="zipCode" value={formData.zipCode} placeholder="12345" onChange={(n, v) => setFormData((p) => ({ ...p, [n]: v }))} required error={errors.zipCode} />
 
           <div>
             <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">Phone Number</label>
             <input
               type="tel"
               value={formData.phone}
-              onChange={(e) => setFormData((p) => ({ ...p, phone: formatPhone(e.target.value) }))}
+              onChange={(ev) => setFormData((p) => ({ ...p, phone: formatPhone(ev.target.value) }))}
               required
               placeholder="(555) 123-4567"
-              className="w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 border-[#0A5FA6] rounded-lg text-gray-900 text-xs sm:text-sm"
+              className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 rounded-lg text-gray-900 text-xs sm:text-sm ${errors.phone ? "border-red-600" : "border-[#0A5FA6]"}`}
             />
+            {errors.phone && <p className="text-red-600 text-xs mt-1">{errors.phone}</p>}
           </div>
         </div>
+
+        {errors.submit && <p className="text-red-600 text-sm mt-1">{errors.submit}</p>}
 
         <button
           type="submit"
@@ -199,7 +317,16 @@ function LeadForm() {
 
 /* ---------------------- Form Inputs ----------------------- */
 
-function InputField({ label, name, value, placeholder, onChange, required }: any) {
+function InputField(props: {
+  label: string;
+  name: string;
+  value: string;
+  placeholder?: string;
+  onChange: OnChangeFn;
+  required?: boolean;
+  error?: string;
+}) {
+  const { label, name, value, placeholder, onChange, required, error } = props;
   return (
     <div>
       <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">{label}</label>
@@ -208,42 +335,104 @@ function InputField({ label, name, value, placeholder, onChange, required }: any
         value={value}
         required={required}
         placeholder={placeholder}
-        onChange={(e) => onChange((p: any) => ({ ...p, [name]: e.target.value }))}
-        className="w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 border-[#0A5FA6] rounded-lg text-gray-900 text-xs sm:text-sm"
+        onChange={(e) => onChange(name, e.target.value)}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"}`}
       />
+      {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
 
-function SelectFieldCustom({ label, name, value, options, onChange, onOpen, isOpen, required }: any) {
+
+/* -------------------- SelectFieldCustom with search & nicer UI ------------------- */
+function SelectFieldCustom(props: {
+  label: string;
+  name: string;
+  value: string;
+  options: string[];
+  onSelect: OnSelectFn;
+  onOpen: OnOpenFn;
+  isOpen: boolean;
+  required?: boolean;
+  error?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  emptyMessage?: string;
+}) {
+  const { label, name, value, options, onSelect, onOpen, isOpen, required, error, placeholder, disabled, emptyMessage } = props;
+  const [filter, setFilter] = useState("");
+  useEffect(() => {
+    if (!isOpen) setFilter("");
+  }, [isOpen]);
+
+  const opts = Array.isArray(options) ? options : [];
+  const filtered = filter.trim() ? opts.filter((o) => o.toLowerCase().includes(filter.trim().toLowerCase())) : opts;
+
   return (
     <div className="relative">
       <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">{label}</label>
+
       <button
         type="button"
-        onClick={() => onOpen(isOpen ? null : name)}
-        className="w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 border-[#0A5FA6] rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between"
+        onClick={() => !disabled && onOpen(isOpen ? null : name)}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       >
-        <span>{value || "Select"}</span>
+        <span className={`${!value ? "text-gray-700" : ""}`}>{value || placeholder || "Select"}</span>
         <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>▼</span>
       </button>
+
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-[#0A5FA6] rounded-lg shadow-lg z-50 max-h-40 sm:max-h-48 overflow-y-auto">
-          {options.map((opt: string) => (
-            <button
-              key={opt}
-              type="button"
-              onClick={() => {
-                onChange((p: any) => ({ ...p, [name]: opt }));
-                onOpen(null);
-              }}
-              className="w-full text-left px-3 sm:px-4 py-2 sm:py-3 hover:bg-[#00A3FF] hover:text-white text-gray-900 text-xs sm:text-sm border-b border-gray-200 last:border-b-0"
-            >
-              {opt}
-            </button>
-          ))}
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 max-h-64 overflow-hidden border-2 border-[#0A5FA6]">
+          {/* Search input */}
+          <div className="p-2 border-b border-gray-200">
+            <input
+              autoFocus
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              placeholder={`Search ${label}...`}
+              className="w-full h-9 px-2 text-xs sm:text-sm rounded-md border border-gray-200 text-gray-900"
+            />
+          </div>
+
+          <div className="max-h-48 overflow-y-auto">
+            {opts.length === 0 ? (
+              <div className="px-4 py-3 text-sm text-gray-700">{emptyMessage || "No options"}</div>
+            ) : filtered.length === 0 ? (
+              <div className="px-4 py-3 text-sm text-gray-700">No results</div>
+            ) : (
+              filtered.map((opt) => {
+                const selected = opt === value;
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => {
+                      onSelect(name, opt);
+                      onOpen(null);
+                    }}
+                    className={`w-full text-left px-4 py-3 hover:bg-[#00A3FF]/10 flex items-center justify-between ${selected ? "bg-[#00A3FF]/10" : ""
+                      }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* Darker text */}
+                      <span className="text-sm sm:text-sm text-gray-900">{opt}</span>
+                    </div>
+
+                    {selected && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="opacity-80">
+                        <path d="M20 6L9 17l-5-5" stroke="#00A3FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </button>
+                );
+              })
+            )}
+          </div>
         </div>
       )}
+
+
+      {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
