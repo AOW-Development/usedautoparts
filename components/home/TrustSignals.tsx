@@ -4,7 +4,7 @@ export default function TrustSignals() {
   return (
     <section 
       className="bg-gradient-to-r from-[#07142B] via-[#0A2F5C] to-[#001D3D] text-white py-10 sm:py-12 md:py-14 lg:py-16 bg-cover bg-center bg-fixed relative"
-      style={{ backgroundImage: "url('/hero/hero22.png')" }}
+      style={{ backgroundImage: "url('/hero/hero22.jpg')" }}
     >
       {/* Overlay for better text readability - Lighter overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#07142B]/50 via-[#0A2F5C]/50 to-[#001D3D]/20"></div>

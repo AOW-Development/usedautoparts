@@ -76,7 +76,7 @@ export default function TestimonialSection() {
   return (
     <section 
       className="bg-[#07142B] py-16 sm:py-20 relative overflow-hidden bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/hero/hero24.png')" }}
+      style={{ backgroundImage: "url('/hero/hero24.jpg')" }}
     >
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#07142B]/5 via-[#0A2F5C]/5 to-[#001D3D]/5"></div>
