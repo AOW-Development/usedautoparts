@@ -2,6 +2,7 @@ import CallFloatingButton from "@/components/home/CallFloatingButton";
 import ChatBot from "@/components/home/ChatBot";
 import HeroTransmission from "@/components/home/HeroTransmission";
 import SearchCar from "@/components/home/search";
+import { heroData } from "@/data/herodata";
 import { uapSections } from "@/data/uap";
 
 /* ✅ Fix TypeScript 'never' error with proper typing */
@@ -38,7 +39,7 @@ const features = [
 export default function UsedAutoPartsPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
-      <HeroTransmission />
+      <HeroTransmission {...heroData.autoParts} />
       <ChatBot />
       <CallFloatingButton />
 

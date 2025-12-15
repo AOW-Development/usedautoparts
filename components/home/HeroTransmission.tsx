@@ -4,21 +4,31 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PhoneCall, Mail, Loader2, Shield } from "lucide-react";
 import { FaCog } from "react-icons/fa";
-import { useHero } from "@/app/context/HeroContext";
 import { YEAR, MAKE, PART, ENGINE_SIZES, TRANSMISSION } from "@/app/config";
 
 type OnOpenFn = (name: string | null) => void;
 type OnSelectFn = (name: string, value: string) => void;
 type OnChangeFn = (name: string, value: string) => void;
 
-export default function HeroTransmission() {
-  const { heroConfig } = useHero();
+interface HeroProps {
+  backgroundImage: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+export default function HeroTransmission({
+  backgroundImage,
+  title,
+  subtitle,
+  description,
+}: HeroProps) {
 
   return (
     <section
       id="lead-form"
       className="relative w-full min-h-[calc(100vh-80px)] mt-[0px] flex flex-col lg:flex-row bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] overflow-hidden shadow-[0_-40px_120px_rgba(0,163,255,0.6)] bg-cover bg-center bg-fixed transition-all duration-500"
-      style={{ backgroundImage: heroConfig.backgroundImage }}
+      style={{ backgroundImage: backgroundImage }}
     >
       {/* Background Animated Cogs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -35,18 +45,14 @@ export default function HeroTransmission() {
         {/* LEFT CONTENT */}
         <div className="text-white space-y-2 flex flex-col justify-center lg:justify-start relative flex-1 min-h-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)] transition-all duration-500">
-            {heroConfig.title.split(" ").slice(0, -1).join(" ")}{" "}
+            {title}
             <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
-              {heroConfig.title.split(" ").slice(-1)[0]}
+              {subtitle}
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-[#B3D9FF] font-light transition-all duration-500">
-            {heroConfig.subtitle}
-          </p>
-
           <p className="text-sm sm:text-base md:text-lg text-[#8CBFFF] font-light transition-all duration-500">
-            {heroConfig.description}
+            {description}
           </p>
 
           {/* Contact Buttons */}

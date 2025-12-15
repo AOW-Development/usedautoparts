@@ -4,6 +4,7 @@ import ChatBot from "@/components/home/ChatBot";
 import HeroTransmission from "@/components/home/HeroTransmission";
 import SearchCar from "@/components/home/search";
 import { engineSections } from "@/data/engine";
+import { heroData } from "@/data/herodata";
 
 /* ✅ Proper Type to Fix 'never' Error */
 type EngineSection = {
@@ -17,7 +18,7 @@ export default function UsedEnginesPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
 
-      <HeroTransmission />
+      <HeroTransmission {...heroData.engines} />
       <ChatBot />
       <CallFloatingButton />
 
