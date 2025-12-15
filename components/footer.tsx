@@ -52,7 +52,6 @@ export default function Footer() {
   <h1 className="text-base md:text-lg lg:text-xl font-black tracking-tight leading-tight text-[#00A3FF]">
   PARTSCENTERAL LLC
 </h1>
-
 </Link>
             <p className="text-[#B3D9FF] leading-relaxed max-w-xs">
               Your trusted source for high-quality used OEM auto parts with a warranty and nationwide shipping
