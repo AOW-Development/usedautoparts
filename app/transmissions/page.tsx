@@ -2,12 +2,12 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { useHero } from "@/app/context/HeroContext";
 import { transmissionSections } from "@/data/transmission";
 import SearchCar from "@/components/home/search";
 import ChatBot from "@/components/home/ChatBot";
 import CallFloatingButton from "@/components/home/CallFloatingButton";
 import HeroSection from "@/components/home/HeroTransmission";
+import { heroData } from "@/data/herodata";
 
 type TransmissionSection = {
   title: string;
@@ -17,16 +17,7 @@ type TransmissionSection = {
 };
 
 export default function TransmissionsPage() {
-  const { setHeroConfig } = useHero();
 
-  useEffect(() => {
-    setHeroConfig({
-      backgroundImage: "url('/hero/hero7.png')",
-      title: "Premium Used Transmissions",
-      subtitle: "Unlock Savings, Quality & Performance",
-      description: "Reliable transmissions with expert support",
-    });
-  }, [setHeroConfig]);
 
   const handleQuoteClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -45,7 +36,7 @@ export default function TransmissionsPage() {
     <main className="w-full text-[#E8F3FF] bg-[#07142B] overflow-x-hidden">
       <ChatBot />
       <CallFloatingButton />
-      <HeroSection />
+      <HeroSection {...heroData.transmissions} />
 
       {/* HERO - First Section */}
       {(transmissionSections as TransmissionSection[]).length > 0 && (
