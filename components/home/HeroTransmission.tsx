@@ -51,11 +51,19 @@ export default function HeroTransmission({
 
   return (
     <section
-      id="lead-form"
-      className="relative w-full min-h-[calc(100vh-80px)] mt-[0px] flex flex-col lg:flex-row bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] overflow-hidden shadow-[0_-40px_120px_rgba(0,163,255,0.6)] bg-cover bg-center bg-fixed transition-all duration-500"
-      style={{ backgroundImage: optimizedBg }}
-      aria-label={`${title} - ${subtitle}`}
-    >
+  id="lead-form"
+  className="relative w-full min-h-[calc(100vh-80px)]
+             flex flex-col lg:flex-row
+             items-start lg:items-center
+             p-4 sm:p-6 lg:py-8
+             bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D]
+             overflow-hidden
+             shadow-[0_-40px_120px_rgba(0,163,255,0.6)]
+             bg-cover bg-center bg-fixed transition-all duration-500"
+  style={{ backgroundImage: optimizedBg }}
+  aria-label={`${title} - ${subtitle}`}
+>
+
       {/* Background Animated Cogs - Using SVG instead of react-icons
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="absolute top-10 left-4 sm:top-14 sm:left-6 md:top-20 md:left-12 w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-56 lg:h-56 opacity-10 text-[#00A3FF] animate-spin-slow">
@@ -69,12 +77,18 @@ export default function HeroTransmission({
       </div> */}
 
       {/* Layout Grid */}
-      <div className="relative z-10 w-full h-full flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 justify-between items-stretch lg:items-center px-4 sm:px-6 lg:px-8 py-0 sm:py-0 lg:py-0">
+      <div className="relative z-10 w-full h-full flex flex-col lg:flex-row
+                gap-4 sm:gap-6 lg:gap-8
+                justify-center
+                items-center lg:items-center
+                px-4 sm:px-6 lg:px-8
+                py-0">
+
         {/* LEFT CONTENT */}
         <div className="text-white space-y-2 flex flex-col justify-center lg:justify-start relative flex-1 min-h-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)] transition-all duration-500">
             {title}
-            <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
+            <span className="block bg-linear-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
               {subtitle}
             </span>
           </h1>
@@ -119,7 +133,7 @@ export default function HeroTransmission({
         </div>
 
         {/* RIGHT SECTION — FORM */}
-        <div className="flex-1 mt-10 sm:mt-14 lg:mt-16 lg:self-start rounded-2xl overflow-hidden shadow-[0_-40px_110px_rgba(0,163,255,0.7)] border border-[#00A3FF]/40 flex flex-col">
+        <div className="flex-1 lg:self-start rounded-2xl overflow-hidden shadow-[0_-40px_110px_rgba(0,163,255,0.7)] border border-[#00A3FF]/40 flex flex-col">
           <LeadForm />
         </div>
       </div>
@@ -261,7 +275,7 @@ function LeadForm() {
   }, [errors, formatPhone]);
 
   return (
-    <div className="bg-gradient-to-br from-[#00A3FF] via-[#0080D0] to-[#001D3D] w-full h-full p-4 sm:p-5 md:p-6 border border-[#00A3FF]/30 shadow-xl flex flex-col overflow-hidden justify-between">
+    <div className="bg-gradient-to-br  from-[#00A3FF] via-[#0080D0] to-[#001D3D] w-full h-full p-4 sm:p-5 md:p-6 border border-[#00A3FF]/30 shadow-xl flex flex-col overflow-hidden justify-between">
       {/* Changed from h3 to h2 for proper heading hierarchy */}
       <h2 className="text-[#E8F3FF] text-2xl sm:text-3xl font-extrabold mb-4 text-center tracking-wide">
         Find Your Part Instantly
