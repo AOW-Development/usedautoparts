@@ -6,6 +6,7 @@ import SearchCar from "@/components/home/search";
 import { engineSections } from "@/data/engine";
 import { heroData } from "@/data/herodata";
 
+
 /* ✅ Proper Type to Fix 'never' Error */
 type EngineSection = {
   title: string;
@@ -14,18 +15,22 @@ type EngineSection = {
   imageSide?: "left" | "right";
 };
 
+
 export default function UsedEnginesPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
+
 
       <HeroTransmission {...heroData.engines} />
       <ChatBot />
       <CallFloatingButton />
 
+
       {/* Main Content */}
       <section className="py-16 bg-[#07142B]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="mx-auto space-y-12">
+
 
             {/* Hero Section - First item from engineSections */}
             {(engineSections as EngineSection[]).length > 0 && (
@@ -35,13 +40,14 @@ export default function UsedEnginesPage() {
                 </h1>
                 <div className="space-y-4">
                   {(engineSections as EngineSection[])[0].paragraphs?.map((text, i) => (
-                    <p key={i} className="text-lg text-white/80 leading-relaxed">
+                    <p key={i} className="text-base sm:text-lg md:text-lg lg:text-xl text-white/80 leading-relaxed">
                       {text}
                     </p>
                   ))}
                 </div>
               </div>
             )}
+
 
             {/* Content Sections - Rest of the items */}
             <div className="space-y-8">
@@ -52,6 +58,7 @@ export default function UsedEnginesPage() {
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div className="flex flex-col md:flex-row items-center gap-8 md:gap-6 lg:gap-4">
+
 
                     {/* Larger image without cropping */}
                     {section.image && (
@@ -64,23 +71,26 @@ export default function UsedEnginesPage() {
                       </div>
                     )}
 
+
                     {/* Text */}
                     <div className="flex-1 flex flex-col justify-center">
-                      <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">
+                      <h2 className="font-bold text-2xl text-[#ffffff] mb-4">
                         {section.title}
                       </h2>
+
 
                       <div className="space-y-4">
                         {section.paragraphs?.map((paragraph, pIndex) => (
                           <p
                             key={pIndex}
-                            className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
+                            className="text-[#cacaca] leading-relaxed text-base sm:text-lg md:text-lg"
                           >
                             {paragraph}
                           </p>
                         ))}
                       </div>
                     </div>
+
 
                   </div>
                 </div>
@@ -89,6 +99,7 @@ export default function UsedEnginesPage() {
           </div>
         </div>
       </section>
+
 
       {/* FINAL CTA SECTION */}
       <section className="w-full py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] text-center">
@@ -99,6 +110,7 @@ export default function UsedEnginesPage() {
           Get fast pricing, expert guidance, and nationwide delivery on quality used engines.
         </p>
 
+
         <a
           href="/#lead-form"
           className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold  transition-all duration-300 cursor-pointer"
@@ -106,6 +118,7 @@ export default function UsedEnginesPage() {
           Find My Engine
         </a>
       </section>
+
 
       <SearchCar />
     </main>

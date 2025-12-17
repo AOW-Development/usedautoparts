@@ -5,6 +5,7 @@ import SearchCar from "@/components/home/search";
 import { heroData } from "@/data/herodata";
 import { uapSections } from "@/data/uap";
 
+
 /* ✅ Fix TypeScript 'never' error with proper typing */
 type UAPSection = {
   title: string;
@@ -17,6 +18,7 @@ type UAPSection = {
   imageSide?: "left" | "right";
 };
 
+
 const features = [
   {
     title: 'Always Best Quality',
@@ -28,13 +30,14 @@ const features = [
   },
   {
     title: 'A Haven for Car Enthusiasts',
-    description: "Whether you restore classic cars or tune up your daily driver, this is your one-stop shop: Used Auto Parts Pro. Our website is not exactly a marketplace but, foremost, a community for car enthusiasts. Get immersed in our world of replacement auto parts and find the hidden gems and super-rare finds here."
+    description: "Whether you restore classic cars or tune up your daily driver, this is your one-stop shop: Parts Central. Our website is not exactly a marketplace but, foremost, a community for car enthusiasts. Get immersed in our world of replacement auto parts and find the hidden gems and super-rare finds here."
   },
   {
     title: '365 Days of Service',
     description: "Your car doesn't take a day off, and neither do we. Our dedicated sales team is happy to assist in finding those parts any time of the year. From emergencies to long projects, remember you need us; we'll be there."
   }
 ];
+
 
 export default function UsedAutoPartsPage() {
   return (
@@ -43,11 +46,12 @@ export default function UsedAutoPartsPage() {
       <ChatBot />
       <CallFloatingButton />
 
+
       {/* Why Buy Section */}
       <section className="py-16 bg-[#0A2F5C]/30">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <h2 className="font-bold text-3xl md:text-4xl text-white text-center mb-12">
-            Why Buy from Used Auto Parts Pro?
+            Why Buy from Parts Central?
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -57,23 +61,26 @@ export default function UsedAutoPartsPage() {
                 className="bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] rounded-2xl p-8 border border-[#00A3FF]/40 hover:border-[#00A3FF] transition-all duration-300"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <h3 className="font-bold text-xl text-[#00A3FF] mb-4">{index + 1}. {feature.title}</h3>
-                <p className="text-white/80 leading-relaxed text-sm sm:text-base">{feature.description}</p>
+                <h3 className="font-bold text-xl text-[#ffffff] mb-4">{index + 1}. {feature.title}</h3>
+                <p className="text-[#cacaca] leading-relaxed text-sm sm:text-base">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+
       {/* Content Sections from uapSections */}
       <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 space-y-20">
         {(uapSections as UAPSection[]).map((section, idx) => (
           <div key={idx} className="space-y-6">
 
+
             {/* ✅ TITLE */}
-            <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">
+            <h2 className="font-bold text-2xl text-[#ffffff] mb-4">
               {section.title}
             </h2>
+
 
             {/* ✅ IMAGE + PARAGRAPHS */}
             {section.paragraphs && section.image && (
@@ -84,13 +91,14 @@ export default function UsedAutoPartsPage() {
                     {section.paragraphs.map((text, i) => (
                       <p
                         key={i}
-                        className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
+                        className="text-[#cacaca] leading-relaxed text-sm sm:text-base md:text-lg"
                       >
                         {text}
                       </p>
                     ))}
                   </div>
                 )}
+
 
                 <div className="flex justify-center">
                   <img
@@ -99,6 +107,7 @@ export default function UsedAutoPartsPage() {
                     className="w-[260px] sm:w-[320px] md:w-[380px]"
                   />
                 </div>
+
 
                 {section.imageSide !== "right" && (
                   <div className="space-y-5">
@@ -115,6 +124,7 @@ export default function UsedAutoPartsPage() {
               </div>
             )}
 
+
             {/* ✅ NORMAL PARAGRAPHS (NO IMAGE) */}
             {!section.image && section.paragraphs && (
               <div className="space-y-5 max-w-5xl">
@@ -128,6 +138,7 @@ export default function UsedAutoPartsPage() {
                 ))}
               </div>
             )}
+
 
             {/* ✅ WHY BUY SECTION (HIGHLIGHTS) */}
             {section.highlights && (
@@ -145,9 +156,11 @@ export default function UsedAutoPartsPage() {
               </div>
             )}
 
+
           </div>
         ))}
       </section>
+
 
       {/* FINAL CTA SECTION */}
       <section className="w-full py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] text-center">
@@ -158,6 +171,7 @@ export default function UsedAutoPartsPage() {
           Get fast pricing, expert guidance, and nationwide delivery on quality used auto parts.
         </p>
 
+
         <a
           href="/#lead-form"
           className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold transition-all duration-300 cursor-pointer"
@@ -165,6 +179,7 @@ export default function UsedAutoPartsPage() {
           Find My Parts
         </a>
       </section>
+
 
       <SearchCar />
     </main>

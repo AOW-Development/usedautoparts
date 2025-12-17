@@ -84,7 +84,7 @@ export default function TestimonialSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Heading */}
-        <h2 className="text-center text-[28px] sm:text-[36px] md:text-[48px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#daedff] mb-10 sm:mb-12 tracking-wide">
+        <h2 className="text-center text-[28px] sm:text-[36px] md:text-[48px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffffff] to-[#ffffff] mb-10 sm:mb-12 tracking-wide">
           Testimonials
         </h2>
 
@@ -118,18 +118,18 @@ export default function TestimonialSection() {
                 <div className="h-full min-h-[300px] sm:min-h-[320px] rounded-[30px] bg-linear-to-b from-[#00A3FF] to-[#001D3D] px-6 sm:px-8 py-6 sm:py-8 text-white shadow-[0_0_25px_rgba(0,163,255,0.35)] flex flex-col">
 
                   {/* Icon + Name */}
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4 mb-3">
                     <FaUserCircle className="text-white" size={36} />
                     <p className="text-base sm:text-lg font-semibold">{item.name}</p>
                   </div>
 
                   {/* Stars - Centered in the middle */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     {renderStars(item.rating)}
                   </div>
 
                   {/* Text */}
-                  <p className="text-sm leading-relaxed text-[#E5F4FF] flex-1">
+                  <p className="text-base leading-relaxed text-[#E5F4FF] flex-1">
                     {item.text}
                   </p>
 
