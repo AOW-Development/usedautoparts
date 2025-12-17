@@ -44,7 +44,7 @@ export default function HeroTransmission({
     const bgUrl = backgroundImage.replace("url('", "").replace("')", "");
     const optimized = optimizedBackgroundImages[bgUrl] || bgUrl;
     setOptimizedBg(`url('${optimized}')`);
-    
+
     // Preload the optimized image
     preloadImage(optimized);
   }, [backgroundImage]);
@@ -101,8 +101,8 @@ export default function HeroTransmission({
             </a>
 
             {/* Email Us */}
-            <a 
-              href="mailto:partscentralus@gmail.com" 
+            <a
+              href="mailto:partscentralus@gmail.com"
               aria-label="Email us at partscentralus@gmail.com"
               className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[#00A3FF]"
             >
@@ -161,7 +161,7 @@ function LeadForm() {
   const transOptions = useMemo(() => TRANSMISSION, []);
 
   // models dependent on selected make
-  const modelOptions = useMemo(() => 
+  const modelOptions = useMemo(() =>
     formData.make && MAKE[formData.make] ? MAKE[formData.make] : [],
     [formData.make]
   );
@@ -357,21 +357,28 @@ function LeadForm() {
           <InputField label="ZIP Code" name="zipCode" value={formData.zipCode} placeholder="12345" onChange={handleInputChange} required error={errors.zipCode} />
 
           <div>
-            <label htmlFor="phone" className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">Phone Number</label>
+            {/* Label visible only on desktop */}
+            <label className="hidden sm:block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
+              Phone Number
+            </label>
+
             <input
-              id="phone"
               type="tel"
-              value={formatPhone(formData.phone)}
-              onChange={(ev) => handlePhoneChange(ev.target.value)}
+              value={formData.phone}
+              onChange={(ev) =>
+                setFormData((p) => ({ ...p, phone: formatPhone(ev.target.value) }))
+              }
               required
-              placeholder="(555) 123-4567"
-              aria-label="Phone number"
-              aria-invalid={!!errors.phone}
-              aria-describedby={errors.phone ? "phone-error" : undefined}
-              className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 rounded-lg text-gray-900 text-xs sm:text-sm ${errors.phone ? "border-red-600" : "border-[#0A5FA6]"}`}
+              placeholder="Phone Number"
+              className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 rounded-lg text-gray-900 text-xs sm:text-sm ${errors.phone ? "border-red-600" : "border-[#0A5FA6]"
+                }`}
             />
-            {errors.phone && <p id="phone-error" className="text-red-600 text-xs mt-1">{errors.phone}</p>}
+
+            {errors.phone && (
+              <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
+            )}
           </div>
+
         </div>
 
         {errors.submit && <p className="text-red-600 text-sm mt-1">{errors.submit}</p>}
@@ -380,7 +387,7 @@ function LeadForm() {
           type="submit"
           disabled={isSubmitting}
           aria-label={isSubmitting ? "Submitting form" : "Submit form to find your part"}
-          className="w-full h-10 sm:h-12 rounded-xl bg-gradient-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] font-bold flex items-center justify-center gap-2 mt-2 sm:mt-3 text-sm sm:text-base flex-shrink-0 cursor-pointer hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#00A3FF] disabled:opacity-50"
+          className="w-full h-10 sm:h-12 rounded-xl bg-linear-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] font-bold flex items-center justify-center gap-2 mt-2 sm:mt-3 text-sm sm:text-base flex-shrink-0 cursor-pointer hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#00A3FF] disabled:opacity-50"
         >
           {isSubmitting ? (
             <>
@@ -391,6 +398,16 @@ function LeadForm() {
             "Find My Part"
           )}
         </button>
+        {/* Slim Call Row */}
+        <div className="mt-1 sm:mt-2">
+          <a
+            href="tel:+18883382540"
+            className="w-full h-8 sm:h-9 rounded-lg border bg-linear-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition"
+          >
+            📞 (888) 338-2540
+          </a>
+        </div>
+
       </form>
 
       <div className="text-[#E8F3FF]/70 flex items-center justify-center gap-2 text-xs sm:text-sm mt-2 sm:mt-3 flex-shrink-0 pb-0">
@@ -427,9 +444,8 @@ function InputField(props: {
         required={required}
         placeholder={placeholder || label} // mobile gets label as placeholder
         onChange={(e) => onChange(name, e.target.value)}
-        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${
-          error ? "border-red-600" : "border-[#0A5FA6]"
-        }`}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"
+          }`}
       />
 
       {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
@@ -489,9 +505,8 @@ function SelectFieldCustom(props: {
       <button
         type="button"
         onClick={() => !disabled && onOpen(isOpen ? null : name)}
-        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${
-          error ? "border-red-600" : "border-[#0A5FA6]"
-        } ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"
+          } ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       >
         <span className={`${!value ? "text-gray-700" : ""}`}>
           {value || placeholder || label}
@@ -532,9 +547,8 @@ function SelectFieldCustom(props: {
                       onSelect(name, opt);
                       onOpen(null);
                     }}
-                    className={`w-full text-left px-4 py-3 hover:bg-[#00A3FF]/10 flex items-center justify-between ${
-                      selected ? "bg-[#00A3FF]/10" : ""
-                    }`}
+                    className={`w-full text-left px-4 py-3 hover:bg-[#00A3FF]/10 flex items-center justify-between ${selected ? "bg-[#00A3FF]/10" : ""
+                      }`}
                   >
                     <span className="text-sm text-gray-900">{opt}</span>
 
