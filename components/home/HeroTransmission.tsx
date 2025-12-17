@@ -282,17 +282,28 @@ function LeadForm() {
           <InputField label="ZIP Code" name="zipCode" value={formData.zipCode} placeholder="12345" onChange={(n, v) => setFormData((p) => ({ ...p, [n]: v }))} required error={errors.zipCode} />
 
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">Phone Number</label>
+            {/* Label visible only on desktop */}
+            <label className="hidden sm:block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
+              Phone Number
+            </label>
+
             <input
               type="tel"
               value={formData.phone}
-              onChange={(ev) => setFormData((p) => ({ ...p, phone: formatPhone(ev.target.value) }))}
+              onChange={(ev) =>
+                setFormData((p) => ({ ...p, phone: formatPhone(ev.target.value) }))
+              }
               required
-              placeholder="(555) 123-4567"
-              className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 rounded-lg text-gray-900 text-xs sm:text-sm ${errors.phone ? "border-red-600" : "border-[#0A5FA6]"}`}
+              placeholder="Phone Number"
+              className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white border-2 rounded-lg text-gray-900 text-xs sm:text-sm ${errors.phone ? "border-red-600" : "border-[#0A5FA6]"
+                }`}
             />
-            {errors.phone && <p className="text-red-600 text-xs mt-1">{errors.phone}</p>}
+
+            {errors.phone && (
+              <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
+            )}
           </div>
+
         </div>
 
         {errors.submit && <p className="text-red-600 text-sm mt-1">{errors.submit}</p>}
@@ -300,7 +311,7 @@ function LeadForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-10 sm:h-12 rounded-xl bg-gradient-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] font-bold flex items-center justify-center gap-2 mt-2 sm:mt-3 text-sm sm:text-base flex-shrink-0 cursor-pointer"
+          className="w-full h-10 sm:h-12 rounded-xl bg-linear-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] font-bold flex items-center justify-center gap-2 mt-2 sm:mt-3 text-sm sm:text-base flex-shrink-0 cursor-pointer"
         >
           {isSubmitting ? (
             <>
@@ -311,6 +322,17 @@ function LeadForm() {
             "Find My Part"
           )}
         </button>
+        {/* Call Now Section */}
+<div className="mt-1 sm:mt-2">
+  <a
+    href="tel:+18883382540"
+    className="w-full h-8 sm:h-9 rounded-lg bg-linear-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition"
+  >
+    (888) 338-2540
+  </a>
+</div>
+
+
       </form>
 
       <div className="text-[#E8F3FF]/70 flex items-center justify-center gap-2 text-xs sm:text-sm mt-2 sm:mt-3 flex-shrink-0 pb-0">
@@ -333,21 +355,29 @@ function InputField(props: {
   error?: string;
 }) {
   const { label, name, value, placeholder, onChange, required, error } = props;
+
   return (
     <div>
-      <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">{label}</label>
+      {/* Label visible only on desktop */}
+      <label className="hidden sm:block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
+        {label}
+      </label>
+
       <input
         type="text"
         value={value}
         required={required}
-        placeholder={placeholder}
+        placeholder={placeholder || label} // mobile gets label as placeholder
         onChange={(e) => onChange(name, e.target.value)}
-        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"}`}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"
+          }`}
       />
+
       {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
+
 
 
 /* -------------------- SelectFieldCustom with search & nicer UI ------------------- */
@@ -365,31 +395,56 @@ function SelectFieldCustom(props: {
   disabled?: boolean;
   emptyMessage?: string;
 }) {
-  const { label, name, value, options, onSelect, onOpen, isOpen, required, error, placeholder, disabled, emptyMessage } = props;
+  const {
+    label,
+    name,
+    value,
+    options,
+    onSelect,
+    onOpen,
+    isOpen,
+    required,
+    error,
+    placeholder,
+    disabled,
+    emptyMessage,
+  } = props;
+
   const [filter, setFilter] = useState("");
+
   useEffect(() => {
     if (!isOpen) setFilter("");
   }, [isOpen]);
 
   const opts = Array.isArray(options) ? options : [];
-  const filtered = filter.trim() ? opts.filter((o) => o.toLowerCase().includes(filter.trim().toLowerCase())) : opts;
+  const filtered = filter.trim()
+    ? opts.filter((o) => o.toLowerCase().includes(filter.trim().toLowerCase()))
+    : opts;
 
   return (
     <div className="relative">
-      <label className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">{label}</label>
+      {/* Label visible only on desktop */}
+      <label className="hidden sm:block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
+        {label}
+      </label>
 
       <button
         type="button"
         onClick={() => !disabled && onOpen(isOpen ? null : name)}
-        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"
+          } ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       >
-        <span className={`${!value ? "text-gray-700" : ""}`}>{value || placeholder || "Select"}</span>
-        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>▼</span>
+        <span className={`${!value ? "text-gray-700" : ""}`}>
+          {value || placeholder || label}
+        </span>
+        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+          ▼
+        </span>
       </button>
 
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 max-h-64 overflow-hidden border-2 border-[#0A5FA6]">
-          {/* Search input */}
+          {/* Search */}
           <div className="p-2 border-b border-gray-200">
             <input
               autoFocus
@@ -402,7 +457,9 @@ function SelectFieldCustom(props: {
 
           <div className="max-h-48 overflow-y-auto">
             {opts.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-gray-700">{emptyMessage || "No options"}</div>
+              <div className="px-4 py-3 text-sm text-gray-700">
+                {emptyMessage || "No options"}
+              </div>
             ) : filtered.length === 0 ? (
               <div className="px-4 py-3 text-sm text-gray-700">No results</div>
             ) : (
@@ -419,14 +476,22 @@ function SelectFieldCustom(props: {
                     className={`w-full text-left px-4 py-3 hover:bg-[#00A3FF]/10 flex items-center justify-between ${selected ? "bg-[#00A3FF]/10" : ""
                       }`}
                   >
-                    <div className="flex items-center gap-3">
-                      {/* Darker text */}
-                      <span className="text-sm sm:text-sm text-gray-900">{opt}</span>
-                    </div>
+                    <span className="text-sm text-gray-900">{opt}</span>
 
                     {selected && (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="opacity-80">
-                        <path d="M20 6L9 17l-5-5" stroke="#00A3FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 6L9 17l-5-5"
+                          stroke="#00A3FF"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     )}
                   </button>
@@ -437,8 +502,8 @@ function SelectFieldCustom(props: {
         </div>
       )}
 
-
       {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
+
