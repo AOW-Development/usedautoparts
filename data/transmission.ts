@@ -7,15 +7,17 @@ export const transmissionSections = [
     ],
   },
 
+
   {
     title: "The Heartbeat of Your Vehicle: Quality Transmissions",
     paragraphs: [
       "Finding the right parts in the world of vehicle repairs can be like searching for treasure, as likened to a needle in a haystack.",
-      "But here at Used Auto Parts Pro, we make the process easy.",
+      "But here at Parts Central, we make the process easy.",
       "Our big inventory is filled with used car parts for sale that are cautiously inspected and re-inspected to meet our standards.",
       "From power plants and transmissions to even the tiniest of parts, we have it all in stock, so you may need to get your vehicle right.",
     ],
   },
+
 
   {
     title: "Unlock the Power of Savings with Junkyard Transmissions",
@@ -28,15 +30,17 @@ export const transmissionSections = [
     imageSide: "right" as const,
   },
 
+
   {
     title: "Affordable Solutions for Every Budget",
     paragraphs: [
-      "At Used Auto Parts Pro, we believe that everyone deserves access to reliable vehicle components, regardless of their budget.",
-      "That’s why we offer competitive junkyard transmission prices that won’t compromise on quality.",
-      "Whether you’re searching for a transmission for a specific make and model or exploring options across various vehicle types, our inventory is designed to cater to your needs without stretching your wallet.",
+      "At Parts Central, we believe that everyone deserves access to reliable vehicle components, regardless of their budget.",
+      "That's why we offer competitive junkyard transmission prices that won't compromise on quality.",
+      "Whether you're searching for a transmission for a specific make and model or exploring options across various vehicle types, our inventory is designed to cater to your needs without stretching your wallet.",
     ],image: "/hero/hero19.jpg",
     imageSide: "right" as const,
   },
+
 
   {
     title: "Your Trusted Partner in Automotive Supplies",
@@ -48,6 +52,7 @@ export const transmissionSections = [
     imageSide: "right" as const,
   },
 
+
   {
     title: "Seamless Online Experience",
     paragraphs: [
@@ -58,14 +63,15 @@ export const transmissionSections = [
     imageSide: "right" as const,
   },
 
+
   {
     title: "The Journey Begins Here",
     paragraphs: [
-      "Your journey to a reliable, cost-effective transmission starts with Used Auto Parts Pro.",
+      "Your journey to a reliable, cost-effective transmission starts with Parts Central.",
       "Explore the possibilities with our junkyard transmissions for sale and discover how easy it is to find a quality transmission that fits your needs.",
       "With our commitment to excellence and customer satisfaction, you can trust us to be your go-to source for all your auto parts transmission needs.",
       "Ready to shift into gear? Start your search today and experience the difference that quality, affordability, and expertise can make in your vehicle's performance.",
-      "At Used Auto Parts Pro, we're not just selling parts — we’re providing peace of mind, one transmission at a time.",
+      "At Parts Central, we're not just selling parts — we're providing peace of mind, one transmission at a time.",
     ],image: "/hero/hero18.jpg",
     imageSide: "right" as const,
   },

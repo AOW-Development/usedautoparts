@@ -52,7 +52,7 @@ export default function SearchCar() {
       <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
 
         <h2
-          className="text-center font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#dcedff]"
+          className="text-center font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#ffffff] to-[#ffffff]"
           style={{
             fontSize: "42px",
           }}

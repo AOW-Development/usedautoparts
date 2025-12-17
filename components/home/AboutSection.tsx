@@ -16,10 +16,10 @@ export default function AboutSection() {
               text-[20px] sm:text-[24px] md:text-[28px] lg:text-[36px]
               leading-snug
               text-transparent bg-clip-text
-              bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#B3D9FF]
+              bg-gradient-to-r from-[#ffffff] via-[#ffffff] to-[#ffffff]
             "
           >
-            Welcome to Used Auto Parts Pro Your Premier Source for Quality Vehicle Components!
+            Welcome to Parts Central Your Premier Source for Quality Vehicle Components!
           </h2>
 
           <p
@@ -31,7 +31,7 @@ export default function AboutSection() {
             "
           >
             Discover the pinnacle of convenience and expertise with online used auto parts and 
-            online used car parts at Used Auto Parts Pro. Whether you're seeking used parts for 
+            online used car parts at Parts Central. Whether you're seeking used parts for 
             trucks or exploring local junkyards near me, we're your go-to solution. Experience 
             the ease of browsing online inventory as we redefine accessibility.
           </p>
@@ -62,7 +62,7 @@ export default function AboutSection() {
     (888) 338-2540
   </a>
   {" "}
-  and join the ranks of satisfied Used Auto Parts Pro customers.
+  and join the ranks of satisfied Used Parts Central customers.
 </p>
 
 
@@ -74,7 +74,7 @@ export default function AboutSection() {
               font-light
             "
           >
-            Elevate your auto parts journey today – where quality and convenience collide!
+            Elevate your auto parts journey today where quality and convenience collide!
           </p>
 
           {/* ✅ RESPONSIVE BUTTON */}

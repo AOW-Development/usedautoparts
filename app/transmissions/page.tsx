@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useEffect } from "react";
 import Image from "next/image";
 import { transmissionSections } from "@/data/transmission";
@@ -9,6 +10,7 @@ import CallFloatingButton from "@/components/home/CallFloatingButton";
 import HeroSection from "@/components/home/HeroTransmission";
 import { heroData } from "@/data/herodata";
 
+
 type TransmissionSection = {
   title: string;
   paragraphs: string[];
@@ -16,7 +18,9 @@ type TransmissionSection = {
   imageSide?: "left" | "right";
 };
 
+
 export default function TransmissionsPage() {
+
 
 
   const handleQuoteClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -32,11 +36,13 @@ export default function TransmissionsPage() {
     }
   };
 
+
   return (
     <main className="w-full text-[#E8F3FF] bg-[#07142B] overflow-x-hidden">
       <ChatBot />
       <CallFloatingButton />
       <HeroSection {...heroData.transmissions} />
+
 
       {/* HERO - First Section */}
       {(transmissionSections as TransmissionSection[]).length > 0 && (
@@ -46,11 +52,12 @@ export default function TransmissionsPage() {
           </h1>
           <div className="max-w-3xl mx-auto space-y-4 mb-8">
             {(transmissionSections as TransmissionSection[])[0].paragraphs.slice(0, 2).map((text, i) => (
-              <p key={i} className="text-lg text-white/80 leading-relaxed">
+              <p key={i} className="text-base sm:text-lg md:text-lg lg:text-xl text-white/80 leading-relaxed">
                 {text}
               </p>
             ))}
           </div>
+
 
           <a
             href="/#lead-form"
@@ -61,6 +68,7 @@ export default function TransmissionsPage() {
           </a>
         </section>
       )}
+
 
       {/* CONTENT SECTIONS - Rest of transmissionSections */}
       <section className="w-full px-4 sm:px-8 py-16 bg-[#07142B]">
@@ -76,21 +84,23 @@ export default function TransmissionsPage() {
               <div
                 className={`flex flex-col gap-4 order-1 lg:order-${section.imageSide === "right" ? "1" : "2"}`}
               >
-                <h2 className="font-bold text-2xl text-[#00A3FF] mb-4">
+                <h2 className="font-bold text-2xl text-[#ffffff] mb-4">
                   {section.title}
                 </h2>
+
 
                 <div className="space-y-4">
                   {section.paragraphs.map((text, i) => (
                     <p
                       key={i}
-                      className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg"
+                      className="text-[#cacaca] leading-relaxed text-base sm:text-lg md:text-lg"
                     >
                       {text}
                     </p>
                   ))}
                 </div>
               </div>
+
 
               {/* IMAGE (Optional) */}
               {section.image && (
@@ -111,6 +121,7 @@ export default function TransmissionsPage() {
         </div>
       </section>
 
+
       {/* FINAL CTA */}
       <section className="w-full py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] text-center">
         <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white">
@@ -120,6 +131,7 @@ export default function TransmissionsPage() {
           Get fast pricing, expert guidance, and nationwide delivery on quality used transmissions.
         </p>
 
+
         <a
           href="/#lead-form"
           onClick={handleQuoteClick}
@@ -128,6 +140,7 @@ export default function TransmissionsPage() {
           Find My Transmission
         </a>
       </section>
+
 
       <SearchCar />
     </main>
