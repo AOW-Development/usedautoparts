@@ -55,7 +55,7 @@ export default function HeroTransmission({
   className="relative w-full min-h-[calc(100vh-80px)]
              flex flex-col lg:flex-row
              items-start lg:items-center
-             p-4 sm:p-6 lg:py-8
+             p-4 lg:py-8 sm:p-0
              bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D]
              overflow-hidden
              shadow-[0_-40px_120px_rgba(0,163,255,0.6)]
@@ -81,7 +81,7 @@ export default function HeroTransmission({
                 gap-4 sm:gap-6 lg:gap-8
                 justify-center
                 items-center lg:items-center
-                px-4 sm:px-6 lg:px-8
+                px-4 lg:px-8 sm:p-0
                 py-0">
 
         {/* LEFT CONTENT */}
@@ -93,7 +93,7 @@ export default function HeroTransmission({
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-[#8CBFFF] font-light transition-all duration-500">
+          <p className="text-sm sm:text-base md:text-lg font-light transition-all duration-500">
             {description}
           </p>
 
@@ -116,7 +116,7 @@ export default function HeroTransmission({
 
             {/* Email Us */}
             <a
-              href="mailto:partscentralus@gmail.com"
+              href="mailto:sales@partscentral.us"
               aria-label="Email us at partscentralus@gmail.com"
               className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white relative hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[#00A3FF]"
             >
@@ -126,7 +126,7 @@ export default function HeroTransmission({
 
               <div>
                 <span className="text-xs sm:text-sm text-[#8CBFFF]">Email Us</span>
-                <p className="text-base sm:text-lg md:text-xl font-bold">partscentralus@gmail.com</p>
+                <p className="text-base sm:text-lg md:text-xl font-bold">sales@partscentral.us</p>
               </div>
             </a>
           </div>
@@ -145,7 +145,7 @@ export default function HeroTransmission({
 /*                            LEAD FORM                               */
 /* ------------------------------------------------------------------ */
 
-function LeadForm() {
+export function LeadForm() {
   const router = useRouter();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -275,7 +275,7 @@ function LeadForm() {
   }, [errors, formatPhone]);
 
   return (
-    <div className="bg-gradient-to-br  from-[#00A3FF] via-[#0080D0] to-[#001D3D] w-full h-full p-4 sm:p-5 md:p-6 border border-[#00A3FF]/30 shadow-xl flex flex-col overflow-hidden justify-between">
+    <div className="bg-gradient-to-br rounded-2xl  from-[#00A3FF] via-[#0080D0] to-[#001D3D] w-full h-full p-4 sm:pb-5 md:p-6 border border-[#00A3FF]/30 shadow-xl flex flex-col overflow-hidden justify-between">
       {/* Changed from h3 to h2 for proper heading hierarchy */}
       <h2 className="text-[#E8F3FF] text-2xl sm:text-3xl font-extrabold mb-4 text-center tracking-wide">
         Find Your Part Instantly

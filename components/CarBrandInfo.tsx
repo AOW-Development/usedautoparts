@@ -2,6 +2,7 @@
 
 import React from "react";
 import { CarBrand } from "@/data/cars";
+import { LeadForm } from "./home/HeroTransmission";
 
 interface CarBrandInfoProps {
   car: CarBrand;
@@ -16,38 +17,48 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
     <section className="w-full px-6 py-20 text-[#E8F3FF] bg-[#07142B]">
 
       {/* HERO SECTION */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
 
-        {/* TEXT */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#049FFF] font-orbitron mb-6">
-            {title}
-          </h2>
+        {/* LEFT — IMAGE + TEXT */}
+        <div className="flex flex-col gap-6 justify-start">
 
-          <h3 className="text-[#049FFF] font-semibold text-2xl mb-3">
-            {heroSection.headline}
-          </h3>
+          {/* IMAGE */}
+          {heroSection.image && (
+            <div className="flex justify-center md:justify-start">
+              <img
+                src={heroSection.image.src}
+                alt={heroSection.image.alt}
+                className="w-full max-w-sm rounded-2xl shadow-xl"
+              />
+            </div>
+          )}
 
-          <p className="text-[20px] leading-[34px]">
-            {heroSection.description}
-          </p>
+          {/* TEXT */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#049FFF] font-orbitron mb-4">
+              {title}
+            </h2>
+
+            <h3 className="text-[#049FFF] font-semibold text-xl md:text-2xl mb-2">
+              {heroSection.headline}
+            </h3>
+
+            <p className="text-[18px] leading-[30px] text-[#E8F3FF]/90">
+              {heroSection.description}
+            </p>
+          </div>
         </div>
 
-        {/* IMAGE */}
-        {heroSection.image && (
-          <div
-            className={`flex justify-center ${
-              heroSection.image.position === "left" ? "md:order-first" : ""
-            }`}
-          >
-            <img
-              src={heroSection.image.src}
-              alt={heroSection.image.alt}
-              className="w-full max-w-md rounded-2xl shadow-xl drop-shadow-xl"
-            />
+        {/* RIGHT — LEAD FORM */}
+        <div className="flex justify-center md:justify-end items-start">
+          {/* DO NOT stretch the form */}
+          <div className="w-full max-w-md">
+            <LeadForm />
           </div>
-        )}
+        </div>
+
       </div>
+
 
       {/* ALL OTHER SECTIONS */}
       <div className="max-w-5xl mx-auto space-y-14">
