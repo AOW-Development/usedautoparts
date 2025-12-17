@@ -17,7 +17,8 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
     <section className="w-full px-6 py-20 text-[#E8F3FF] bg-[#07142B]">
 
       {/* HERO SECTION */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-6 items-start mb-12">
+
 
         {/* LEFT — IMAGE + TEXT */}
         <div className="flex flex-col gap-6 justify-start">
@@ -51,11 +52,12 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
 
         {/* RIGHT — LEAD FORM */}
         <div className="flex justify-center md:justify-end items-start">
-          {/* DO NOT stretch the form */}
-          <div className="w-full max-w-md">
+          {/* Wider but not stretched */}
+          <div className="w-full max-w-lg lg:max-w-xl">
             <LeadForm />
           </div>
         </div>
+
 
       </div>
 
