@@ -413,29 +413,30 @@ function InputField(props: {
   error?: string;
 }) {
   const { label, name, value, placeholder, onChange, required, error } = props;
-  const inputId = `input-${name}`;
-  
+
   return (
     <div>
-      <label htmlFor={inputId} className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
+      {/* Label visible only on desktop */}
+      <label className="hidden sm:block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
         {label}
       </label>
+
       <input
-        id={inputId}
         type="text"
         value={value}
         required={required}
-        placeholder={placeholder}
+        placeholder={placeholder || label} // mobile gets label as placeholder
         onChange={(e) => onChange(name, e.target.value)}
-        aria-label={label}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${inputId}-error` : undefined}
-        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"}`}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm border-2 ${
+          error ? "border-red-600" : "border-[#0A5FA6]"
+        }`}
       />
-      {error && <p id={`${inputId}-error`} className="text-red-600 text-xs mt-1">{error}</p>}
+
+      {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
+
 
 /* -------------------- SelectFieldCustom with search & nicer UI ------------------- */
 function SelectFieldCustom(props: {
@@ -452,72 +453,74 @@ function SelectFieldCustom(props: {
   disabled?: boolean;
   emptyMessage?: string;
 }) {
-  const { label, name, value, options, onSelect, onOpen, isOpen, required, error, placeholder, disabled, emptyMessage } = props;
+  const {
+    label,
+    name,
+    value,
+    options,
+    onSelect,
+    onOpen,
+    isOpen,
+    required,
+    error,
+    placeholder,
+    disabled,
+    emptyMessage,
+  } = props;
+
   const [filter, setFilter] = useState("");
-  const selectId = `select-${name}`;
-  const dropdownId = `${selectId}-dropdown`;
-  
+
   useEffect(() => {
     if (!isOpen) setFilter("");
   }, [isOpen]);
 
   const opts = Array.isArray(options) ? options : [];
-  const filtered = filter.trim() ? opts.filter((o) => o.toLowerCase().includes(filter.trim().toLowerCase())) : opts;
+  const filtered = filter.trim()
+    ? opts.filter((o) => o.toLowerCase().includes(filter.trim().toLowerCase()))
+    : opts;
 
   return (
     <div className="relative">
-      <label htmlFor={selectId} className="block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
+      {/* Label visible only on desktop */}
+      <label className="hidden sm:block text-xs sm:text-sm font-semibold text-[#E8F3FF] mb-1 sm:mb-2">
         {label}
       </label>
 
       <button
-        id={selectId}
         type="button"
         onClick={() => !disabled && onOpen(isOpen ? null : name)}
-        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${error ? "border-red-600" : "border-[#0A5FA6]"} ${disabled ? "opacity-60 cursor-not-allowed" : ""} focus:outline-none focus:ring-2 focus:ring-[#00A3FF]`}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        aria-controls={isOpen ? dropdownId : undefined}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${selectId}-error` : undefined}
-        disabled={disabled}
+        className={`w-full h-10 sm:h-12 px-3 sm:px-4 bg-white rounded-lg text-gray-900 text-xs sm:text-sm text-left flex items-center justify-between border-2 ${
+          error ? "border-red-600" : "border-[#0A5FA6]"
+        } ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       >
         <span className={`${!value ? "text-gray-700" : ""}`}>
-          {value || placeholder || "Select"}
+          {value || placeholder || label}
         </span>
-        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`} aria-hidden="true">
+        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
           ▼
         </span>
       </button>
 
       {isOpen && (
-        <div 
-          id={dropdownId}
-          className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 max-h-64 overflow-hidden border-2 border-[#0A5FA6]" 
-          role="listbox"
-          aria-label={`${label} options`}
-        >
-          {/* Search input */}
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 max-h-64 overflow-hidden border-2 border-[#0A5FA6]">
+          {/* Search */}
           <div className="p-2 border-b border-gray-200">
             <input
               autoFocus
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder={`Search ${label}...`}
-              className="w-full h-9 px-2 text-xs sm:text-sm rounded-md border border-gray-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#00A3FF]"
-              aria-label={`Search ${label}`}
+              className="w-full h-9 px-2 text-xs sm:text-sm rounded-md border border-gray-200 text-gray-900"
             />
           </div>
 
           <div className="max-h-48 overflow-y-auto">
             {opts.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-gray-700" role="option">
+              <div className="px-4 py-3 text-sm text-gray-700">
                 {emptyMessage || "No options"}
               </div>
             ) : filtered.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-gray-700" role="option">
-                No results
-              </div>
+              <div className="px-4 py-3 text-sm text-gray-700">No results</div>
             ) : (
               filtered.map((opt) => {
                 const selected = opt === value;
@@ -529,17 +532,26 @@ function SelectFieldCustom(props: {
                       onSelect(name, opt);
                       onOpen(null);
                     }}
-                    role="option"
-                    aria-selected={selected}
-                    className={`w-full text-left px-4 py-3 hover:bg-[#00A3FF]/10 flex items-center justify-between ${selected ? "bg-[#00A3FF]/10" : ""} focus:outline-none focus:bg-[#00A3FF]/10`}
+                    className={`w-full text-left px-4 py-3 hover:bg-[#00A3FF]/10 flex items-center justify-between ${
+                      selected ? "bg-[#00A3FF]/10" : ""
+                    }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm sm:text-sm text-gray-900">{opt}</span>
-                    </div>
+                    <span className="text-sm text-gray-900">{opt}</span>
 
                     {selected && (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="opacity-80" aria-hidden="true">
-                        <path d="M20 6L9 17l-5-5" stroke="#00A3FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 6L9 17l-5-5"
+                          stroke="#00A3FF"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     )}
                   </button>
@@ -550,7 +562,7 @@ function SelectFieldCustom(props: {
         </div>
       )}
 
-      {error && <p id={`${selectId}-error`} className="text-red-600 text-xs mt-1">{error}</p>}
+      {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
