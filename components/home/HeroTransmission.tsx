@@ -51,8 +51,8 @@ export default function HeroTransmission({
 
   return (
     <section
-  id="lead-form"
-  className="relative w-full min-h-[calc(100vh-80px)]
+      id="lead-form"
+      className="relative w-full min-h-[calc(100vh-80px)]
              flex flex-col lg:flex-row
              items-start lg:items-center
              p-4 lg:py-8 sm:p-0
@@ -60,9 +60,9 @@ export default function HeroTransmission({
              overflow-hidden
              shadow-[0_-40px_120px_rgba(0,163,255,0.6)]
              bg-cover bg-center bg-fixed transition-all duration-500"
-  style={{ backgroundImage: optimizedBg }}
-  aria-label={`${title} - ${subtitle}`}
->
+      style={{ backgroundImage: optimizedBg }}
+      aria-label={`${title} - ${subtitle}`}
+    >
 
       {/* Background Animated Cogs - Using SVG instead of react-icons
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -413,12 +413,22 @@ export function LeadForm() {
           )}
         </button>
         {/* Slim Call Row */}
-        <div className="mt-1 sm:mt-2">
+        <div className="mt-2 sm:mt-2">
           <a
             href="tel:+18883382540"
-            className="w-full h-8 sm:h-9 rounded-lg border bg-linear-to-r from-[#E8F3FF] to-[#B3D9FF] text-[#001D3D] text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition"
+            className="w-full h-10 sm:h-11 rounded-lg 
+               bg-gradient-to-r from-[#E8F3FF] to-[#B3D9FF]
+               text-[#001D3D]
+               flex items-center justify-center gap-3
+               font-bold
+               shadow-md
+               hover:shadow-lg
+               transition"
           >
-            📞 (888) 338-2540
+            <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-base sm:text-lg tracking-wide">
+              (888) 338-2540
+            </span>
           </a>
         </div>
 
