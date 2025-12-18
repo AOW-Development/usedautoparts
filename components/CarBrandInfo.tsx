@@ -14,7 +14,7 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
   const sectionArray = Object.values(sections);
 
   return (
-    <section className="w-full px-6 py-20 text-[#E8F3FF] bg-[#07142B]">
+    <section className="w-full px-6 py-20  bg-[#07142B]">
 
       {/* HERO SECTION */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-6 items-start mb-12">
@@ -40,11 +40,11 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
               {title}
             </h2> */}
 
-            <h3 className="text-[#049FFF] font-semibold text-xl md:text-2xl mb-2">
+            <h3 className=" font-semibold text-xl md:text-2xl mb-2">
               {heroSection.headline}
             </h3>
 
-            <p className="text-[18px] leading-[30px] text-[#E8F3FF]/90">
+            <p className="text-[18px] leading-[30px] text-[#cecece]/90">
               {heroSection.description}
             </p>
           </div>
@@ -69,14 +69,14 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
 
             {/* HEADLINE */}
             {sec.headline && (
-              <h3 className="text-[#049FFF] text-2xl mb-2">
+              <h3 className=" text-2xl mb-2">
                 {sec.headline}
               </h3>
             )}
 
             {/* DESCRIPTION */}
             {sec.description && (
-              <p className="text-[20px] leading-[34px] mb-3">
+              <p className="text-[20px] text-[#cecece] leading-[34px] mb-3">
                 {sec.description}
               </p>
             )}
@@ -106,7 +106,7 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
 
             {/* TESTIMONIALS */}
             {sec.testimonials && (
-              <ul className="space-y-3 italic text-[#e0f0ff]">
+              <ul className="space-y-3 italic text-[#cecece]">
                 {sec.testimonials.map((t, idx) => (
                   <li key={idx}>"{t}"</li>
                 ))}
@@ -130,7 +130,7 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
               Object.entries(sec.subsections).map(([key, sub], idx) => (
                 <div key={idx} className="mt-6">
                   {sub.headline && (
-                    <h4 className="text-xl font-bold text-[#049FFF] mb-2">
+                    <h4 className="text-xl font-bold mb-2">
                       {sub.headline}
                     </h4>
                   )}
@@ -158,7 +158,7 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
 
             {/* CTA */}
             {sec.cta && (
-              <p className="mt-4 font-bold text-[#049FFF]">{sec.cta}</p>
+              <p className="mt-4 font-bold ">{sec.cta}</p>
             )}
           </div>
         ))}
