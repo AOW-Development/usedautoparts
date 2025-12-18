@@ -29,16 +29,16 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
               <img
                 src={heroSection.image.src}
                 alt={heroSection.image.alt}
-                className="w-full max-w-sm rounded-2xl shadow-xl"
+                className="w-full max-w-md rounded-2xl shadow-xl"
               />
             </div>
           )}
 
           {/* TEXT */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#049FFF] font-orbitron mb-4">
+            {/* <h2 className="text-3xl md:text-4xl font-bold text-[#049FFF] font-orbitron mb-4">
               {title}
-            </h2>
+            </h2> */}
 
             <h3 className="text-[#049FFF] font-semibold text-xl md:text-2xl mb-2">
               {heroSection.headline}
