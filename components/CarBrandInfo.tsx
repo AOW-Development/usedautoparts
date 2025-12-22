@@ -14,7 +14,7 @@ const CarBrandInfo: React.FC<CarBrandInfoProps> = ({ car }) => {
   const sectionArray = Object.values(sections);
 
   return (
-    <section className="w-full px-6 py-20  bg-[#07142B]">
+    <section className="w-full px-6 py-5  bg-[#07142B]">
 
       {/* HERO SECTION */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-6 items-start mb-12">
