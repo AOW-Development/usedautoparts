@@ -6,7 +6,6 @@ import SearchCar from "@/components/home/search";
 import { engineSections } from "@/data/engine";
 import { heroData } from "@/data/herodata";
 
-
 /* ✅ Proper Type to Fix 'never' Error */
 type EngineSection = {
   title: string;
@@ -15,32 +14,31 @@ type EngineSection = {
   imageSide?: "left" | "right";
 };
 
-
 export default function UsedEnginesPage() {
   return (
     <main className="min-h-screen bg-[#07142B] text-[#E8F3FF]">
-
-
       <HeroTransmission {...heroData.engines} />
       <ChatBot />
       <CallFloatingButton />
 
-
-      {/* Main Content */}
+      {/* MAIN CONTENT */}
       <section className="py-16 bg-[#07142B]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="mx-auto space-y-12">
 
-
-            {/* Hero Section - First item from engineSections */}
+            {/* HERO SECTION */}
             {(engineSections as EngineSection[]).length > 0 && (
               <div className="space-y-4 text-center">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                <h1 className="text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-semibold text-white">
                   {(engineSections as EngineSection[])[0].title}
                 </h1>
+
                 <div className="space-y-4">
                   {(engineSections as EngineSection[])[0].paragraphs?.map((text, i) => (
-                    <p key={i} className="text-base sm:text-lg md:text-lg lg:text-xl text-white/80 leading-relaxed">
+                    <p
+                      key={i}
+                      className="text-[16px] lg:text-[18px] leading-[28px] tracking-[0.015em] font-medium text-white/80"
+                    >
                       {text}
                     </p>
                   ))}
@@ -48,8 +46,7 @@ export default function UsedEnginesPage() {
               </div>
             )}
 
-
-            {/* Content Sections - Rest of the items */}
+            {/* CONTENT SECTIONS */}
             <div className="space-y-8">
               {(engineSections as EngineSection[]).slice(1).map((section, index) => (
                 <div
@@ -59,8 +56,7 @@ export default function UsedEnginesPage() {
                 >
                   <div className="flex flex-col md:flex-row items-center gap-8 md:gap-6 lg:gap-4">
 
-
-                    {/* Larger image without cropping */}
+                    {/* IMAGE */}
                     {section.image && (
                       <div className="w-full md:w-[30%] flex items-center justify-center h-[300px] rounded-lg overflow-hidden">
                         <img
@@ -71,19 +67,17 @@ export default function UsedEnginesPage() {
                       </div>
                     )}
 
-
-                    {/* Text */}
+                    {/* TEXT */}
                     <div className="flex-1 flex flex-col justify-center">
-                      <h2 className="font-bold text-2xl text-[#ffffff] mb-4">
+                      <h2 className="font-semibold text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-white mb-4">
                         {section.title}
                       </h2>
 
-
-                      <div className="space-y-4 ">
+                      <div className="space-y-4">
                         {section.paragraphs?.map((paragraph, pIndex) => (
                           <p
                             key={pIndex}
-                            className="text-[#cacaca]  leading-relaxed sm:text-lg md:text-lg"
+                            className="text-[16px] lg:text-[18px] leading-[28px] tracking-[0.015em] font-medium text-white/80"
                           >
                             {paragraph}
                           </p>
@@ -91,31 +85,33 @@ export default function UsedEnginesPage() {
                       </div>
                     </div>
 
-
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>
 
-
-      {/* FINAL CTA SECTION */}
+      {/* FINAL CTA */}
       <section className="w-full py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-[#0E3A75] to-[#0A1F3D] text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white">
+        <h2 className="text-[22px] sm:text-[26px] md:text-[32px] lg:text-[36px] font-semibold mb-4 text-white">
           Ready to Find the Right Engine?
         </h2>
-        <p className="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+
+        <p className="text-[16px] lg:text-[18px] leading-[28px] tracking-[0.015em] font-medium text-white/80 max-w-2xl mx-auto mb-8">
           Get fast pricing, expert guidance, and nationwide delivery on quality used engines.
         </p>
+
         <a
           href="/#lead-form"
-          className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold  transition-all duration-300 cursor-pointer"
+          className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold transition-all duration-300 cursor-pointer"
         >
           Find My Engine
         </a>
       </section>
+
       <SearchCar />
     </main>
   );
