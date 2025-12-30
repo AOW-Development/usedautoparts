@@ -208,33 +208,76 @@ export function LeadForm() {
     return e;
   }, [formData]);
 
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsSubmitting(true);
 
-    const eObj = validate();
-    setErrors(eObj);
+      const eObj = validate();
+      setErrors(eObj);
 
-    if (Object.keys(eObj).length > 0) {
-      setIsSubmitting(false);
-      const firstField = Object.keys(eObj)[0];
-      if (["year", "make", "part", "engineSize", "transmission", "model"].includes(firstField)) {
-        setOpenDropdown(firstField);
+      if (Object.keys(eObj).length > 0) {
+        setIsSubmitting(false);
+        const firstField = Object.keys(eObj)[0];
+        if (
+          ["year", "make", "part", "engineSize", "transmission", "model"].includes(
+            firstField
+          )
+        ) {
+          setOpenDropdown(firstField);
+        }
+        return;
       }
-      return;
-    }
 
-    // Mock submit - replace with actual API calls
-    try {
-      await new Promise((r) => setTimeout(r, 1200));
-      router.push("/thank-you");
-    } catch (err) {
-      console.error(err);
-      setErrors((p) => ({ ...p, submit: "Submission failed. Try again." }));
-    } finally {
-      setIsSubmitting(false);
-    }
-  }, [validate, router]);
+      const {
+        year,
+        make,
+        model,
+        part,
+        engineSize,
+        transmission,
+        name,
+        email,
+        phone,
+        zipCode,
+      } = formData;
+
+      try {
+        const emailRes = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            year,
+            make,
+            model,
+            part,
+            engine_size: engineSize,
+            transmission,
+            name,
+            email,
+            phone,
+            zip_code: zipCode,
+          }),
+        });
+
+        if (!emailRes.ok) {
+          throw new Error("Email request failed");
+        }
+
+        router.push("/thank-you");
+      } catch (err) {
+        console.error(err);
+        setErrors((prev) => ({
+          ...prev,
+          submit: "Submission failed. Try again.",
+        }));
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [validate, router, formData]
+  );
+
 
   const handleInputChange = useCallback((name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));

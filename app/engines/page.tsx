@@ -79,11 +79,11 @@ export default function UsedEnginesPage() {
                       </h2>
 
 
-                      <div className="space-y-4">
+                      <div className="space-y-4 ">
                         {section.paragraphs?.map((paragraph, pIndex) => (
                           <p
                             key={pIndex}
-                            className="text-[#cacaca] leading-relaxed text-base sm:text-lg md:text-lg"
+                            className="text-[#cacaca]  leading-relaxed sm:text-lg md:text-lg"
                           >
                             {paragraph}
                           </p>
@@ -109,8 +109,6 @@ export default function UsedEnginesPage() {
         <p className="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
           Get fast pricing, expert guidance, and nationwide delivery on quality used engines.
         </p>
-
-
         <a
           href="/#lead-form"
           className="inline-block bg-gradient-to-r from-[#1DA1F2] to-[#0F78D4] text-white px-7 sm:px-9 py-3 rounded-lg font-semibold  transition-all duration-300 cursor-pointer"
@@ -118,8 +116,6 @@ export default function UsedEnginesPage() {
           Find My Engine
         </a>
       </section>
-
-
       <SearchCar />
     </main>
   );
