@@ -5,16 +5,19 @@ frontend:
       commands:
         - node -v
         - corepack enable
-        - corepack prepare pnp@8.15.4-activate
+        - corepack prepare pnpm@8.15.4 --activate
         - pnpm -v
         - pnpm install --frozen-lockfile
     build:
       commands:
         - pnpm build
+
   artifacts:
-    baseDirectory: next
+    baseDirectory: .next
     files:
       - '**/*'
+
   cache:
     paths:
       - node_modules/**/*
+      - .pnpm-store/**/*
