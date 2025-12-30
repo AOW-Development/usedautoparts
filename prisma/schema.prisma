@@ -7,54 +7,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id            Int            @id @default(autoincrement())
-  email         String?        @unique
-  conversations Conversation[]
-  createdAt     DateTime       @default(now())
-}
-
 model Conversation {
-  id           Int        @id @default(autoincrement())
-  userId       Int?
-  user         User?      @relation(fields: [userId], references: [id])
-  title        String?
-  systemPrompt String?
-  summary      String?
-  messages     Message[]
-  leads        Lead[]     // ✅ ADD THIS LINE
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-}
-
-model Message {
-  id              Int           @id @default(autoincrement())
-  conversationId  Int
-  conversation    Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  role            MessageRole
-  content         String        @db.LongText   // ✅ FIX
-  model           String?
-  tokensUsed      Int?
-  createdAt       DateTime      @default(now())
-}
-
-
-enum MessageRole {
-  system
-  user
-  assistant
+  id        String   @id @default(cuid())
+  role      String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
 }
 
 model Lead {
-  id              Int       @id @default(autoincrement())
-  conversationId  Int
-  name            String?
-  email           String?
-  phone           String?
-  intent          String?
-  summary         String?
-  source          String     @default("chatbot")
-  createdAt       DateTime   @default(now())
+  id        String   @id
+  part      String?  @db.VarChar(255)
+  make      String?  @db.VarChar(255)
+  model     String?  @db.VarChar(255)
+  year      String?  @db.VarChar(4)
+  email     String?  @db.VarChar(255)
+  phone     String?  @db.VarChar(20)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  message   String?  @db.Text
 
-  conversation Conversation @relation(fields: [conversationId], references: [id])
+  @@index([email])
+  @@index([phone])
+  @@index([createdAt])
 }

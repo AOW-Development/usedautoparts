@@ -88,14 +88,14 @@ const CarPartsList: React.FC<CarPartsListProps> = ({ brand }) => {
   const colSize = Math.ceil(parts.length / 3);
 
   return (
-    <section className="w-full flex flex-col items-center px-6 py-16 text-[#E8F3FF]">
+    <section className="w-full flex flex-col items-center px-6 py-16 bg-[#07142B] text-[#E8F3FF]">
       <h2 className="text-3xl md:text-4xl font-bold text-[#049FFF] font-orbitron mb-10 text-center">
         USED {brand.toUpperCase()} AUTO PARTS
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {[0, 1, 2].map((col) => (
-          <ul key={col} className="space-y-2 text-lg leading-7 font-jaldi list-disc list-inside">
+          <ul key={col} className="space-y-2 text-lg leading-7 font-jaldi list-disc list-inside text-[#cecece]">
             {parts
               .slice(col * colSize, (col + 1) * colSize)
               .map((item, i) => (

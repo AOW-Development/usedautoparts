@@ -1,35 +1,42 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { v4 as uuidv4 } from "uuid";
+import OpenAI from "openai";
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const MODEL_NAME = "gemini-2.5-flash-lite"; 
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+if (!OPENAI_API_KEY) {
+  throw new Error("OPENAI_API_KEY is missing");
+}
+
+const openai = new OpenAI({
+  apiKey: OPENAI_API_KEY,
+});
+
+const MODEL_NAME = "gpt-5-mini";
 
 export async function POST(req: Request) {
   try {
     console.log("🔵 API called - Starting chat");
 
-    if (!GEMINI_API_KEY) {
-      console.error("❌ GEMINI_API_KEY is missing");
-      throw new Error("GEMINI_API_KEY is missing");
-    }
-
     const { messages } = await req.json();
     console.log("📨 Received messages:", messages?.length || 0);
 
-    const history = (messages || []).map((m: any) => ({
-      role: m.role === "user" ? "user" : "model",
-      parts: [{ text: m.content }],
-    }));
+    // ✅ Session ID (persist across messages)
+    const sessionId = messages?.[0]?.sessionId || uuidv4();
 
-    const systemPrompt = `You are a sales chatbot for a used auto parts website.
+    // ✅ System prompt
+    const systemPrompt = `
+You are a sales chatbot for a used auto parts website.
 
 Goals:
 - Identify required auto part (engine, transmission, etc.)
 - Identify vehicle details if mentioned
 - Collect email and phone naturally
-- Be short, friendly, professional
+- Be short, friendly, and professional
 
 IMPORTANT:
-If new lead info is detected, append this JSON at the END:
+If new lead info is detected, append this JSON at the END of your response:
 
 <LEAD_UPDATE>
 {
@@ -43,72 +50,95 @@ If new lead info is detected, append this JSON at the END:
 </LEAD_UPDATE>
 
 Only include newly discovered fields.
-Do not explain the JSON.`;
+Do NOT explain the JSON.
+`.trim();
 
-    const contents = [
-      {
-        role: "user",
-        parts: [{ text: systemPrompt }],
-      },
-      ...history,
+    // ✅ Convert frontend messages to OpenAI format
+    const chatMessages = [
+      { role: "system", content: systemPrompt },
+      ...(messages || []).map((m: any) => ({
+        role: m.role === "user" ? "user" : "assistant",
+        content: m.content,
+      })),
     ];
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${GEMINI_API_KEY}`;
-    console.log("🌐 Calling Gemini API:", url.substring(0, 80) + "...");
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents }),
+    // ✅ Call OpenAI (NO temperature — not supported by GPT-5-mini)
+    const response = await openai.responses.create({
+      model: MODEL_NAME,
+      input: chatMessages,
     });
 
-    console.log("📍 Gemini response status:", response.status);
-
-    const result = await response.json();
-    console.log("📄 Gemini response:", JSON.stringify(result).substring(0, 300));
-
-    if (!response.ok) {
-      console.error("❌ Gemini API error:", result);
-      const errorMsg = result.error?.message || JSON.stringify(result) || "Unknown error";
-      return NextResponse.json(
-        { error: errorMsg },
-        { status: 500 }
-      );
-    }
-
+    // ✅ Safely extract text
     const rawText =
-      result?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      response.output_text ??
+      response.output?.[0]?.content?.find((c: any) => c.type === "output_text")
+        ?.text ??
       "Sorry, I couldn't process that.";
 
-    console.log("✅ Raw response text:", rawText.substring(0, 150));
+    console.log("✅ Raw response:", rawText.substring(0, 200));
 
+    // ✅ Extract lead update JSON
     const match = rawText.match(/<LEAD_UPDATE>([\s\S]*?)<\/LEAD_UPDATE>/);
     let leadUpdate: any = null;
+    let savedLead: any = null;
+    let isNewLead = false;
 
     if (match) {
       try {
         leadUpdate = JSON.parse(match[1]);
         console.log("💾 Lead extracted:", leadUpdate);
-      } catch (e) {
-        console.error("❌ Lead parse error:", e);
+
+        const dataToSave: any = {
+          sessionId,
+          message: messages?.[messages.length - 1]?.content || "Chat lead",
+        };
+
+        if (leadUpdate.part?.trim()) dataToSave.part = leadUpdate.part;
+        if (leadUpdate.make?.trim()) dataToSave.make = leadUpdate.make;
+        if (leadUpdate.model?.trim()) dataToSave.model = leadUpdate.model;
+        if (leadUpdate.year?.trim()) dataToSave.year = leadUpdate.year;
+        if (leadUpdate.email?.trim()) dataToSave.email = leadUpdate.email;
+        if (leadUpdate.phone?.trim()) dataToSave.phone = leadUpdate.phone;
+
+        // ✅ Upsert by sessionId
+        const existingLead = await prisma.lead.findUnique({
+          where: { sessionId },
+        });
+
+        if (existingLead) {
+          savedLead = await prisma.lead.update({
+            where: { sessionId },
+            data: dataToSave,
+          });
+          console.log("🔄 Lead UPDATED:", savedLead.id);
+        } else {
+          savedLead = await prisma.lead.create({
+            data: dataToSave,
+          });
+          isNewLead = true;
+          console.log("✅ NEW Lead CREATED:", savedLead.id);
+        }
+      } catch (err) {
+        console.error("❌ Lead parse error:", err);
       }
     }
 
+    // ✅ Remove JSON block before replying to user
     const cleanReply = rawText
       .replace(/<LEAD_UPDATE>[\s\S]*?<\/LEAD_UPDATE>/g, "")
       .trim();
 
-    console.log("✨ Final reply:", cleanReply.substring(0, 100));
-
     return NextResponse.json({
       reply: cleanReply || "How can I help you find the right part?",
       leadUpdate,
+      saved: !!savedLead,
+      sessionId,
+      isNewLead,
     });
   } catch (err) {
     console.error("❌ SERVER ERROR:", err);
-    const errorMsg = err instanceof Error ? err.message : "Internal server error";
     return NextResponse.json(
-      { error: errorMsg },
+      { error: err instanceof Error ? err.message : "Internal server error" },
       { status: 500 }
     );
   }

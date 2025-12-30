@@ -16,6 +16,7 @@ interface Lead {
   year?: string;
   email?: string;
   phone?: string;
+  sessionId?: string;  // ✅ NEW: Session tracking
 }
 
 export default function ChatBot() {
@@ -24,6 +25,7 @@ export default function ChatBot() {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [lead, setLead] = useState<Lead>({});
+  const [leadSaved, setLeadSaved] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,6 +66,7 @@ export default function ChatBot() {
             })),
             { role: "user", content: userText },
           ],
+          sessionId: lead.sessionId,  // ✅ NEW: Pass session ID
         }),
       });
 
@@ -74,9 +77,29 @@ export default function ChatBot() {
         addBot("⚠️ Something went wrong. Please try again.");
       } else {
         addBot(data.reply);
+
+        // ✅ NEW: Handle session ID and lead updates
+        if (data.sessionId) {
+          setLead((prev) => ({ ...prev, sessionId: data.sessionId }));
+        }
+
         if (data.leadUpdate) {
-          setLead((prev) => ({ ...prev, ...data.leadUpdate }));
-          console.log("Lead updated:", { ...lead, ...data.leadUpdate });
+          setLead((prev) => ({ 
+            ...prev, 
+            ...data.leadUpdate,
+            sessionId: data.sessionId || prev.sessionId 
+          }));
+        }
+
+        // ✅ NEW: Show save confirmation
+        if (data.saved) {
+          setLeadSaved(true);
+          console.log("✅ Lead saved/updated:", {
+            sessionId: data.sessionId || lead.sessionId,
+            ...lead,
+            ...data.leadUpdate
+          });
+          setTimeout(() => setLeadSaved(false), 3000);
         }
       }
     } catch (err) {
@@ -110,8 +133,6 @@ export default function ChatBot() {
         aria-label="Chat with us"
       >
         <MessageCircle className="w-7.5 h-7.5" />
-        
-        {/* DESKTOP HOVER LABEL - EXACTLY LIKE CALL BUTTON */}
         <span
           className="
             hidden sm:block
@@ -138,7 +159,7 @@ export default function ChatBot() {
           </div>
           <div>
             <h3 className="text-xl font-bold bg-gradient-to-r from-[#E8F3FF] to-[#B3D9FF] bg-clip-text text-transparent">
-             PartsCentral Bot
+              PartsCentral Bot
             </h3>
             <p className="text-xs text-[#8CBFFF] font-medium">Live chat support</p>
           </div>
@@ -187,6 +208,26 @@ export default function ChatBot() {
         <div ref={messagesEndRef} />
       </div>
 
+      
+       
+      {/* ✅ NEW: Collected Lead Info */}
+      {Object.keys(lead).filter(k => k !== 'sessionId').length > 0 && (
+        <div className="p-4 pt-3 border-t border-[#00A3FF]/20 text-xs text-[#8CBFFF] bg-[#00A3FF]/5">
+          <p className="font-semibold mb-2 text-[10px]">📋 Collected Info:</p>
+          {lead.part && <p className="text-[11px]">🔧 Part: {lead.part}</p>}
+          {lead.year && <p className="text-[11px]">📅 Year: {lead.year}</p>}
+          {lead.make && <p className="text-[11px]">🚘 Make: {lead.make}</p>}
+          {lead.model && <p className="text-[11px]">🚙 Model: {lead.model}</p>}
+          {lead.email && <p className="text-[11px]">📧 {lead.email}</p>}
+          {lead.phone && <p className="text-[11px]">📱 {lead.phone}</p>}
+          {lead.sessionId && (
+            <p className="text-[10px] mt-1 opacity-75">
+              ID: {lead.sessionId.slice(0, 8)}...
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Input Area */}
       <div className="p-6 pt-4 border-t border-[#00A3FF]/20 bg-gradient-to-t from-[#001D3D] to-transparent backdrop-blur-sm">
         <form onSubmit={handleSubmit} className="flex gap-3 items-end">
@@ -206,12 +247,6 @@ export default function ChatBot() {
             <Send size={20} className="group-hover:rotate-12 transition-transform duration-300" />
           </button>
         </form>
-        
-        {/* {Object.keys(lead).length > 0 && (
-          <div className="mt-3 pt-3 border-t border-[#00A3FF]/20 text-xs text-[#8CBFFF] text-center animate-fade-in">
-              {Object.entries(lead).map(([k, v]) => `${k}: ${v}`).join(", ")}
-          </div>
-        )} */}
       </div>
     </div>
   );
