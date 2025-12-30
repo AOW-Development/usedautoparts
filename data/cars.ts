@@ -55,10 +55,11 @@ export type CarBrand = {
 
 // IMPORT -----------------------------------------------------
 
-import carsData from "./cars.json";
+import rawCars from "./cars.json";
 
-// Export all cars as this new type
-export const allCars: CarBrand[] = carsData as CarBrand[];
+const carsData = rawCars as unknown as CarBrand[];
+
+export const allCars: CarBrand[] = carsData;
 
 // HELPERS -----------------------------------------------------
 
