@@ -36,7 +36,7 @@ export default function HowItWorks() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* HEADING */}
-        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 bg-gradient-to-r from-[#ffffff] via-[#ffffff] to-[#ffffff] bg-clip-text text-transparent">
+        <h2 className="text-center text-[22px] sm:text-[26px] md:text-[32px] lg:text-[40px] font-semibold mb-8 sm:mb-10 bg-gradient-to-r from-[#ffffff] via-[#ffffff] to-[#ffffff] bg-clip-text text-transparent">
           How It Works
         </h2>
 
@@ -47,12 +47,7 @@ export default function HowItWorks() {
               {/* Arrow (Desktop only) */}
               {idx < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-8 transform -translate-y-1/2 z-0">
-                  <svg
-                    width="48"
-                    height="24"
-                    viewBox="0 0 48 24"
-                    fill="none"
-                  >
+                  <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
                     <path
                       d="M0 12H40"
                       stroke="#00A3FF"
@@ -98,7 +93,7 @@ export default function HowItWorks() {
                   animationDelay: `${idx * 100}ms`,
                 }}
               >
-                {/* Hover gradient overlay */}
+                {/* Hover overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00A3FF]/0 via-transparent to-[#0099FF]/0 group-hover:from-[#00A3FF]/10 group-hover:to-[#0099FF]/5 transition-all duration-500 pointer-events-none"></div>
 
                 {/* STEP NUMBER */}
@@ -107,12 +102,12 @@ export default function HowItWorks() {
                 </div>
 
                 {/* TITLE */}
-                <h3 className="text-base sm:text-lg font-bold mb-2 transition-all duration-300 group-hover:text-[#0099FF] relative z-10">
+                <h3 className="text-[16px] sm:text-[17px] md:text-[18px] font-semibold mb-2 transition-all duration-300 group-hover:text-[#0099FF] relative z-10">
                   {step.title}
                 </h3>
 
                 {/* DESCRIPTION */}
-                <p className="text-xs sm:text-sm text-[#B3D9FF] leading-relaxed transition-all duration-300 opacity-90 group-hover:opacity-100 relative z-10">
+                <p className="text-[16px] leading-[26px] tracking-[0.015em] font-medium text-[#B3D9FF] transition-all duration-300 opacity-90 group-hover:opacity-100 relative z-10">
                   {step.desc}
                 </p>
               </div>

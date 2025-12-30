@@ -6,7 +6,7 @@ export default function TrustSignals() {
       className="bg-gradient-to-r from-[#07142B] via-[#0A2F5C] to-[#001D3D] text-white py-10 sm:py-12 md:py-14 lg:py-16 bg-cover bg-center bg-fixed relative"
       style={{ backgroundImage: "url('/hero/hero22.jpg')" }}
     >
-      {/* Overlay for better text readability - Lighter overlay */}
+      {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#07142B]/50 via-[#0A2F5C]/50 to-[#001D3D]/20"></div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
@@ -17,8 +17,10 @@ export default function TrustSignals() {
           {/* QUALITY */}
           <div className="flex flex-col items-center gap-2 sm:gap-3">
             <ShieldCheck className="w-9 h-9 sm:w-11 sm:h-11 text-[#00A3FF]" />
-            <h3 className="font-bold text-sm sm:text-base">Verified Quality</h3>
-            <p className="text-xs sm:text-sm text-[#B3D9FF]">
+            <h3 className="font-semibold text-sm sm:text-base">
+              Verified Quality
+            </h3>
+            <p className="text-[16px] tracking-[0.015em] font-medium text-[#B3D9FF]">
               100% OEM Authentic
             </p>
           </div>
@@ -26,8 +28,10 @@ export default function TrustSignals() {
           {/* SHIPPING */}
           <div className="flex flex-col items-center gap-2 sm:gap-3">
             <Truck className="w-9 h-9 sm:w-11 sm:h-11 text-[#00A3FF]" />
-            <h3 className="font-bold text-sm sm:text-base">Free Shipping</h3>
-            <p className="text-xs sm:text-sm text-[#B3D9FF]">
+            <h3 className="font-semibold text-sm sm:text-base">
+              Free Shipping
+            </h3>
+            <p className="text-[16px] tracking-[0.015em] font-medium text-[#B3D9FF]">
               All 50 States
             </p>
           </div>
@@ -35,8 +39,10 @@ export default function TrustSignals() {
           {/* RESPONSE */}
           <div className="flex flex-col items-center gap-2 sm:gap-3">
             <Clock className="w-9 h-9 sm:w-11 sm:h-11 text-[#00A3FF]" />
-            <h3 className="font-bold text-sm sm:text-base">Fast Response</h3>
-            <p className="text-xs sm:text-sm text-[#B3D9FF]">
+            <h3 className="font-semibold text-sm sm:text-base">
+              Fast Response
+            </h3>
+            <p className="text-[16px] tracking-[0.015em] font-medium text-[#B3D9FF]">
               1 Hour Callback
             </p>
           </div>
@@ -44,10 +50,10 @@ export default function TrustSignals() {
           {/* WARRANTY */}
           <div className="flex flex-col items-center gap-2 sm:gap-3">
             <Award className="w-9 h-9 sm:w-11 sm:h-11 text-[#00A3FF]" />
-            <h3 className="font-bold text-sm sm:text-base">
+            <h3 className="font-semibold text-sm sm:text-base">
               90-Day Warranty
             </h3>
-            <p className="text-xs sm:text-sm text-[#B3D9FF]">
+            <p className="text-[16px] tracking-[0.015em] font-medium text-[#B3D9FF]">
               Guaranteed
             </p>
           </div>
@@ -59,10 +65,10 @@ export default function TrustSignals() {
           <div className="text-[#00A3FF] text-xl sm:text-2xl mb-2">
             ★★★★★
           </div>
-          <p className="text-base sm:text-lg font-bold">
+          <p className="text-[16px] sm:text-[18px] font-semibold tracking-[0.015em]">
             4.9/5 (487 verified reviews)
           </p>
-          <p className="text-xs sm:text-sm text-[#B3D9FF]">
+          <p className="text-[16px] tracking-[0.015em] font-medium text-[#B3D9FF]">
             From real customers
           </p>
         </div>

@@ -12,9 +12,9 @@ export default function AboutSection() {
 
           <h2
             className="
-              font-bold
-              text-[20px] sm:text-[24px] md:text-[28px] lg:text-[36px]
-              leading-snug
+              font-semibold
+              text-[22px] sm:text-[26px] md:text-[32px] lg:text-[40px]
+              leading-tight
               text-transparent bg-clip-text
               bg-gradient-to-r from-[#ffffff] via-[#ffffff] to-[#ffffff]
             "
@@ -24,97 +24,97 @@ export default function AboutSection() {
 
           <p
             className="
-              text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
-              leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
+              text-[16px] sm:text-[16px] md:text-[18px] lg:text-[20px]
+              leading-[24px] sm:leading-[26px] md:leading-[30px] lg:leading-[32px]
+              tracking-[0.015em]
               text-[#B3D9FF]
-              font-light
+              font-medium
             "
           >
-            Discover the pinnacle of convenience and expertise with online used auto parts and 
-            online used car parts at Parts Central. Whether you're seeking used parts for 
-            trucks or exploring local junkyards near me, we're your go-to solution. Experience 
+            Discover the pinnacle of convenience and expertise with online used auto parts and
+            online used car parts at Parts Central. Whether you're seeking used parts for
+            trucks or exploring local junkyards near me, we're your go-to solution. Experience
             the ease of browsing online inventory as we redefine accessibility.
           </p>
 
-         <p
-  className="
-    text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
-    leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
-    text-[#B3D9FF]
-    font-light
-  "
->
-  Trust meets affordability here. We blend competitive pricing with uncompromised value, 
-  ensuring you receive the best. Ready to step into excellence? Dial{" "}
-  <a
-    href="tel:+18883382540"
-    className="
-      font-semibold 
-      text-[#00A3FF]
-      hover:text-[#00D4FF]
-      cursor-pointer
-      transition-all
-      duration-300
-      hover:underline
-      hover:drop-shadow-[0_0_8px_rgba(0,163,255,0.6)]
-    "
-  >
-    (888) 338-2540
-  </a>
-  {" "}
-  and join the ranks of satisfied Used Parts Central customers.
-</p>
-
+          <p
+            className="
+              text-[16px] sm:text-[16px] md:text-[18px] lg:text-[20px]
+              leading-[24px] sm:leading-[26px] md:leading-[30px] lg:leading-[32px]
+              tracking-[0.015em]
+              text-[#B3D9FF]
+              font-medium
+            "
+          >
+            Trust meets affordability here. We blend competitive pricing with uncompromised value,
+            ensuring you receive the best. Ready to step into excellence? Dial{" "}
+            <a
+              href="tel:+18883382540"
+              className="
+                font-semibold
+                text-[#00A3FF]
+                hover:text-[#00D4FF]
+                cursor-pointer
+                transition-all
+                duration-300
+                hover:underline
+                hover:drop-shadow-[0_0_8px_rgba(0,163,255,0.6)]
+              "
+            >
+              (888) 338-2540
+            </a>{" "}
+            and join the ranks of satisfied Used Parts Central customers.
+          </p>
 
           <p
             className="
-              text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px]
-              leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[34px]
+              text-[16px] sm:text-[16px] md:text-[18px] lg:text-[20px]
+              leading-[24px] sm:leading-[26px] md:leading-[30px] lg:leading-[32px]
+              tracking-[0.015em]
               text-[#B3D9FF]
-              font-light
+              font-medium
             "
           >
             Elevate your auto parts journey today where quality and convenience collide!
           </p>
 
-          {/* ✅ RESPONSIVE BUTTON */}
+          {/* CTA BUTTON */}
           <div className="w-full flex justify-center pt-4 sm:pt-5 md:pt-6">
-  <button
-    onClick={(e) => {
-      e.preventDefault();
-      
-      if (typeof window !== "undefined" && window.location.pathname === "/") {
-        const element = document.getElementById("lead-form");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      } else {
-        window.location.href = "/#lead-form";
-      }
-    }}
-    className="
-      px-6 sm:px-7 md:px-8 lg:px-10
-      py-2.5 sm:py-3
-      bg-gradient-to-r from-[#00A3FF] to-[#0080D0]
-      text-white
-      font-bold
-      rounded-lg
-      transition-all duration-300
-      text-sm sm:text-base
-      cursor-pointer
-      hover:shadow-[0_0_18px_rgba(0,163,255,0.6)]
-      hover:-translate-y-[1px]
-      active:translate-y-0
-    "
-  >
-    Find My Part
-  </button>
-</div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
 
+                if (typeof window !== "undefined" && window.location.pathname === "/") {
+                  const element = document.getElementById("lead-form");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                } else {
+                  window.location.href = "/#lead-form";
+                }
+              }}
+              className="
+                px-6 sm:px-7 md:px-8 lg:px-10
+                py-2.5 sm:py-3
+                bg-gradient-to-r from-[#00A3FF] to-[#0080D0]
+                text-white
+                font-bold
+                rounded-lg
+                transition-all duration-300
+                text-sm sm:text-base
+                cursor-pointer
+                hover:shadow-[0_0_18px_rgba(0,163,255,0.6)]
+                hover:-translate-y-[1px]
+                active:translate-y-0
+              "
+            >
+              Find My Part
+            </button>
+          </div>
 
         </div>
 
-        {/* RIGHT IMAGE — Still Commented (As You Wanted) */}
+        {/* RIGHT IMAGE — STILL COMMENTED */}
         {/*
         <div className="relative z-10 flex justify-center lg:justify-end mt-10 lg:mt-0">
           <div
