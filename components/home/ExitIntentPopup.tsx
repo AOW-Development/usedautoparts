@@ -59,30 +59,55 @@ export default function ExitIntentPopup() {
   const validatePhone = (phone: string) =>
     /^[\d\-\(\)\+\s]{10,}$/.test(phone);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    if (!formData.year || !formData.make || !formData.model || !formData.name) {
-      setError("Please fill Year, Make, Model, and Name.");
-      return;
+  if (!formData.year || !formData.make || !formData.model || !formData.name) {
+    setError("Please fill Year, Make, Model, and Name.");
+    return;
+  }
+
+  if (!validateEmail(formData.email)) {
+    setError("Please enter a valid email address.");
+    return;
+  }
+
+  if (!validatePhone(formData.phone)) {
+    setError("Please enter a valid phone number.");
+    return;
+  }
+
+  const lead = {
+    ...formData,
+    source: "exit-popup",
+    timestamp: new Date().toISOString(),
+  };
+
+  try {
+    /* 🔹 SEND EMAIL */
+    const emailRes = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        year: formData.year,
+        make: formData.make,
+        model: formData.model,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+
+        Source: "exit-popup",
+        SourceCampaign: "exit-popup",
+        SourceMedium: "popup",
+        SearchBy: "web",
+      }),
+    });
+
+    if (!emailRes.ok) {
+      throw new Error("Email API failed");
     }
 
-    if (!validateEmail(formData.email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    if (!validatePhone(formData.phone)) {
-      setError("Please enter a valid phone number.");
-      return;
-    }
-
-    const lead = {
-      ...formData,
-      source: "exit-popup",
-      timestamp: new Date().toISOString(),
-    };
-
+    /* 🔹 STORE LOCALLY (backup / analytics) */
     if (typeof window !== "undefined") {
       const storedLeads = JSON.parse(
         window.localStorage.getItem("exit_popup_leads") || "[]"
@@ -96,7 +121,12 @@ export default function ExitIntentPopup() {
 
     setError("");
     setSubmitted(true);
-  };
+  } catch (err) {
+    console.error(err);
+    setError("Submission failed. Please try again.");
+  }
+};
+
 
   if (!show) return null;
 
