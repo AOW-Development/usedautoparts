@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-
+ 
 type CarPartsListProps = {
   brand: string;
 };
-
+ 
 const parts = [
   "Engine Assembly", "Transmission", "ABS Control Module", "ABS System (Anti-Lock)",
   "AC Compressor", "AC Compressor Clutch", "AC Condenser", "AC Evaporator",
@@ -30,7 +30,7 @@ const parts = [
   "Door Vent Glass - Front (Side)", "Door Vent Glass - Rear (Side)",
   "Door Window Motor", "Door Window Regulator - Front",
   "Door Window Regulator - Rear",
-
+ 
   // Column 2
   "Drive Shaft - Front", "Drive Shaft - Rear", "ECM/ECU (Engine)",
   "ECM/ECU (Not Engine)", "ECU (Not Engine)", "Electric Door Motor",
@@ -55,7 +55,7 @@ const parts = [
   "Power Supply Control Module", "Power Window Motor", "Pressure Plate",
   "Quarter Glass", "Quarter Panel", "Quarter Window Regulator - Rear",
   "Radiator",
-
+ 
   // Column 3
   "Radiator Cooling Fan", "Radiator Core Support", "Radiator Fan",
   "Radio / Audio Cowl", "Rear Axle", "Rear Body Panel", "Rear Bumper",
@@ -83,19 +83,19 @@ const parts = [
   "Wiper Motor - Front", "Wiper Motor - Rear", "Wiper Motor (Windshield)",
   "Wiper Transmission",
 ];
-
+ 
 const CarPartsList: React.FC<CarPartsListProps> = ({ brand }) => {
   const colSize = Math.ceil(parts.length / 3);
-
+ 
   return (
-    <section className="w-full flex flex-col items-center px-6 py-16 text-[#E8F3FF]">
+    <section className="w-full flex flex-col items-center px-6 py-16 bg-[#07142B] text-[#E8F3FF]">
       <h2 className="text-3xl md:text-4xl font-bold text-[#049FFF] font-orbitron mb-10 text-center">
         USED {brand.toUpperCase()} AUTO PARTS
       </h2>
-
+ 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {[0, 1, 2].map((col) => (
-          <ul key={col} className="space-y-2 text-lg leading-7 font-jaldi list-disc list-inside">
+          <ul key={col} className="space-y-2 text-lg leading-7 font-jaldi list-disc list-inside text-[#cecece]">
             {parts
               .slice(col * colSize, (col + 1) * colSize)
               .map((item, i) => (
@@ -107,5 +107,8 @@ const CarPartsList: React.FC<CarPartsListProps> = ({ brand }) => {
     </section>
   );
 };
-
+ 
 export default CarPartsList;
+ 
+ 
+  
