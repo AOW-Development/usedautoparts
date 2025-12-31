@@ -44,113 +44,119 @@ export default function HeroTransmission({
 
   return (
     <section
-      id="lead-form"
-      className="relative w-full min-h-screen flex items-start justify-center px-3 sm:px-4 md:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D] overflow-hidden shadow-[0_-40px_120px_rgba(0,163,255,0.6)] bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: optimizedBg }}
-      aria-label={`${title} - ${subtitle}`}
-    >
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-stretch lg:items-center">
+  id="lead-form"
+  className="relative w-full flex items-start justify-center
+    px-3 sm:px-4 md:px-6 lg:px-8
+    pt-8 sm:pt-10 md:pt-12
+    pb-6 sm:pb-8
+    bg-gradient-to-br from-[#07142B] via-[#0A2F5C] to-[#001D3D]
+    overflow-hidden
+    shadow-[0_-40px_120px_rgba(0,163,255,0.6)]
+    bg-cover bg-center bg-fixed"
+  style={{ backgroundImage: optimizedBg }}
+  aria-label={`${title} - ${subtitle}`}
+>
+  <div className="relative z-10 w-full max-w-7xl mx-auto">
+    <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-start lg:items-center">
 
-          {/* LEFT CONTENT */}
-          <div className="hidden lg:flex text-white space-y-3 lg:space-y-4 flex-col justify-center flex-1">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)]">
-              {title}
-              <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
-                {subtitle}
-              </span>
-            </h1>
+      {/* LEFT CONTENT */}
+      <div className="hidden lg:flex text-white space-y-2 lg:space-y-3 flex-col justify-center flex-1">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)]">
+          {title}
+          <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
+            {subtitle}
+          </span>
+        </h1>
 
-            <p className="text-sm sm:text-base md:text-lg font-light leading-relaxed">
-              {description}
-            </p>
+        <p className="text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl">
+          {description}
+        </p>
 
-            <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-4">
-              <a
-                href="tel:+18883382540"
-                aria-label="Call us at (888)-338-2540"
-                className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[#00A3FF]"
-              >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00A3FF]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,163,255,0.5)]">
-                  <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-sm text-[#8CBFFF]">Call Now</span>
-                  <p className="text-base sm:text-lg md:text-xl font-bold">(888)-338-2540</p>
-                </div>
-              </a>
-
-              <a
-                href="mailto:sales@partscentral.us"
-                aria-label="Email us at sales@partscentral.us"
-                className="flex items-center gap-3 sm:gap-4 w-fit rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[#00A3FF]"
-              >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#00A3FF]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,163,255,0.5)]">
-                  <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-sm text-[#8CBFFF]">Email Us</span>
-                  <p className="text-base sm:text-lg md:text-xl font-bold">sales@partscentral.us</p>
-                </div>
-              </a>
+        <div className="space-y-2 pt-2">
+          <a
+            href="tel:+18883382540"
+            className="flex items-center gap-3 w-fit rounded-lg px-3 py-2 text-white hover:scale-105 transition-transform"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
+              <PhoneCall className="w-5 h-5" />
             </div>
-          </div>
-
-          {/* RIGHT SECTION */}
-          <div className="flex flex-col w-full lg:flex-1 gap-3 sm:gap-4 md:gap-5">
-
-            {/* MOBILE HEADING */}
-            <div className="lg:hidden text-white space-y-2 sm:space-y-3">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)]">
-                {title}
-                <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
-                  {subtitle}
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base font-light leading-relaxed">
-                {description}
-              </p>
+            <div>
+              <span className="text-xs text-[#8CBFFF]">Call Now</span>
+              <p className="text-base font-bold">(888)-338-2540</p>
             </div>
+          </a>
 
-            {/* FORM */}
-            <div className="rounded-2xl overflow-hidden shadow-[0_-40px_110px_rgba(0,163,255,0.7)] border border-[#00A3FF]/40 flex flex-col">
-              <LeadForm />
+          <a
+            href="mailto:sales@partscentral.us"
+            className="flex items-center gap-3 w-fit rounded-lg px-3 py-2 text-white hover:scale-105 transition-transform"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
+              <Mail className="w-5 h-5" />
             </div>
-
-            {/* MOBILE CONTACT BUTTONS */}
-            <div className="lg:hidden space-y-2 pt-1">
-              <a
-                href="tel:+18883382540"
-                className="flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-white bg-[#00A3FF]/20 hover:scale-105 transition"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
-                  <PhoneCall className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs text-[#8CBFFF]">Call Now</span>
-                  <p className="text-sm sm:text-base font-bold">(888)-338-2540</p>
-                </div>
-              </a>
-
-              <a
-                href="mailto:sales@partscentral.us"
-                className="flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-white bg-[#00A3FF]/20 hover:scale-105 transition"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs text-[#8CBFFF]">Email Us</span>
-                  <p className="text-sm sm:text-base font-bold">sales@partscentral.us</p>
-                </div>
-              </a>
+            <div>
+              <span className="text-xs text-[#8CBFFF]">Email Us</span>
+              <p className="text-base font-bold">sales@partscentral.us</p>
             </div>
-
-          </div>
+          </a>
         </div>
       </div>
-    </section>
+
+      {/* RIGHT SECTION */}
+      <div className="flex flex-col w-full lg:flex-1 gap-3 sm:gap-4">
+
+        {/* MOBILE HEADING */}
+        <div className="lg:hidden text-white space-y-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+            {title}
+            <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
+              {subtitle}
+            </span>
+          </h1>
+
+          <p className="text-sm sm:text-base font-light leading-relaxed">
+            {description}
+          </p>
+        </div>
+
+        {/* FORM */}
+        <div className="rounded-2xl overflow-hidden shadow-[0_-30px_80px_rgba(0,163,255,0.6)] border border-[#00A3FF]/40">
+          <LeadForm />
+        </div>
+
+        {/* MOBILE CONTACT BUTTONS */}
+        <div className="lg:hidden space-y-2">
+          <a
+            href="tel:+18883382540"
+            className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-white bg-[#00A3FF]/20"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center">
+              <PhoneCall className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-xs text-[#8CBFFF]">Call Now</span>
+              <p className="text-sm font-bold">(888)-338-2540</p>
+            </div>
+          </a>
+
+          <a
+            href="mailto:sales@partscentral.us"
+            className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-white bg-[#00A3FF]/20"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center">
+              <Mail className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-xs text-[#8CBFFF]">Email Us</span>
+              <p className="text-sm font-bold">sales@partscentral.us</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
   );
 }
 
@@ -342,7 +348,7 @@ export function LeadForm() {
   );
 
   return (
-    <div className="bg-gradient-to-br from-[#00A3FF] via-[#0080D0] to-[#001D3D] w-full p-4 sm:p-5 md:p-6 border border-[#00A3FF]/30 shadow-xl flex flex-col gap-4">
+    <div className="bg-gradient-to-br from-[#00A3FF] via-[#0080D0] to-[#001D3D] w-full sm:p-5 p-4 md:p-6 border border-[#00A3FF]/30 shadow-xl flex flex-col gap-4">
       <h2 className="text-[#E8F3FF] text-xl sm:text-2xl md:text-3xl font-extrabold text-center">
         Find Your Part Instantly
       </h2>
