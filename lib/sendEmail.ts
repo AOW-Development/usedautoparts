@@ -1,12 +1,12 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com',
-  port: 587,
+  host: process.env.SMTP_HOST || "smtp.office365.com",
+  port: Number(process.env.SMTP_PORT) || 587,
   secure: false,
   auth: {
-    user: 'leads@partscentral.us',
-    pass: 'cqggkvsrynkysxrr',
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
   tls: {
     ciphers: "SSLv3",
@@ -66,8 +66,8 @@ export async function sendEmail(data: {
   `;
 
   return transporter.sendMail({
-    from: `UsedCarPartsCentral <leads@partscentral.us>`,
-    to: 'a2zautoleads@gmail.com',
+    from: `UsedCarPartsCentral <${process.env.SMTP_FROM}>`,
+    to: process.env.SMTP_TO,
     replyTo: email,
     subject: `UCPC - ${year} - ${make} - ${part} - ${zip_code}`,
     html,

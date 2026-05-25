@@ -44,8 +44,8 @@ export default function HeroTransmission({
 
   return (
     <section
-  id="lead-form"
-  className="relative w-full flex items-start justify-center
+      id="lead-form"
+      className="relative w-full flex items-start justify-center
     px-3 sm:px-4 md:px-6 lg:px-8
     pt-8 sm:pt-10 md:pt-12
     pb-6 sm:pb-8
@@ -53,110 +53,106 @@ export default function HeroTransmission({
     overflow-hidden
     shadow-[0_-40px_120px_rgba(0,163,255,0.6)]
     bg-cover bg-center bg-fixed"
-  style={{ backgroundImage: optimizedBg }}
-  aria-label={`${title} - ${subtitle}`}
->
-  <div className="relative z-10 w-full max-w-7xl mx-auto">
-    <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-start lg:items-center">
+      style={{ backgroundImage: optimizedBg }}
+      aria-label={`${title} - ${subtitle}`}
+    >
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-start lg:items-center">
+          {/* LEFT CONTENT */}
+          <div className="hidden lg:flex text-white space-y-2 lg:space-y-3 flex-col justify-center flex-1">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)]">
+              {title}
+              <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
+                {subtitle}
+              </span>
+            </h1>
 
-      {/* LEFT CONTENT */}
-      <div className="hidden lg:flex text-white space-y-2 lg:space-y-3 flex-col justify-center flex-1">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-[0_-20px_60px_rgba(0,163,255,0.65)]">
-          {title}
-          <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
-            {subtitle}
-          </span>
-        </h1>
+            <p className="text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl">
+              {description}
+            </p>
 
-        <p className="text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl">
-          {description}
-        </p>
+            <div className="space-y-2 pt-2">
+              <a
+                href="tel:+18883382540"
+                className="flex items-center gap-3 w-fit rounded-lg px-3 py-2 text-white hover:scale-105 transition-transform"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
+                  <PhoneCall className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-xs text-[#8CBFFF]">Call Now</span>
+                  <p className="text-base font-bold">(888)-338-2540</p>
+                </div>
+              </a>
 
-        <div className="space-y-2 pt-2">
-          <a
-            href="tel:+18883382540"
-            className="flex items-center gap-3 w-fit rounded-lg px-3 py-2 text-white hover:scale-105 transition-transform"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
-              <PhoneCall className="w-5 h-5" />
+              <a
+                href="mailto:sales@partscentral.us"
+                className="flex items-center gap-3 w-fit rounded-lg px-3 py-2 text-white hover:scale-105 transition-transform"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-xs text-[#8CBFFF]">Email Us</span>
+                  <p className="text-base font-bold">sales@partscentral.us</p>
+                </div>
+              </a>
             </div>
-            <div>
-              <span className="text-xs text-[#8CBFFF]">Call Now</span>
-              <p className="text-base font-bold">(888)-338-2540</p>
-            </div>
-          </a>
+          </div>
 
-          <a
-            href="mailto:sales@partscentral.us"
-            className="flex items-center gap-3 w-fit rounded-lg px-3 py-2 text-white hover:scale-105 transition-transform"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.5)]">
-              <Mail className="w-5 h-5" />
+          {/* RIGHT SECTION */}
+          <div className="flex flex-col w-full lg:flex-1 gap-3 sm:gap-4">
+            {/* MOBILE HEADING */}
+            <div className="lg:hidden text-white space-y-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+                {title}
+                <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
+                  {subtitle}
+                </span>
+              </h1>
+
+              <p className="text-sm sm:text-base font-light leading-relaxed">
+                {description}
+              </p>
             </div>
-            <div>
-              <span className="text-xs text-[#8CBFFF]">Email Us</span>
-              <p className="text-base font-bold">sales@partscentral.us</p>
+
+            {/* FORM */}
+            <div className="rounded-2xl overflow-hidden shadow-[0_-30px_80px_rgba(0,163,255,0.6)] border border-[#00A3FF]/40">
+              <LeadForm />
             </div>
-          </a>
+
+            {/* MOBILE CONTACT BUTTONS */}
+            <div className="lg:hidden space-y-2">
+              <a
+                href="tel:+18883382540"
+                className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-white bg-[#00A3FF]/20"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center">
+                  <PhoneCall className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-xs text-[#8CBFFF]">Call Now</span>
+                  <p className="text-sm font-bold">(888)-338-2540</p>
+                </div>
+              </a>
+
+              <a
+                href="mailto:sales@partscentral.us"
+                className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-white bg-[#00A3FF]/20"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-xs text-[#8CBFFF]">Email Us</span>
+                  <p className="text-sm font-bold">sales@partscentral.us</p>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* RIGHT SECTION */}
-      <div className="flex flex-col w-full lg:flex-1 gap-3 sm:gap-4">
-
-        {/* MOBILE HEADING */}
-        <div className="lg:hidden text-white space-y-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-            {title}
-            <span className="block bg-gradient-to-r from-[#00A3FF] via-[#0099FF] to-[#003D80] bg-clip-text text-transparent">
-              {subtitle}
-            </span>
-          </h1>
-
-          <p className="text-sm sm:text-base font-light leading-relaxed">
-            {description}
-          </p>
-        </div>
-
-        {/* FORM */}
-        <div className="rounded-2xl overflow-hidden shadow-[0_-30px_80px_rgba(0,163,255,0.6)] border border-[#00A3FF]/40">
-          <LeadForm />
-        </div>
-
-        {/* MOBILE CONTACT BUTTONS */}
-        <div className="lg:hidden space-y-2">
-          <a
-            href="tel:+18883382540"
-            className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-white bg-[#00A3FF]/20"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center">
-              <PhoneCall className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs text-[#8CBFFF]">Call Now</span>
-              <p className="text-sm font-bold">(888)-338-2540</p>
-            </div>
-          </a>
-
-          <a
-            href="mailto:sales@partscentral.us"
-            className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-white bg-[#00A3FF]/20"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#00A3FF]/25 flex items-center justify-center">
-              <Mail className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs text-[#8CBFFF]">Email Us</span>
-              <p className="text-sm font-bold">sales@partscentral.us</p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
   );
 }
 
@@ -193,7 +189,7 @@ export function LeadForm() {
 
   const modelOptions = useMemo(
     () => (formData.make && MAKE[formData.make] ? MAKE[formData.make] : []),
-    [formData.make]
+    [formData.make],
   );
 
   const formatPhone = useCallback((v: string) => {
@@ -219,7 +215,10 @@ export function LeadForm() {
       e.part = "Choose Part.";
     if (!formData.engineSize || formData.engineSize === "Engine Size")
       e.engineSize = "Choose engine size.";
-    if (!formData.transmission || formData.transmission === "Choose Transmission")
+    if (
+      !formData.transmission ||
+      formData.transmission === "Choose Transmission"
+    )
       e.transmission = "Choose transmission.";
     if (!formData.name) e.name = "Please enter your name.";
     if (!formData.email) e.email = "Please enter your e-mail.";
@@ -242,9 +241,14 @@ export function LeadForm() {
 
         const firstField = Object.keys(eObj)[0];
         if (
-          ["year", "make", "part", "engineSize", "transmission", "model"].includes(
-            firstField
-          )
+          [
+            "year",
+            "make",
+            "part",
+            "engineSize",
+            "transmission",
+            "model",
+          ].includes(firstField)
         ) {
           setOpenDropdown(firstField);
         }
@@ -287,14 +291,8 @@ export function LeadForm() {
         setIsSubmitting(false);
       }
     },
-    [
-      validate,
-      router,
-      formData,
-    ]
+    [validate, router, formData],
   );
-
-
 
   const handleInputChange = useCallback(
     (name: string, value: string) => {
@@ -307,7 +305,7 @@ export function LeadForm() {
         });
       }
     },
-    [errors]
+    [errors],
   );
 
   const handleSelectChange = useCallback(
@@ -326,7 +324,7 @@ export function LeadForm() {
       }
       setOpenDropdown(null);
     },
-    [errors]
+    [errors],
   );
 
   const handlePhoneChange = useCallback(
@@ -344,7 +342,7 @@ export function LeadForm() {
         });
       }
     },
-    [errors, formatPhone]
+    [errors, formatPhone],
   );
 
   return (
@@ -354,7 +352,6 @@ export function LeadForm() {
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-3">
-
         <div className="grid grid-cols-2 gap-3">
           <SelectFieldCustom
             label="Year"
@@ -431,7 +428,7 @@ export function LeadForm() {
             label="Name"
             name="name"
             value={formData.name}
-            placeholder="John Smith"
+            placeholder="Your Name"
             onChange={handleInputChange}
             error={errors.name}
           />
@@ -450,7 +447,7 @@ export function LeadForm() {
             label="ZIP Code"
             name="zipCode"
             value={formData.zipCode}
-            placeholder="12345"
+            placeholder="Zip Code"
             onChange={handleInputChange}
             error={errors.zipCode}
           />
@@ -521,8 +518,9 @@ function InputField({
         value={value}
         placeholder={placeholder || label}
         onChange={(e) => onChange(name, e.target.value)}
-        className={`w-full h-10 sm:h-11 md:h-12 px-3 bg-white rounded-lg text-sm sm:text-base text-black placeholder:text-gray-600 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] shadow-sm ${error ? "border-red-400" : "border-[#0A5FA6] hover:border-[#00A3FF]"
-          }`}
+        className={`w-full h-10 sm:h-11 md:h-12 px-3 bg-white rounded-lg text-sm sm:text-base text-black placeholder:text-gray-600 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] shadow-sm ${
+          error ? "border-red-400" : "border-[#0A5FA6] hover:border-[#00A3FF]"
+        }`}
       />
       {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
     </div>
@@ -554,8 +552,9 @@ function PhoneInputField({
         value={formatPhone(value)}
         placeholder="(123) 456-7890"
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full h-10 sm:h-11 md:h-12 px-3 bg-white rounded-lg text-sm sm:text-base text-black placeholder:text-gray-600 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] shadow-sm ${error ? "border-red-400" : "border-[#0A5FA6] hover:border-[#00A3FF]"
-          }`}
+        className={`w-full h-10 sm:h-11 md:h-12 px-3 bg-white rounded-lg text-sm sm:text-base text-black placeholder:text-gray-600 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] shadow-sm ${
+          error ? "border-red-400" : "border-[#0A5FA6] hover:border-[#00A3FF]"
+        }`}
       />
       {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
     </div>
@@ -593,12 +592,13 @@ function SelectFieldCustom({
         value={value}
         onChange={(e) => onSelect(name, e.target.value)}
         disabled={disabled}
-        className={`w-full h-10 sm:h-11 md:h-12 px-3 bg-white rounded-lg text-sm sm:text-base text-black placeholder:text-gray-600 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] shadow-sm ${error
+        className={`w-full h-10 sm:h-11 md:h-12 px-3 bg-white rounded-lg text-sm sm:text-base text-black placeholder:text-gray-600 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] shadow-sm ${
+          error
             ? "border-red-400"
             : disabled
               ? "border-gray-300 bg-gray-100 cursor-not-allowed"
               : "border-[#0A5FA6] hover:border-[#00A3FF]"
-          }`}
+        }`}
       >
         <option value="">{placeholder || `Select ${label}`}</option>
         {options?.map((option) => (
