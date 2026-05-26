@@ -256,31 +256,68 @@ export function LeadForm() {
       }
 
       try {
-        await fetch("/api/send-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            year: formData.year,
-            engine_size: formData.engineSize,
-            make: formData.make,
-            model: formData.model,
-            transmission: formData.transmission,
-            part: formData.part,
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            zip_code: formData.zipCode,
+        const formPayload = {
+          year: formData.year,
+          engine_size: formData.engineSize,
+          make: formData.make,
+          model: formData.model,
+          transmission: formData.transmission,
+          part: formData.part,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          zip_code: formData.zipCode,
+        };
 
-            // tracking (unchanged)
+        const leadsPayload = {
+          lead_source: "W-UCPC",
+          created_by: "System",
+          created_date: new Date().toISOString().split("T")[0],
+          customer_name: formData.name,
+          email: formData.email,
+          mobile: formData.phone,
+          zipcode: formData.zipCode,
+          make: formData.make,
+          model: formData.model,
+          year: formData.year,
+          part: formData.part,
+          specification: formData.engineSize,
+          engine_type: formData.transmission,
+          status: "New",
+        };
+
+        const leadsApiUrl = process.env.NEXT_PUBLIC_LEADS_API_URL;
+
+        // Fire both APIs in parallel — neither blocks the other
+        const [emailResult, leadResult] = await Promise.allSettled([
+          // 1. Email via Next.js API route (keeps SMTP creds server-side)
+          fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formPayload),
           }),
-        }); 
 
-        // Always redirect to /thank-you once the API was reached.
-        // Individual failures (email/lead) are logged server-side.
+          // 2. Save lead directly to backend API
+          leadsApiUrl
+            ? fetch(`${leadsApiUrl}/api/leads/manual`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(leadsPayload),
+              })
+            : Promise.reject("NEXT_PUBLIC_LEADS_API_URL not set"),
+        ]);
+
+        if (emailResult.status === "rejected")
+          console.error("[form] Email API failed:", emailResult.reason);
+
+        if (leadResult.status === "rejected")
+          console.error("[form] Leads API failed:", leadResult.reason);
+
+        // Always redirect regardless of individual failures
         await new Promise((r) => setTimeout(r, 800));
         router.push("/thank-you");
       } catch (err) {
-        // Only hits here if the fetch itself failed (network down, etc.)
+        // Only hits here if something truly unexpected happened
         console.error(err);
         setErrors((p) => ({
           ...p,
