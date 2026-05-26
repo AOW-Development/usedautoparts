@@ -1,18 +1,5 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.office365.com",
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-  tls: {
-    ciphers: "SSLv3",
-  },
-});
-
 export async function sendEmail(data: {
   year: string;
   engine_size: string;
@@ -45,6 +32,20 @@ export async function sendEmail(data: {
     SourceMedium,
     SearchBy,
   } = data;
+
+  // Create transporter per-call — safer for serverless (Amplify / Lambda)
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.office365.com",
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: false, // STARTTLS on port 587
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false, // avoids cert issues on AWS infra
+    },
+  });
 
   const html = `
     <table width="100%" cellpadding="6" cellspacing="0">
