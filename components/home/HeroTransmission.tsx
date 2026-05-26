@@ -256,7 +256,7 @@ export function LeadForm() {
       }
 
       try {
-        const emailRes = await fetch("/api/send-email", {
+        await fetch("/api/send-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -273,19 +273,18 @@ export function LeadForm() {
 
             // tracking (unchanged)
           }),
-        });
+        }); 
 
-        if (!emailRes.ok) {
-          throw new Error("Email API failed");
-        }
-
+        // Always redirect to /thank-you once the API was reached.
+        // Individual failures (email/lead) are logged server-side.
         await new Promise((r) => setTimeout(r, 800));
         router.push("/thank-you");
       } catch (err) {
+        // Only hits here if the fetch itself failed (network down, etc.)
         console.error(err);
         setErrors((p) => ({
           ...p,
-          submit: "Submission failed. Please try again.",
+          submit: "Network error. Please try again.",
         }));
       } finally {
         setIsSubmitting(false);
